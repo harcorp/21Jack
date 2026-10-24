@@ -7,6 +7,7 @@ import { celebrate, celebrateKingslayer } from "./lib/confetti";
 import { roundResult } from "./lib/format";
 import {
   ActionButton,
+  ActionIcon,
   BalancePill,
   BetCircle,
   BossBar,
@@ -42,11 +43,12 @@ export interface TableViewProps {
 
 const BET_CHIPS: ChipValue[] = [5, 10, 25, 100];
 
-const ACTIONS: { action: Action; label: string; key: string }[] = [
-  { action: "hit", label: "Hit", key: "H" },
-  { action: "stand", label: "Stand", key: "S" },
-  { action: "double", label: "Double", key: "D" },
-  { action: "split", label: "Split", key: "P" },
+// Each move has its own colour and icon from the theme palette so players tell them apart at a glance.
+const ACTIONS: { action: Action; label: string; key: string; variant: "felt" | "carpet" | "gold" | "wood" }[] = [
+  { action: "hit", label: "Hit", key: "H", variant: "felt" },
+  { action: "stand", label: "Stand", key: "S", variant: "carpet" },
+  { action: "double", label: "Double", key: "D", variant: "gold" },
+  { action: "split", label: "Split", key: "P", variant: "wood" },
 ];
 
 export function TableView({ round, balance, busy, error, onBet, onAction, onNewRound, boss = null, coach, onCoachChange }: TableViewProps) {
@@ -243,15 +245,17 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
 
           {playing && (
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-4" role="toolbar" aria-label="Actions">
-              {ACTIONS.map(({ action, label, key }) => (
+              {ACTIONS.map(({ action, label, key, variant }) => (
                 <ActionButton
                   key={action}
+                  variant={variant}
                   hotkey={key}
                   glow={recommended === action}
                   disabled={busy || !allowed.has(action)}
                   onClick={() => act(action)}
                   aria-keyshortcuts={key}
                 >
+                  <ActionIcon action={action} />
                   {label}
                 </ActionButton>
               ))}

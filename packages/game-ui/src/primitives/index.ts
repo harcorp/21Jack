@@ -1,4 +1,5 @@
 export { ActionButton } from "./ActionButton";
+export { ActionIcon } from "./ActionIcon";
 export { BalancePill } from "./BalancePill";
 export { BetCircle } from "./BetCircle";
 export { ChipButton, ChipStack, CHIP_VALUES, chipsFor, type ChipValue } from "./Chip";

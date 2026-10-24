@@ -14,7 +14,7 @@ const lanAddresses = Object.values(networkInterfaces())
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@21jack/contracts", "@21jack/game-ui"],
-  allowedDevOrigins: [...lanAddresses, "*.local"],
+  allowedDevOrigins: ["127.0.0.1", ...lanAddresses, "*.local"],
 };
 
 export default nextConfig;

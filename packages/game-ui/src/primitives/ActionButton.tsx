@@ -1,11 +1,13 @@
 import type { ButtonHTMLAttributes } from "react";
 
-type Variant = "wood" | "gold" | "ghost";
+type Variant = "wood" | "gold" | "ghost" | "felt" | "carpet";
 
 const VARIANTS: Record<Variant, string> = {
   wood: "bg-wood text-gold-light",
   gold: "bg-gold text-ink",
   ghost: "bg-stone-dark text-parchment",
+  felt: "bg-felt text-parchment",
+  carpet: "bg-carpet text-parchment",
 };
 
 /** Voxel block button: pressed state drops 2px and loses its bevel; disabled turns to stone. `glow` = coach recommendation ring. */
@@ -20,7 +22,7 @@ export function ActionButton({
   return (
     <button
       type="button"
-      className={`voxel-block relative min-h-11 min-w-20 cursor-pointer px-4 py-2 font-display text-base font-semibold tracking-wide outline-offset-2 focus-visible:outline-[3px] focus-visible:outline-torch enabled:hover:brightness-110 enabled:active:voxel-pressed disabled:cursor-not-allowed disabled:bg-stone disabled:text-parchment/50 sm:text-lg ${VARIANTS[variant]} ${className ?? ""}`}
+      className={`voxel-block relative inline-flex min-h-11 items-center justify-center gap-2 min-w-20 cursor-pointer px-4 py-2 font-display text-base font-semibold tracking-wide outline-offset-2 focus-visible:outline-[3px] focus-visible:outline-torch enabled:hover:brightness-110 enabled:active:voxel-pressed disabled:cursor-not-allowed disabled:bg-stone disabled:text-parchment/50 sm:text-lg ${VARIANTS[variant]} ${className ?? ""}`}
       {...button}
     >
       {glow && (
