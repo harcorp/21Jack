@@ -6,17 +6,23 @@
   "scripts": {
     "dev": "node --env-file-if-exists=../../.env --watch --import tsx src/index.ts",
     "start": "node --env-file-if-exists=../../.env --import tsx src/index.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
   },
   "devDependencies": {
     "@21jack/tsconfig": "workspace:*",
     "@types/node": "^26.6.5",
-    "typescript": "^7.0.2"
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.5"
   },
   "dependencies": {
+    "@21jack/blackjack-core": "workspace:*",
     "@21jack/contracts": "workspace:*",
+    "@electric-sql/pglite": "^0.5.11",
     "@hono/node-server": "^2.1.5",
     "hono": "^4.13.13",
-    "tsx": "^4.23.15"
+    "postgres": "^3.4.9",
+    "tsx": "^4.23.15",
+    "zod": "^4.6.7"
   }
 }

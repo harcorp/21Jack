@@ -1,1 +1,4 @@
-export { GameTable } from "./GameTable";
+export { GameTable, type GameTableProps } from "./GameTable";
+export { TableView, type TableViewProps } from "./TableView";
+export { bossFixture, fixtures } from "./fixtures";
+export * from "./primitives";

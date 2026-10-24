@@ -8,6 +8,8 @@ export const ErrorCode = z.enum([
   "INVALID_ACTION",
   "ROUND_SETTLED",
   "CONFLICT",
+  "SERVICE_UNAVAILABLE",
+  "INTERNAL",
 ]);
 export type ErrorCode = z.infer<typeof ErrorCode>;
 
@@ -19,6 +21,8 @@ export const errorStatus: Record<ErrorCode, number> = {
   INVALID_ACTION: 409,
   ROUND_SETTLED: 409,
   CONFLICT: 409,
+  SERVICE_UNAVAILABLE: 503,
+  INTERNAL: 500,
 };
 
 export const ApiError = z.object({

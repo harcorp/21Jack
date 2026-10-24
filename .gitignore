@@ -8,3 +8,6 @@ dist
 .DS_Store
 next-env.d.ts
 *.tsbuildinfo
+
+# Local embedded Postgres (PGlite) data when DATABASE_URL is empty
+.data

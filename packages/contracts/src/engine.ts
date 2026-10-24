@@ -81,3 +81,5 @@ export const TransactionList = z.array(Transaction);
 /** House payout rule: win and natural pay 2x final stake, push returns the stake, loss returns 0. */
 export const payoutFor = (outcome: HandOutcome, finalStake: number) =>
   outcome === "win" || outcome === "blackjack" ? finalStake * 2 : outcome === "push" ? finalStake : 0;
+
+// GET /accounts?username=<name> -> Account | 404 NOT_FOUND  (username login lookup)

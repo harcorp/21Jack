@@ -138,11 +138,21 @@ Split/Double order in game: validate move is legal → call engine `/bets` → o
 
 ---
 
-## 5. Twist: **Coach Mode**
-Toggle before betting. Shows the basic-strategy move for the active hand; after each action shows ✓/✗; end of round shows "Coach score 3/4"; history shows coach accuracy per round.
+## 5. Twist: **Boss Fight** (chosen) + Coach Mode (stretch)
+The dealer is the King with 5 hearts per account (`BOSS_MAX_HP`). At settlement, per hand: win -1, blackjack -2, push 0, loss +1 (capped). At 0 hearts the King is defeated: "Kingslayer" badge, `defeats` +1, a new King with full hearts. Contracts: `BossView`, `BossPayoutMetadata`, `BOSS_DAMAGE` in `packages/contracts/src/game.ts`.
 
-| Owner | Part of the twist |
+| Part | Work |
 |---|---|
+| blackjack-core | pure `applyBossDamage` + tests |
+| apps/game | boss state per account, applied once per round, `boss` in RoundView, `metadata.boss` on payouts, `GET /boss` |
+| game-ui | boss health bar, hit/heal animations, Kingslayer banner |
+| apps/web | hearts in lobby, damage + Kingslayer badge in history, `/api/game/boss` |
+
+**Visible success criterion:** win a hand → the King's bar loses a heart with a hit animation; defeat him → Kingslayer banner and badge in history.
+
+Coach Mode (only if time remains): `recommend()` in blackjack-core already exists; `CoachView` is in contracts.
+
+---|---|
 | P1 | `recommend(hand, dealerUpCard, allowed)` in blackjack-core (S17 basic strategy table, fallback when move not allowed) + coach state in RoundView |
 | P2 | Hint chip on the table, ✓/✗ feedback animation, end-of-round score |
 | P3 | Store `coachScore` on payout transactions (`metadata` jsonb) |

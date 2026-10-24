@@ -7,10 +7,12 @@
     "build": "turbo run build",
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
-    "check": "turbo run typecheck test"
+    "check": "turbo run typecheck test",
+    "smoke": "tsx scripts/smoke.ts"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
     "turbo": "^2.11.10",
     "typescript": "^7.0.2"
   }
