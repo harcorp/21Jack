@@ -1,20 +1,20 @@
 import type { Metadata } from "next";
 import { ModeSwitch } from "@/components/multi/ModeSwitch";
 import { MultiPlay } from "@/components/multi/MultiPlay";
-import { Badge, PageShell } from "@/components/ui";
+import { Badge } from "@/components/ui";
 
 export const metadata: Metadata = { title: "The shared table · 21Jack" };
 
 export default function MultiPage() {
   return (
-    <PageShell className="max-w-6xl">
-      <div className="mb-4 flex flex-col items-center gap-3">
+    <main id="main" className="mx-auto flex w-full max-w-[1440px] flex-col gap-3 px-0 py-3 sm:px-4 *:min-w-0">
+      <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 px-4 sm:px-0">
         <ModeSwitch active="multi" />
-        <h1 className="flex items-center gap-2 font-display text-2xl text-gold-light">
+        <h1 className="flex items-center gap-2 font-display text-xl text-gold-light sm:text-2xl">
           The shared table <Badge tone="torch">WIP</Badge>
         </h1>
       </div>
       <MultiPlay />
-    </PageShell>
+    </main>
   );
 }

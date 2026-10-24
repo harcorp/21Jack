@@ -11,12 +11,14 @@ export interface GameTableProps {
   onBalanceChange?: (balance: number) => void;
   /** Web proxy base path. The browser never talks to the game or engine services directly. */
   apiBase?: string;
+  /** Name (and optional avatar id or URL) on the player's plate. */
+  player?: { name: string; avatar?: string };
 }
 
 const messageOf = (err: unknown) =>
   err instanceof GameApiError ? err.message : "Connection lost. Check your network and try again.";
 
-export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/game" }: GameTableProps) {
+export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/game", player }: GameTableProps) {
   const [round, setRound] = useState<RoundView | null>(null);
   const [balance, setBalance] = useState(initialBalance);
   const [busy, setBusy] = useState(true);
@@ -24,6 +26,7 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
   const [boss, setBoss] = useState<BossView | null>(null);
   const [coach, setCoach] = useCoachPreference();
   const [freshRoundId, setFreshRoundId] = useState<string | null>(null);
+  const [resumedRoundId, setResumedRoundId] = useState<string | null>(null);
   const pending = useRef(false);
   // A settled round's balance reaches the page header only after the dealer reveal ends.
   const heldBalance = useRef<{ roundId: string; balance: number } | null>(null);
@@ -88,7 +91,10 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
     pending.current = true;
     resume(controller.signal)
       .then(async (active) => {
-        if (active) return apply(active);
+        if (active) {
+          if (active.status === "player_turn") setResumedRoundId(active.roundId);
+          return apply(active);
+        }
         const current = await requestJson<BossView>(`${apiBase}/boss`, { method: "GET", signal: controller.signal, retry: false }).catch(
           () => null,
         );
@@ -165,6 +171,8 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
       onNewRound={onNewRound}
       freshRoundId={freshRoundId}
       onRevealDone={onRevealDone}
+      resumedRoundId={resumedRoundId}
+      player={player}
     />
   );
 }

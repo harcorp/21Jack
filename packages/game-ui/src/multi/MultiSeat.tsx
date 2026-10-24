@@ -1,168 +1,151 @@
 "use client";
 
-import type { SeatView } from "@21jack/contracts";
-import {
-  BankrollStacks,
-  BetCircle,
-  ChipStack,
-  chipsFor,
-  HandTotalBadge,
-  PlayingCard,
-  type ChipCollect,
-  type ChipValue,
-} from "../primitives";
-import { handTotalLabel, OUTCOME_LABELS, signed } from "../lib/format";
+import { MULTI_TURN_SECONDS, type HandView } from "@21jack/contracts";
+import { GhBetSpot, GhHand, GhSeatPlaque, ghAvatarFor } from "../gh";
+import { DESKTOP_ANCHORS, seatAnchorForTurn } from "../scene";
+import { seatState, turnNumber } from "./model";
+import { type CollectTarget, Stake } from "./parts";
+import type { MultiView } from "./view";
 
-// Lift the outer seats on wide screens so the row follows the curve of the table.
-const ARC = ["lg:-translate-y-6", "lg:-translate-y-1", "", "lg:-translate-y-1", "lg:-translate-y-6"];
+const W = 1440;
+const H = 810;
+/** Dealer hand centre on the desktop stage (TableStage template: left 50%, top 45.6%). */
+export const DEALER_POS = { x: 0.5 * W, y: 0.456 * H };
+const SHOE = { x: (DESKTOP_ANCHORS.shoe[0] / 100) * W, y: (DESKTOP_ANCHORS.shoe[1] / 100) * H };
 
-function CountdownRing({ seconds, total }: { seconds: number; total: number }) {
-  const r = 14;
-  const c = 2 * Math.PI * r;
-  const ratio = Math.min(1, Math.max(0, seconds / total));
-  return (
-    <span className="relative inline-flex h-9 w-9 items-center justify-center" aria-label={`${seconds} seconds left`}>
-      <svg viewBox="0 0 36 36" className="absolute inset-0 -rotate-90" aria-hidden="true">
-        <circle cx="18" cy="18" r={r} fill="var(--color-ink)" stroke="var(--color-stone)" strokeWidth="4" />
-        <circle
-          cx="18"
-          cy="18"
-          r={r}
-          fill="none"
-          stroke={seconds <= 5 ? "var(--color-carpet)" : "var(--color-torch)"}
-          strokeWidth="4"
-          strokeDasharray={c}
-          strokeDashoffset={c * (1 - ratio)}
-          style={{ transition: "stroke-dashoffset 250ms linear" }}
-        />
-      </svg>
-      <span className="relative font-pixel text-[10px] text-parchment">{seconds}</span>
-    </span>
-  );
+/** Hides the outcome until the dealer reveal has finished. */
+export function veiled(hand: HandView, show: boolean): HandView {
+  if (show) return hand;
+  const { outcome: _o, payout: _p, ...rest } = hand;
+  return rest;
 }
 
-export function MultiSeat({
-  index,
-  seat,
-  mine,
-  turnHand,
-  secondsLeft,
-  windowSeconds,
-  settled,
-  pendingChips = null,
-  placedChips = null,
-  bankroll = null,
-}: {
-  index: number;
-  seat: SeatView | null;
-  mine: boolean;
-  turnHand: number | null;
-  secondsLeft: number | null;
-  windowSeconds: number;
-  settled: boolean;
-  /** Your chips for the next bet while betting (only for your seat). */
-  pendingChips?: readonly ChipValue[] | null;
-  /** The chips of the bet you just placed, to keep their order (only for your seat). */
-  placedChips?: readonly ChipValue[] | null;
-  /** Your bankroll left after the pending bet (only for your seat). */
-  bankroll?: number | null;
-}) {
-  const active = turnHand !== null;
-  const frame = mine ? "border-gold bg-ink/55" : "border-ink/60 bg-ink/35";
-  const staked = seat?.hands.reduce((sum, h) => sum + h.stake, 0) ?? 0;
-  const net = seat && settled && seat.payout !== null ? seat.payout - staked : null;
-  const pending = pendingChips?.reduce((sum, v) => sum + v, 0) ?? 0;
-  const dealt = (seat?.hands.length ?? 0) > 0;
-  const won = settled && dealt && (seat?.payout ?? 0) > 0;
-  // What sits in the circle: the chips being placed, the confirmed bet, the stakes in play, or the payout to collect.
-  const onCircle = pendingChips ? pending : won ? (seat?.payout ?? 0) : dealt ? staked : (seat?.bet ?? 0);
-  const placedSum = placedChips?.reduce((sum, v) => sum + v, 0) ?? 0;
-  const circleChips: readonly ChipValue[] =
-    pendingChips ?? (placedChips && placedSum === onCircle && placedSum > 0 ? placedChips : chipsFor(onCircle));
-  const collect: ChipCollect = settled && dealt ? (won ? "player" : "dealer") : null;
+/**
+ * One seat on the desktop stage: hands on the felt at the seat anchor (meta on the outer side, stake
+ * under the cards), the stake before the deal, and the rim plate (TableStage `plateStyle`).
+ * Seat index i plays i-th, so it sits at the design's turn-order seat i+1 (seat 1 = screen right).
+ */
+export function MultiSeat({ v, index }: { v: MultiView; index: number }) {
+  const { table } = v;
+  const seat = table.seats[index] ?? null;
+  const mine = index === v.youSeat;
+  const { felt, rim } = seatAnchorForTurn(turnNumber(index));
+  const [fxp, fyp] = DESKTOP_ANCHORS[felt];
+  const [rxp, ryp] = DESKTOP_ANCHORS[rim];
+  const fx = (fxp / 100) * W;
+  const fy = (fyp / 100) * H;
+  const rx = (rxp / 100) * W;
+  const ry = (ryp / 100) * H;
+  // Meta beside the cards on the outer side (TableStage), except the two end seats, where the outer
+  // side would run into their own rim plate: there it goes toward the dealer.
+  const side: "left" | "right" = felt === "seat2" || felt === "seat5" ? "left" : "right";
+  const state = seatState(table, index, v.dealer.revealing, mine);
+  const plateStyle = { left: `${rxp}%`, top: `${ryp}%`, transform: "translate(-50%, -60px)" };
+
+  if (!seat) {
+    const canSit = !v.seated;
+    return (
+      <div className="mt-abs" style={plateStyle}>
+        <GhSeatPlaque
+          empty
+          layout="stage"
+          seatNumber={index + 1}
+          onSit={canSit && !v.busy ? v.join : undefined}
+          className={canSit ? undefined : "[&_.gh-btn]:invisible"}
+        />
+      </div>
+    );
+  }
+
+  const dealt = seat.hands.length > 0;
+  const playing = table.phase === "playing";
+  const turnHand = playing && table.turn?.seat === index ? table.turn.handIndex : null;
+  const showOutcome = table.phase === "settled" && v.settledDone;
+  const bettingOpen = table.phase === "waiting" || table.phase === "betting";
+  const pending = mine && v.canBet ? v.pendingChips : null;
+  const preStake = pending ? v.bet : (seat.bet ?? 0);
+  const placedSum = v.placedChips.reduce((s, c) => s + c, 0);
+  const preChips = pending ?? (mine && placedSum === preStake && placedSum > 0 ? v.placedChips : null);
+  const two = seat.hands.length === 2;
+  const roundKey = `${table.roundNumber}`;
 
   return (
-    <li
-      className={`relative flex min-w-0 flex-col items-center gap-1.5 border-4 p-2 ${frame} ${ARC[index] ?? ""} ${mine ? "col-span-2 sm:col-span-1" : ""}`}
-      aria-label={seat ? `Seat ${index + 1}: ${seat.username}${mine ? " (you)" : ""}${active ? ", playing" : ""}` : `Seat ${index + 1}: empty`}
-    >
-      {active && (
+    <>
+      {dealt && (
         <div
-          className="torch-flicker pointer-events-none absolute -inset-1 border-4 border-torch shadow-[0_0_18px_4px_var(--color-torch)]"
-          aria-hidden="true"
-        />
-      )}
-      {!seat ? (
-        <div className="flex min-h-28 flex-col items-center justify-center gap-1 text-parchment/60">
-          <span className="h-10 w-10 rounded-full border-2 border-dashed border-parchment/40" aria-hidden="true" />
-          <span className="font-pixel text-[10px]">Empty seat</span>
-        </div>
-      ) : (
-        <>
-          <div className="relative flex w-full min-w-0 items-center justify-between gap-1">
-            {/* Other players' chips fly from (and back to) their name plate; yours use the bankroll below. */}
-            {!mine && <span data-bankroll aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-0 w-0" />}
-            <span className={`truncate font-display text-sm font-semibold ${mine ? "text-gold-light" : "text-parchment"}`}>
-              {seat.username}
-              {mine && <span className="ml-1 font-pixel text-[9px] text-gold">YOU</span>}
-            </span>
-            {active && secondsLeft !== null && <CountdownRing seconds={secondsLeft} total={windowSeconds} />}
-          </div>
-
-          <div className="flex min-h-24 flex-wrap items-end justify-center gap-2">
-            {seat.hands.map((hand, h) => (
-              <div
-                key={hand.handId}
-                className={`flex flex-col items-center gap-1 ${turnHand === h && seat.hands.length > 1 ? "outline-2 outline-torch" : ""}`}
-              >
-                <div className="flex items-end [zoom:0.62]">
-                  {hand.cards.map((card, i) => (
-                    <div key={`${hand.handId}-${i}`} className={i === 0 ? "" : "-ml-9 sm:-ml-12"}>
-                      <PlayingCard card={card} flipDelay={0.1} />
-                    </div>
-                  ))}
-                </div>
-                <HandTotalBadge
-                  label={handTotalLabel(hand)}
-                  tone={hand.status === "bust" ? "bad" : hand.status === "blackjack" ? "gold" : "neutral"}
+          className="mt-abs"
+          style={{
+            left: `${fxp}%`,
+            top: `${fyp}%`,
+            transform: "translate(-50%, calc(-100% + 20px))",
+            display: "flex",
+            alignItems: "flex-end",
+            gap: two ? 34 : 0,
+          }}
+        >
+          {seat.hands.map((hand, k) => {
+            const key = `${roundKey}-${hand.handId}`;
+            const won = (hand.payout ?? 0) > 0;
+            // Sweep from under the cards: to the plate on a win / push, to the dealer on a loss.
+            const collect: CollectTarget = showOutcome
+              ? won
+                ? { x: Math.round(rx - fx), y: Math.round(ry - fy + 10) }
+                : { x: Math.round(DEALER_POS.x - fx), y: Math.round(DEALER_POS.y - fy - 10) }
+              : null;
+            return (
+              <div key={hand.handId} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
+                <GhHand
+                  hand={veiled(hand, showOutcome)}
+                  size="md"
+                  meta={two ? (k === 0 ? "left" : "right") : side}
+                  hideStake
+                  active={turnHand === k}
+                  waiting={playing && turnHand !== k && hand.status === "playing"}
+                  label={two ? (k === 0 ? "Left" : "Right") : undefined}
+                  dealtFrom={v.firstSeen(key, hand.cards.length)}
+                  dealFrom={{ x: Math.round(SHOE.x - fx), y: Math.round(SHOE.y - fy + 110) }}
                 />
-                {hand.outcome && (
-                  <HandTotalBadge
-                    tone={hand.outcome === "loss" ? "bad" : hand.outcome === "push" ? "neutral" : "gold"}
-                    label={OUTCOME_LABELS[hand.outcome]}
-                  />
-                )}
+                <Stake
+                  key={`${key}-${showOutcome ? "settled" : "play"}`}
+                  amount={showOutcome && won ? (hand.payout ?? hand.stake) : hand.stake}
+                  lost={!showOutcome && hand.status === "bust"}
+                  collect={collect}
+                />
               </div>
-            ))}
-          </div>
-
-          {/* Fixed height: chips and bankroll changes never move the seat. */}
-          {/* Your seat: bankroll beside the circle on phones (seat spans both columns), under it from sm up. */}
-          <div
-            className={`flex w-full items-end justify-center ${
-              mine ? "h-16 gap-3 sm:h-[9.5rem] sm:flex-col-reverse sm:items-center sm:justify-start sm:gap-1" : "h-16 sm:h-20"
-            }`}
-          >
-            {mine && <BankrollStacks balance={bankroll ?? 0} holdGains={settled} className={`shrink-0 ${bankroll === null ? "invisible" : ""}`} />}
-            <BetCircle active={mine && onCircle > 0}>
-              {onCircle > 0 && <ChipStack amount={onCircle} chips={circleChips} max={8} collect={collect} />}
-            </BetCircle>
-          </div>
-          <span className="h-3 font-pixel text-[10px] leading-3 text-parchment/80">
-            {net !== null
-              ? `${signed(net)} credits`
-              : pendingChips
-                ? pending > 0
-                  ? `Bet ${pending}`
-                  : "Place your bet"
-                : seat.bet !== null
-                  ? `Bet ${seat.bet}`
-                  : staked > 0
-                    ? `Bet ${staked}`
-                    : "No bet"}
-          </span>
-        </>
+            );
+          })}
+        </div>
       )}
-    </li>
+
+      {!dealt && bettingOpen && (preStake > 0 || pending) && (
+        <div className="mt-abs" style={{ left: `${fxp}%`, top: `${fyp}%`, transform: "translate(-50%, -50%)" }}>
+          {preStake > 0 ? (
+            <Stake
+              key={`${roundKey}-bet`}
+              amount={preStake}
+              chips={preChips}
+              from={mine ? { x: Math.round(rx - fx), y: Math.round(ry - fy) } : undefined}
+            />
+          ) : (
+            <GhBetSpot amount={0} active label="Your bet" />
+          )}
+        </div>
+      )}
+
+      <div className="mt-abs" style={{ ...plateStyle, zIndex: state.status === "turn" ? 2 : 1 }}>
+        <GhSeatPlaque
+          layout="stage"
+          name={seat.username}
+          avatar={ghAvatarFor(seat.username)}
+          you={mine}
+          status={state.status}
+          tag={state.tag ?? undefined}
+          hearts={v.hearts[seat.accountId] ?? [null, null, null]}
+          balance={mine ? (v.bankroll ?? 0) : 0}
+          timer={state.status === "turn" ? { deadline: table.deadline, durationMs: MULTI_TURN_SECONDS * 1000 } : undefined}
+          className={mine ? undefined : "[&_.gh-plaque]:hidden"}
+        />
+      </div>
+    </>
   );
 }

@@ -120,12 +120,32 @@ export interface GhHeartsProps {
   className?: string;
 }
 
+/**
+ * Last-hands record as small result pips (gold-green win, crimson loss, stone not played), so hearts
+ * stay reserved for the King's health. Kept as `GhHearts` because the design names the slot "hearts".
+ */
 export function GhHearts({ results, size, className }: GhHeartsProps) {
   const words = results.map((r) => (r === null ? "not played" : r ? "won" : "lost"));
+  const side = size ?? 12;
   return (
-    <div className={cx("gh-hearts", className)} role="img" aria-label={`Last ${results.length} hands: ${words.join(", ")}`}>
+    <div
+      className={cx("gh-hearts", className)}
+      style={{ gap: Math.round(side / 3), alignItems: "center", position: "relative", zIndex: 2, paddingBlock: 3 }}
+      role="img"
+      aria-label={`Last ${results.length} hands: ${words.join(", ")}`}
+      title={`Last ${results.length} hands: ${words.join(", ")}`}
+    >
       {results.map((r, i) => (
-        <img key={i} src={r ? GH_SPRITES.heartFull : GH_SPRITES.heartEmpty} alt="" style={size ? { width: size, height: size } : undefined} />
+        <span
+          key={i}
+          aria-hidden="true"
+          style={{
+            width: side,
+            height: side,
+            background: r === null ? "var(--gh-stone-500)" : r ? "var(--gh-felt-500)" : "var(--gh-crimson-500)",
+            boxShadow: `0 0 0 2px var(--gh-ink), inset -2px -2px 0 rgba(0,0,0,.35), inset 2px 2px 0 rgba(255,255,255,${r === null ? 0.08 : 0.25})`,
+          }}
+        />
       ))}
     </div>
   );

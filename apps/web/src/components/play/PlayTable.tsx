@@ -9,7 +9,7 @@ import { Alert, Button, Modal } from "@/components/ui";
 /** Smallest chip on the table: below this the player cannot place any bet. */
 const MIN_BET = 5;
 
-export function PlayTable() {
+export function PlayTable({ player }: { player?: { name: string; avatar?: string } }) {
   const { balance, setBalance } = useBalance();
   // Offer a top-up as soon as a broke player walks in; they can dismiss it and reopen it later.
   const [topUpOpen, setTopUpOpen] = useState(() => balance !== null && balance < MIN_BET);
@@ -22,7 +22,7 @@ export function PlayTable() {
     );
   }
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-3">
       {balance < MIN_BET && !topUpOpen ? (
         <Alert tone="info" title="Your purse is empty">
           <p className="mb-2">Add credits to place a bet against the King.</p>
@@ -31,7 +31,7 @@ export function PlayTable() {
           </Button>
         </Alert>
       ) : null}
-      <GameTable initialBalance={balance} onBalanceChange={setBalance} />
+      <GameTable initialBalance={balance} onBalanceChange={setBalance} player={player} />
       <Modal open={topUpOpen} onClose={() => setTopUpOpen(false)} label="Add credits to play">
         <DepositPanel
           title="Your purse is empty"

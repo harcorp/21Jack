@@ -210,8 +210,115 @@ const coachRounds = {
   }),
 } satisfies Record<string, RoundView>;
 
+/**
+ * The solo states of the Grand Hall design (TableStage / MobileStage `solo-*`), with the design's
+ * cards and stakes. `solo-betting` is `round = null`; `soloResume` is shown with `resumedRoundId`.
+ */
+export const soloStates = {
+  soloNatural: withBoss(
+    round(41, {
+      status: "settled",
+      dealer: { cards: cards("9C", "8D"), total: 17 },
+      activeHandIndex: null,
+      balance: 1290,
+      hands: [
+        (id) =>
+          hand(id, 0, { cards: cards("AS", "KH"), total: 21, soft: true, stake: 50, status: "blackjack", outcome: "blackjack", payout: 100, allowedActions: [] }),
+      ],
+    }),
+    41,
+    { maxHp: 10, hp: 6, delta: -1, defeated: false, defeats: 0 },
+  ),
+  soloTurn: withBoss(
+    round(42, {
+      status: "player_turn",
+      dealer: { cards: [c("10S"), HIDDEN], total: null },
+      activeHandIndex: 0,
+      balance: 1190,
+      hands: [
+        (id) => hand(id, 0, { cards: cards("AC", "6D"), total: 17, soft: true, stake: 50, status: "playing", allowedActions: ["hit", "stand", "double"] }),
+      ],
+    }),
+    42,
+    { maxHp: 10, hp: 7, delta: 0, defeated: false, defeats: 0 },
+  ),
+  soloSplit: withBoss(
+    round(43, {
+      status: "player_turn",
+      dealer: { cards: [c("6D"), HIDDEN], total: null },
+      activeHandIndex: 0,
+      balance: 1140,
+      hands: [
+        (id) =>
+          hand(id, 0, { cards: cards("8S", "3D"), total: 11, soft: false, stake: 50, status: "playing", fromSplit: true, allowedActions: ["hit", "stand", "double"] }),
+        (id) => hand(id, 1, { cards: cards("8H", "10C"), total: 18, soft: false, stake: 50, status: "playing", fromSplit: true, allowedActions: [] }),
+      ],
+    }),
+    43,
+    { maxHp: 10, hp: 7, delta: 0, defeated: false, defeats: 0 },
+  ),
+  /** Doubled hand waiting for the dealer: shown mid-reveal on /play; here it is the settled frame. */
+  soloDouble: withBoss(
+    round(44, {
+      status: "settled",
+      dealer: { cards: cards("10S", "7C"), total: 17 },
+      activeHandIndex: null,
+      balance: 1340,
+      hands: [
+        (id) =>
+          hand(id, 0, { cards: cards("5S", "6H", "10D"), total: 21, soft: false, stake: 100, status: "doubled", outcome: "win", payout: 200, allowedActions: [] }),
+      ],
+    }),
+    44,
+    { maxHp: 10, hp: 6, delta: -1, defeated: false, defeats: 0 },
+  ),
+  soloResults: withBoss(
+    round(45, {
+      status: "settled",
+      dealer: { cards: cards("6D", "10H", "2S"), total: 18 },
+      activeHandIndex: null,
+      balance: 1290,
+      hands: [
+        (id) =>
+          hand(id, 0, { cards: cards("8S", "3D", "9C"), total: 20, soft: false, stake: 50, status: "stood", fromSplit: true, outcome: "win", payout: 100, allowedActions: [] }),
+        (id) =>
+          hand(id, 1, { cards: cards("8H", "10C"), total: 18, soft: false, stake: 50, status: "stood", fromSplit: true, outcome: "push", payout: 50, allowedActions: [] }),
+      ],
+    }),
+    45,
+    { maxHp: 10, hp: 6, delta: -1, defeated: false, defeats: 0 },
+  ),
+  soloNoCredits: withBoss(
+    round(46, {
+      status: "player_turn",
+      dealer: { cards: [c("7C"), HIDDEN], total: null },
+      activeHandIndex: 0,
+      balance: 30,
+      hands: [
+        (id) => hand(id, 0, { cards: cards("5D", "6C"), total: 11, soft: false, stake: 50, status: "playing", allowedActions: ["hit", "stand", "double"] }),
+      ],
+    }),
+    46,
+    { maxHp: 10, hp: 7, delta: 0, defeated: false, defeats: 0 },
+  ),
+  soloResume: withBoss(
+    round(47, {
+      status: "player_turn",
+      dealer: { cards: [c("10C"), HIDDEN], total: null },
+      activeHandIndex: 0,
+      balance: 1190,
+      hands: [
+        (id) => hand(id, 0, { cards: cards("9S", "7D"), total: 16, soft: false, stake: 50, status: "playing", allowedActions: ["hit", "stand", "double"] }),
+      ],
+    }),
+    47,
+    { maxHp: 10, hp: 7, delta: 0, defeated: false, defeats: 0 },
+  ),
+} satisfies Record<string, RoundView>;
+
 /** Sample rounds for the /dev/table preview. The betting state is `round = null`. */
 export const fixtures = {
+  ...soloStates,
   ...base,
   bossMidFight: withBoss(base.playerTurn, 21, { hp: 3, delta: 0, defeated: false, defeats: 0 }),
   bossHit: withBoss(base.settledWin, 22, { hp: 2, delta: -1, defeated: false, defeats: 0 }),

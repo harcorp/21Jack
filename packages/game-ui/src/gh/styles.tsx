@@ -49,9 +49,8 @@ const GHX_CSS = `
 
 /* ---- action buttons ---- */
 .gh-action--compact { width: 84px; min-height: 70px; font-size: 18px; }
-.gh-action.ghx-recommended::after { content: ''; position: absolute; inset: -6px; pointer-events: none;
-  box-shadow: 0 0 0 2px var(--gh-gold-200), 0 0 0 4px var(--gh-ink), 0 0 22px 6px rgba(255, 200, 90, .55); animation: gh-pulse 1.4s steps(4) infinite; }
-.ghx-reco-tag { position: absolute; left: 50%; top: -13px; transform: translateX(-50%); z-index: 1; height: 18px; font-size: 10px; padding: 0 5px; }
+.gh-action.ghx-recommended::after { content: ''; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 0 2px var(--gh-gold-200), 0 0 18px 4px rgba(255, 200, 90, .55); animation: gh-pulse 1.4s steps(4) infinite; }
 .gh-action__lock { display: flex; align-items: center; gap: 4px; }
 
 /* ---- timers ---- */

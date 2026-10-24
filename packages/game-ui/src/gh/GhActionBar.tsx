@@ -72,7 +72,6 @@ export function GhActionButton({
       onClick={inert || busy || !onClick ? undefined : () => onClick(action)}
     >
       {showKey && !compact && <span className="gh-action__key">{key}</span>}
-      {recommended && !inert && <span className="gh-tag gh-tag--you ghx-reco-tag">Coach</span>}
       {busy ? (
         <>
           <span className="gh-spinner" aria-hidden />
