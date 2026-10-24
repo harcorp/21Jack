@@ -32,16 +32,42 @@ function useTypewriter(text: string): number {
   return state.text === text ? state.n : 0;
 }
 
-function SpeechBubble({ lines }: { lines: CoachLine[] }) {
+/** Where the bubble's pixel tail points (at Claudalf). "panel" = left on mobile, up on desktop. */
+export type SpeechTail = "panel" | "left" | "right" | "right-low";
+
+const TAIL: Record<SpeechTail, [string, string]> = {
+  panel: [
+    "top-5 -left-3 h-4 w-2 lg:-top-3 lg:left-8 lg:h-2 lg:w-4",
+    "top-6 -left-1 h-2 w-1 lg:-top-1 lg:left-9 lg:h-1 lg:w-2",
+  ],
+  left: ["top-5 -left-3 h-4 w-2", "top-6 -left-1 h-2 w-1"],
+  right: ["top-5 -right-3 h-4 w-2", "top-6 -right-1 h-2 w-1"],
+  "right-low": ["bottom-5 -right-3 h-4 w-2", "bottom-6 -right-1 h-2 w-1"],
+};
+
+/** Parchment speech bubble with typewriter text; the live region announces each new line set. */
+export function SpeechBubble({
+  lines,
+  tail = "panel",
+  className,
+  bodyClassName = "min-h-24 lg:min-h-36",
+}: {
+  lines: CoachLine[];
+  tail?: SpeechTail;
+  className?: string;
+  /** Sizing of the text area (keeps the bubble from jumping while text types in). */
+  bodyClassName?: string;
+}) {
   const full = lines.map((l) => l.text).join("\n");
   const shown = useTypewriter(full);
   let left = shown;
+  const [outer, inner] = TAIL[tail];
   return (
-    <div className="relative min-w-0 flex-1 border-4 border-ink bg-parchment px-3 py-2 text-ink shadow-[4px_4px_0_rgb(0_0_0/0.4)]">
-      {/* Pixel tail: points left at the portrait on mobile, up on desktop. */}
-      <span aria-hidden="true" className="absolute top-5 -left-3 h-4 w-2 bg-ink lg:-top-3 lg:left-8 lg:h-2 lg:w-4" />
-      <span aria-hidden="true" className="absolute top-6 -left-1 h-2 w-1 bg-parchment lg:-top-1 lg:left-9 lg:h-1 lg:w-2" />
-      <div aria-live="polite" className="min-h-24 lg:min-h-36">
+    <div className={`relative min-w-0 flex-1 border-4 border-ink bg-parchment px-3 py-2 text-ink shadow-[4px_4px_0_rgb(0_0_0/0.4)] ${className ?? ""}`}>
+      {/* Pixel tail pointing at the portrait. */}
+      <span aria-hidden="true" className={`absolute bg-ink ${outer}`} />
+      <span aria-hidden="true" className={`absolute bg-parchment ${inner}`} />
+      <div aria-live="polite" className={bodyClassName}>
         <p className="sr-only">{full}</p>
         <div aria-hidden="true" className="flex flex-col gap-1">
           {lines.map((line, i) => {

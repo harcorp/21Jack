@@ -20,7 +20,6 @@ import { coachLines } from "./lib/coach";
 import { celebrate, celebrateKingslayer } from "./lib/confetti";
 import { roundResult } from "./lib/format";
 import { useDealerReveal, type DealerReveal } from "./lib/useDealerReveal";
-import { Claudalf, CoachPanel, CoachSummon } from "./primitives";
 import { GrandHallStage, StageAnchor, useStageAnchors, type KingMood, type StageVariant } from "./scene";
 import { Bankroll, StakeSpot, StakeStack, type ChipCollect } from "./table/Chips";
 import { DealerHand } from "./table/DealerArea";
@@ -29,6 +28,7 @@ import { PlayerHand } from "./table/HandSeat";
 import { DesktopHud, MobileHud, RimPlate } from "./table/Hud";
 import { SOLO_CSS, SOLO_LAYOUT, stageBox } from "./table/layout";
 import { ShoeContext, ShoeMark } from "./table/Shoe";
+import { CoachOverlay } from "./table/CoachOverlay";
 
 export interface TableViewProps {
   round: RoundView | null;
@@ -362,11 +362,6 @@ export function TableView({
           <ShoeMark shoeRef={shoeRef} />
           <SoloOverlays m={model} />
         </GrandHallStage>
-        {variant === "mobile" && coachOn && (
-          <div className="mt-3 flex justify-center">
-            <CoachPanel lines={coachLines(round)} onDismiss={() => setCoach(false)} className="w-full" />
-          </div>
-        )}
       </div>
     </ShoeContext.Provider>
   );
@@ -482,27 +477,8 @@ function SoloOverlays({ m }: { m: SoloModel }) {
         </div>
       )}
 
-      {mobile && !m.coachOn && (
-        <div style={{ ...stageBox({ left: 12, top: 120 }), zIndex: 4 }}>
-          <div className="solo-zoom">
-            <button type="button" className="gh-iconbtn" aria-label="Summon Claudalf, the coach" title="Summon Claudalf" onClick={() => m.onCoach(true)} style={{ width: 44, height: 44 }}>
-              <Claudalf className="w-7" />
-            </button>
-          </div>
-        </div>
-      )}
-
-      {!mobile && (
-        <div style={{ ...stageBox({ left: 20, top: 150 }), width: "auto", zIndex: 4 }}>
-          <div className="solo-dock-zoom" style={{ width: 272 }}>
-            {m.coachOn ? (
-              <CoachPanel lines={coachLines(round)} onDismiss={() => m.onCoach(false)} />
-            ) : (
-              <CoachSummon onSummon={() => m.onCoach(true)} />
-            )}
-          </div>
-        </div>
-      )}
+      {/* Claudalf: overlay in the bottom-right corner (desktop) / portrait + sheet (mobile). */}
+      <CoachOverlay on={m.coachOn} lines={coachLines(round)} dockTop={m.round ? 722 : 640} onCoach={m.onCoach} />
 
       {!m.resume && (mobile ? <MobileDock m={m} /> : <DesktopDock m={m} />)}
 
