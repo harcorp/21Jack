@@ -49,7 +49,7 @@ export function CardBack() {
  * A card that can be face down (`card` undefined) and flips face up with a stepped 3D rotation
  * once the real card arrives. The face is never rendered before the card is known.
  */
-export function PlayingCard({ card, flipDelay = 0 }: { card?: Card; flipDelay?: number }) {
+export function PlayingCard({ card, flipDelay = 0, flipDuration = 0.4 }: { card?: Card; flipDelay?: number; flipDuration?: number }) {
   const reduce = useReducedMotion();
   const faceUp = card !== undefined;
   return (
@@ -58,7 +58,7 @@ export function PlayingCard({ card, flipDelay = 0 }: { card?: Card; flipDelay?: 
         className="relative h-full w-full shadow-[4px_4px_0_rgb(0_0_0/0.35)] [transform-style:preserve-3d]"
         initial={{ rotateY: 180 }}
         animate={{ rotateY: faceUp ? 0 : 180 }}
-        transition={reduce ? { duration: 0 } : { duration: 0.4, delay: flipDelay, ease: stepped(5) }}
+        transition={reduce ? { duration: 0 } : { duration: flipDuration, delay: flipDelay, ease: stepped(5) }}
       >
         {card && (
           <div className="absolute inset-0 [backface-visibility:hidden]">

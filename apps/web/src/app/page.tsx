@@ -45,9 +45,14 @@ export default async function LobbyPage() {
             <p className="text-lg">
               Every winning hand strikes the King, every loss heals him. Empty his hearts to earn the Kingslayer badge.
             </p>
-            <ButtonLink href="/play" variant="primary" size="lg" className="self-start">
-              Enter the King&apos;s hall
-            </ButtonLink>
+            <div className="flex flex-wrap gap-3">
+              <ButtonLink href="/play" variant="primary" size="lg">
+                Enter the King&apos;s hall
+              </ButtonLink>
+              <ButtonLink href="/multi" variant="wood" size="lg">
+                Multi (WIP)
+              </ButtonLink>
+            </div>
           </div>
         </Panel>
         <div className="grid gap-4 sm:grid-cols-2">

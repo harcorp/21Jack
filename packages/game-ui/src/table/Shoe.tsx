@@ -19,7 +19,17 @@ export function Shoe({ shoeRef }: { shoeRef: RefObject<HTMLDivElement | null> })
 }
 
 /** A card that animates from the shoe to its slot once, on mount. */
-export function DealtCard({ card, delay, flipDelay }: { card?: Card; delay: number; flipDelay: number }) {
+export function DealtCard({
+  card,
+  delay,
+  flipDelay,
+  flipDuration,
+}: {
+  card?: Card;
+  delay: number;
+  flipDelay: number;
+  flipDuration?: number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const shoe = useContext(ShoeContext);
   const reduce = useReducedMotion();
@@ -47,7 +57,7 @@ export function DealtCard({ card, delay, flipDelay }: { card?: Card; delay: numb
 
   return (
     <div ref={ref} className="relative will-change-transform">
-      <PlayingCard card={card} flipDelay={reduce ? 0 : flipDelay} />
+      <PlayingCard card={card} flipDelay={reduce ? 0 : flipDelay} flipDuration={flipDuration} />
     </div>
   );
 }
