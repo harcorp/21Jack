@@ -83,3 +83,37 @@ export const payoutFor = (outcome: HandOutcome, finalStake: number) =>
   outcome === "win" || outcome === "blackjack" ? finalStake * 2 : outcome === "push" ? finalStake : 0;
 
 // GET /accounts?username=<name> -> Account | 404 NOT_FOUND  (username login lookup)
+
+// Admin views (operator console). Additive, read-only.
+
+// GET /admin/accounts -> AdminAccount[]
+export const AdminAccount = Account.extend({
+  ledgerSum: z.number().int(),
+  consistent: z.boolean(),
+});
+export type AdminAccount = z.infer<typeof AdminAccount>;
+export const AdminAccountList = z.array(AdminAccount);
+
+// GET /admin/transactions?limit=100 -> AdminTransaction[] (newest first, all accounts)
+export const AdminTransaction = Transaction.extend({
+  username: z.string(),
+  /** Times this idempotency key was replayed (duplicates blocked). */
+  replays: z.number().int().nonnegative(),
+});
+export type AdminTransaction = z.infer<typeof AdminTransaction>;
+export const AdminTransactionList = z.array(AdminTransaction);
+
+// GET /admin/stats -> EngineStats
+export const EngineStats = z.object({
+  accounts: z.number().int().nonnegative(),
+  transactions: z.number().int().nonnegative(),
+  deposits: z.number().int().nonnegative(),
+  bets: z.number().int().nonnegative(),
+  payouts: z.number().int().nonnegative(),
+  totalDeposited: z.number().int().nonnegative(),
+  totalStaked: z.number().int().nonnegative(),
+  totalPaid: z.number().int().nonnegative(),
+  duplicatesBlocked: z.number().int().nonnegative(),
+  inconsistentAccounts: z.number().int().nonnegative(),
+});
+export type EngineStats = z.infer<typeof EngineStats>;

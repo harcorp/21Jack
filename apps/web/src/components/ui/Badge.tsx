@@ -1,13 +1,14 @@
 import type { ReactNode } from "react";
 import { cx } from "./cx";
 
-export type BadgeTone = "gold" | "carpet" | "felt" | "stone";
+export type BadgeTone = "gold" | "carpet" | "felt" | "stone" | "torch";
 
 const tones: Record<BadgeTone, string> = {
   gold: "bg-gold text-ink",
   carpet: "bg-carpet text-parchment",
   felt: "bg-felt text-parchment",
   stone: "bg-stone text-parchment",
+  torch: "bg-torch text-ink",
 };
 
 export function Badge({ tone = "stone", children, className }: { tone?: BadgeTone; children: ReactNode; className?: string }) {

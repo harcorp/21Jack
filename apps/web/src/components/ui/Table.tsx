@@ -4,7 +4,7 @@ import { cx } from "./cx";
 /** Parchment ledger table. Scrolls horizontally on narrow screens. */
 export function Table({ caption, children, className }: { caption: ReactNode; children: ReactNode; className?: string }) {
   return (
-    <div className={cx("overflow-x-auto", className)}>
+    <div className={cx("relative overflow-x-auto", className)}>
       <table className="w-full border-collapse text-left text-ink">
         <caption className="sr-only">{caption}</caption>
         {children}

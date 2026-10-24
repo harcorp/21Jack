@@ -15,6 +15,7 @@ export function SiteHeader({ username }: { username: string }) {
           <NavLink href="/play">Play</NavLink>
           <NavLink href="/wallet">Treasury</NavLink>
           <NavLink href="/history">Ledger</NavLink>
+          <NavLink href="/engine">Engine</NavLink>
         </nav>
         <div className="flex items-center gap-2">
           <span className="hidden font-pixel text-xs sm:inline" aria-label={`Signed in as ${username}`}>

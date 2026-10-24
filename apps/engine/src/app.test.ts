@@ -280,3 +280,93 @@ describe("brief example", () => {
     }
   });
 });
+
+describe("admin", () => {
+  it("counts replays of an idempotency key as duplicates blocked", async () => {
+    const acc = await createAccount();
+    const key = randomUUID();
+    await deposit(acc.id, 100, key);
+    await deposit(acc.id, 100, key);
+    await deposit(acc.id, 100, key);
+    const roundId = randomUUID();
+    await bet(acc.id, roundId, 10);
+    await bet(acc.id, roundId, 10);
+    await payout(acc.id, roundId, "win", 10, 20);
+    await payout(acc.id, roundId, "win", 10, 20);
+    expect((await deposit(acc.id, 50, key)).status).toBe(409);
+
+    const { status, json } = await call("GET", "/admin/transactions");
+    expect(status).toBe(200);
+    expect(json.map((t: { type: string; replays: number }) => [t.type, t.replays])).toEqual([
+      ["payout", 1],
+      ["bet", 1],
+      ["deposit", 2],
+    ]);
+    expect(json[0]).toMatchObject({ username: "alice", accountId: acc.id });
+    expect((await call("GET", "/admin/stats")).json.duplicatesBlocked).toBe(4);
+  });
+
+  it("counts concurrent duplicates", async () => {
+    const acc = await createAccount();
+    const key = randomUUID();
+    await Promise.all(Array.from({ length: 5 }, () => deposit(acc.id, 100, key)));
+    expect((await call("GET", "/admin/stats")).json.duplicatesBlocked).toBe(4);
+  });
+
+  it("reports stats and per-account consistency", async () => {
+    const empty = await call("GET", "/admin/stats");
+    expect(empty.json).toEqual({
+      accounts: 0,
+      transactions: 0,
+      deposits: 0,
+      bets: 0,
+      payouts: 0,
+      totalDeposited: 0,
+      totalStaked: 0,
+      totalPaid: 0,
+      duplicatesBlocked: 0,
+      inconsistentAccounts: 0,
+    });
+
+    const alice = await createAccount("alice");
+    const bob = await createAccount("bob");
+    await deposit(alice.id, 100);
+    await deposit(bob.id, 50);
+    const roundId = randomUUID();
+    await bet(alice.id, roundId, 10);
+    await bet(alice.id, roundId, 10, "double");
+    await payout(alice.id, roundId, "win", 20, 40);
+
+    expect((await call("GET", "/admin/stats")).json).toEqual({
+      accounts: 2,
+      transactions: 5,
+      deposits: 2,
+      bets: 2,
+      payouts: 1,
+      totalDeposited: 150,
+      totalStaked: 20,
+      totalPaid: 40,
+      duplicatesBlocked: 0,
+      inconsistentAccounts: 0,
+    });
+    const accounts = (await call("GET", "/admin/accounts")).json;
+    expect(accounts).toHaveLength(2);
+    expect(accounts.find((a: Account) => a.id === alice.id)).toMatchObject({ balance: 120, ledgerSum: 120, consistent: true });
+
+    await db.query("UPDATE casino.accounts SET balance = balance + 7 WHERE id = $1", [bob.id]);
+    expect(
+      (await call("GET", "/admin/accounts")).json.find((a: Account) => a.id === bob.id),
+    ).toMatchObject({ balance: 57, ledgerSum: 50, consistent: false });
+    expect((await call("GET", "/admin/stats")).json.inconsistentAccounts).toBe(1);
+  });
+
+  it("requires the service key and honours limit", async () => {
+    for (const path of ["/admin/accounts", "/admin/transactions", "/admin/stats"]) {
+      expect((await call("GET", path, undefined, {})).status).toBe(401);
+    }
+    const acc = await createAccount();
+    await deposit(acc.id, 10);
+    await deposit(acc.id, 10);
+    expect((await call("GET", "/admin/transactions?limit=1")).json).toHaveLength(1);
+  });
+});

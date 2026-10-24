@@ -45,6 +45,15 @@ export function createEngineApp(db: Db, opts: { serviceKey?: string } = {}) {
     await next();
   });
 
+  app.get("/admin/accounts", async (c) => c.json(await ledger.adminAccounts()));
+
+  app.get("/admin/transactions", async (c) => {
+    const limit = z.coerce.number().int().min(1).max(500).catch(100).parse(c.req.query("limit") ?? 100);
+    return c.json(await ledger.adminTransactions(limit));
+  });
+
+  app.get("/admin/stats", async (c) => c.json(await ledger.adminStats()));
+
   app.post("/accounts", async (c) => {
     const { username } = await body(c, CreateAccountRequest);
     return c.json(await ledger.createAccount(username), 201);

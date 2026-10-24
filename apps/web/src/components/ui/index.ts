@@ -11,4 +11,5 @@ export { Logo } from "./Logo";
 export { NavLink } from "./NavLink";
 export { PageShell } from "./PageShell";
 export { Panel, type PanelTone } from "./Panel";
+export { StatTile, type StatTone } from "./StatTile";
 export { Table, Td, Th, Tr } from "./Table";

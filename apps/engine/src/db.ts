@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS casino.transactions (
 CREATE UNIQUE INDEX IF NOT EXISTS transactions_one_payout_per_hand
   ON casino.transactions (hand_id) WHERE type = 'payout';
 CREATE INDEX IF NOT EXISTS transactions_account_seq ON casino.transactions (account_id, seq DESC);
+ALTER TABLE casino.transactions ADD COLUMN IF NOT EXISTS replays integer NOT NULL DEFAULT 0;
 `;
 
 export function pgliteDb(pg: PGlite): Db {

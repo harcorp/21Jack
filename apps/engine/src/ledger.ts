@@ -1,5 +1,15 @@
 import { randomUUID } from "node:crypto";
-import type { Account, BetKind, ErrorCode, HandOutcome, MoneyResponse, Transaction } from "@21jack/contracts";
+import type {
+  Account,
+  AdminAccount,
+  AdminTransaction,
+  BetKind,
+  EngineStats,
+  ErrorCode,
+  HandOutcome,
+  MoneyResponse,
+  Transaction,
+} from "@21jack/contracts";
 import type { Db, Queryable } from "./db";
 
 export class EngineError extends Error {
@@ -104,6 +114,7 @@ export function createLedger(db: Db) {
 
   async function replay(row: TransactionRow, e: Entry): Promise<MoneyResponse> {
     assertSamePayload(row, e);
+    await db.query("UPDATE casino.transactions SET replays = replays + 1 WHERE id = $1", [row.id]);
     const account = await getAccount(row.account_id);
     return { transaction: toTransaction(row), balance: account.balance };
   }
@@ -191,6 +202,44 @@ export function createLedger(db: Db) {
     },
 
     apply,
+
+    async adminAccounts(): Promise<AdminAccount[]> {
+      const rows = await db.query<AccountRow & { ledger_sum: number }>(
+        `SELECT a.*, COALESCE(SUM(t.amount), 0)::int AS ledger_sum
+           FROM casino.accounts a LEFT JOIN casino.transactions t ON t.account_id = a.id
+          GROUP BY a.id ORDER BY a.created_at DESC`,
+      );
+      return rows.map((r) => ({ ...toAccount(r), ledgerSum: r.ledger_sum, consistent: r.balance === r.ledger_sum }));
+    },
+
+    async adminTransactions(limit: number): Promise<AdminTransaction[]> {
+      const rows = await db.query<TransactionRow & { username: string; replays: number }>(
+        `SELECT t.*, a.username FROM casino.transactions t JOIN casino.accounts a ON a.id = t.account_id
+          ORDER BY t.seq DESC LIMIT $1`,
+        [limit],
+      );
+      return rows.map((r) => ({ ...toTransaction(r), username: r.username, replays: r.replays }));
+    },
+
+    async adminStats(): Promise<EngineStats> {
+      const [row] = await db.query<EngineStats>(
+        `SELECT
+           (SELECT COUNT(*) FROM casino.accounts)::int AS "accounts",
+           COUNT(*)::int AS "transactions",
+           COUNT(*) FILTER (WHERE type = 'deposit')::int AS "deposits",
+           COUNT(*) FILTER (WHERE type = 'bet')::int AS "bets",
+           COUNT(*) FILTER (WHERE type = 'payout')::int AS "payouts",
+           COALESCE(SUM(amount) FILTER (WHERE type = 'deposit'), 0)::int AS "totalDeposited",
+           COALESCE(-SUM(amount) FILTER (WHERE type = 'bet'), 0)::int AS "totalStaked",
+           COALESCE(SUM(amount) FILTER (WHERE type = 'payout'), 0)::int AS "totalPaid",
+           COALESCE(SUM(replays), 0)::int AS "duplicatesBlocked",
+           (SELECT COUNT(*) FROM casino.accounts a
+             WHERE a.balance <> (SELECT COALESCE(SUM(amount), 0) FROM casino.transactions WHERE account_id = a.id))::int
+             AS "inconsistentAccounts"
+         FROM casino.transactions`,
+      );
+      return row!;
+    },
   };
 }
 

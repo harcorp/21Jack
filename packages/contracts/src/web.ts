@@ -30,3 +30,30 @@ export const WebActionRequest = ActionRequest;
 export type WebActionRequest = z.infer<typeof WebActionRequest>;
 
 export const SESSION_COOKIE = "21jack_session";
+
+/**
+ * Casino Engine console (operator view, signed-in only):
+ * GET  /api/engine/stats         -> EngineStats
+ * GET  /api/engine/accounts      -> AdminAccount[]
+ * GET  /api/engine/transactions  -> AdminTransaction[]
+ * POST /api/engine/checks        -> MoneyCheckReport  (live money checks against the engine)
+ */
+export const MoneyCheckStep = z.object({
+  name: z.string(),
+  /** Short description of the request, e.g. "POST /bets double 60 (balance 40)". */
+  request: z.string(),
+  expected: z.string(),
+  actual: z.string(),
+  status: z.number().int(),
+  balance: z.number().int().nullable(),
+  pass: z.boolean(),
+});
+export type MoneyCheckStep = z.infer<typeof MoneyCheckStep>;
+
+export const MoneyCheckReport = z.object({
+  username: z.string(),
+  passed: z.number().int(),
+  total: z.number().int(),
+  steps: z.array(MoneyCheckStep),
+});
+export type MoneyCheckReport = z.infer<typeof MoneyCheckReport>;
