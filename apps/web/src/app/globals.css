@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "@21jack/theme/theme.css";
+@source "../../../../packages/game-ui/src";
+
+body {
+  background: var(--color-stone-dark);
+  color: var(--color-parchment);
+  font-family: var(--font-display);
+}

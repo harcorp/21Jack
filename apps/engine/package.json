@@ -1,0 +1,22 @@
+{
+  "name": "@21jack/engine",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --env-file-if-exists=../../.env --watch --import tsx src/index.ts",
+    "start": "node --env-file-if-exists=../../.env --import tsx src/index.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@21jack/tsconfig": "workspace:*",
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@21jack/contracts": "workspace:*",
+    "@hono/node-server": "^2.1.5",
+    "hono": "^4.13.13",
+    "tsx": "^4.23.15"
+  }
+}

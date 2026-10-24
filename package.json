@@ -1,0 +1,17 @@
+{
+  "name": "21jack",
+  "private": true,
+  "packageManager": "pnpm@10.33.2",
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "check": "turbo run typecheck test"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "turbo": "^2.11.10",
+    "typescript": "^7.0.2"
+  }
+}

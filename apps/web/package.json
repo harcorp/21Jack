@@ -1,0 +1,30 @@
+{
+  "name": "@21jack/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port 3000",
+    "build": "next build",
+    "start": "next start --port 3000",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@21jack/tsconfig": "workspace:*",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@21jack/contracts": "workspace:*",
+    "@21jack/game-ui": "workspace:*",
+    "@21jack/theme": "workspace:*",
+    "next": "^16.4.3",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "server-only": "^0.0.1"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@21jack/game-ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@21jack/tsconfig": "workspace:*",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "@21jack/contracts": "workspace:*",
+    "motion": "^14.6.0"
+  }
+}

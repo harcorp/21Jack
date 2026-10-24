@@ -1,0 +1,20 @@
+{
+  "name": "@21jack/contracts",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@21jack/tsconfig": "workspace:*",
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0.2"
+  }
+}

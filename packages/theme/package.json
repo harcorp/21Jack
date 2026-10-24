@@ -1,0 +1,6 @@
+{
+  "name": "@21jack/theme",
+  "version": "0.0.0",
+  "private": true,
+  "exports": { "./theme.css": "./theme.css" }
+}
