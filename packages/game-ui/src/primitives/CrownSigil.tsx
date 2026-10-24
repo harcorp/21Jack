@@ -8,10 +8,10 @@ const ROWS = [
   "#o##o##o#",
   "#########",
   ".........",
-  "ww..w.ww.",
-  "..w.w..w.",
-  ".w..w..w.",
-  "www.w.www",
+  ".www..w..",
+  "...w.ww..",
+  "..w...w..",
+  ".www.www.",
 ] as const;
 
 export function CrownSigil({ className }: { className?: string }) {

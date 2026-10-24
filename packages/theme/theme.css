@@ -1,6 +1,6 @@
 /*
  * Voxel Castle theme (PLAN.md §10). Import after `@import "tailwindcss";`.
- * Fonts are loaded by the host app and exposed as --font-pixelify / --font-silkscreen.
+ * Fonts are loaded by the host app and exposed as --font-digits / --font-pixelify / --font-silkscreen.
  */
 @theme {
   --color-felt: #2e6b3a;
@@ -16,8 +16,9 @@
   --color-parchment: #f1e6cc;
   --color-ink: #1a1410;
 
-  --font-display: var(--font-pixelify), ui-monospace, monospace;
-  --font-pixel: var(--font-silkscreen), ui-monospace, monospace;
+  /* --font-digits only covers 0-9 + - − %, so numbers render in Silkscreen and text in the main face. */
+  --font-display: var(--font-digits), var(--font-pixelify), ui-monospace, monospace;
+  --font-pixel: var(--font-digits), var(--font-silkscreen), ui-monospace, monospace;
 
   --radius-block: 0;
 }

@@ -6,4 +6,6 @@ body {
   background: var(--color-stone-dark);
   color: var(--color-parchment);
   font-family: var(--font-display);
+  /* The digits face has no bold: keep numerals crisp instead of faux-bolding them. */
+  font-synthesis-weight: none;
 }
