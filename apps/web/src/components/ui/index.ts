@@ -8,6 +8,7 @@ export { formatCredits, formatSigned } from "./format";
 export { HeartDelta, HeartMeter } from "./HeartMeter";
 export { Input } from "./Input";
 export { Logo } from "./Logo";
+export { Modal } from "./Modal";
 export { NavLink } from "./NavLink";
 export { PageShell } from "./PageShell";
 export { Panel, type PanelTone } from "./Panel";

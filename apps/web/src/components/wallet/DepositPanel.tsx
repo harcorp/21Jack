@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { newId, type MoneyResponse } from "@21jack/contracts";
 import { useBalance } from "@/components/site/BalanceProvider";
 import { Alert, BalancePill, Button, CoinIcon, Input, Panel, formatCredits } from "@/components/ui";
@@ -11,7 +11,16 @@ const MAX_DEPOSIT = 1_000_000;
 
 type Notice = { tone: "success" | "error"; text: string } | null;
 
-export function DepositPanel() {
+export function DepositPanel({
+  title = "Treasury chest",
+  onDeposited,
+  footer,
+}: {
+  title?: string;
+  /** Called with the new balance after a successful deposit (e.g. to close a modal). */
+  onDeposited?: (balance: number) => void;
+  footer?: ReactNode;
+} = {}) {
   const { balance, setBalance } = useBalance();
   const [pending, setPending] = useState(false);
   const [custom, setCustom] = useState("");
@@ -28,6 +37,7 @@ export function DepositPanel() {
         body: JSON.stringify({ amount, idempotencyKey: newId() }),
       });
       setBalance(res.balance);
+      onDeposited?.(res.balance);
       setNotice({ tone: "success", text: `${formatCredits(amount)} credits added to your treasury.` });
       return true;
     } catch (e) {
@@ -50,7 +60,7 @@ export function DepositPanel() {
   };
 
   return (
-    <Panel tone="wood" framed title="Treasury chest">
+    <Panel tone="wood" framed title={title}>
       <div className="mb-6 flex flex-wrap items-center gap-3">
         <span className="font-pixel text-sm">Current purse</span>
         <BalancePill balance={balance} />
@@ -92,6 +102,7 @@ export function DepositPanel() {
         {pending ? <p className="font-pixel text-sm">Counting coins…</p> : null}
         {notice ? <Alert tone={notice.tone}>{notice.text}</Alert> : null}
       </div>
+      {footer}
     </Panel>
   );
 }
