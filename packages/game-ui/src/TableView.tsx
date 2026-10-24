@@ -2,6 +2,7 @@
 
 import type { Action, BossView, RoundView } from "@21jack/contracts";
 import { useEffect, useRef, useState } from "react";
+import { coachLines } from "./lib/coach";
 import { celebrate, celebrateKingslayer } from "./lib/confetti";
 import { roundResult } from "./lib/format";
 import {
@@ -11,6 +12,9 @@ import {
   BossBar,
   ChipButton,
   ChipStack,
+  CoachPanel,
+  CoachSummon,
+  CoachToggle,
   CrownSigil,
   KingslayerBanner,
   Panel,
@@ -31,6 +35,9 @@ export interface TableViewProps {
   onNewRound(): void;
   /** Boss state for the betting screen (no round yet); a round's own `boss` takes precedence. */
   boss?: BossView | null;
+  /** Coach Mode on/off. Uncontrolled (local state) when omitted, defaulting to whether the round has coach data. */
+  coach?: boolean;
+  onCoachChange?(on: boolean): void;
 }
 
 const BET_CHIPS: ChipValue[] = [5, 10, 25, 100];
@@ -42,10 +49,16 @@ const ACTIONS: { action: Action; label: string; key: string }[] = [
   { action: "split", label: "Split", key: "P" },
 ];
 
-export function TableView({ round, balance, busy, error, onBet, onAction, onNewRound, boss = null }: TableViewProps) {
+export function TableView({ round, balance, busy, error, onBet, onAction, onNewRound, boss = null, coach, onCoachChange }: TableViewProps) {
   const shoeRef = useRef<HTMLDivElement>(null);
   const [pendingBet, setPendingBet] = useState(0);
   const lastBet = useRef(0);
+  const [localCoach, setLocalCoach] = useState<boolean | null>(null);
+  const coachOn = coach ?? localCoach ?? !!round?.coach;
+  const setCoach = (on: boolean) => {
+    setLocalCoach(on);
+    onCoachChange?.(on);
+  };
 
   const playing = round?.status === "player_turn";
   const settled = round?.status === "settled";
@@ -58,6 +71,7 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
   const bossEvent = settled && round.boss && round.boss.delta !== 0 ? round.roundId : null;
   const kingslain = settled && round.boss?.defeated === true;
   const onTable = round ? round.hands.reduce((sum, h) => sum + h.stake, 0) : pendingBet;
+  const recommended = coachOn && playing ? (round.coach?.recommended ?? null) : null;
 
   // Restore the previous bet when returning to the betting state, capped by the balance.
   const betting = round === null;
@@ -104,7 +118,7 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
 
   return (
     <ShoeContext.Provider value={shoeRef}>
-      <div className="mx-auto flex w-full max-w-4xl flex-col gap-3 bg-stone-dark p-2 font-display text-parchment sm:gap-4 sm:p-4">
+      <div className={`mx-auto flex w-full flex-col gap-3 bg-stone-dark p-2 font-display text-parchment sm:gap-4 sm:p-4 ${coachOn ? "max-w-4xl lg:max-w-6xl" : "max-w-4xl"}`}>
         <header className="flex flex-wrap items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <CrownSigil className="h-8 w-8 sm:h-10 sm:w-10" />
@@ -128,54 +142,64 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
           />
         )}
 
-        <DealerThrone eventKey={bossEvent} delta={bossEvent ? (round?.boss?.delta ?? 0) : 0} />
+        <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-start">
+          <div className="flex min-w-0 flex-1 flex-col">
+            <DealerThrone eventKey={bossEvent} delta={bossEvent ? (round?.boss?.delta ?? 0) : 0} />
 
-        <div className="voxel-block bg-wood p-2 sm:p-3">
-          <div className="relative flex min-h-[26rem] flex-col items-center justify-between gap-3 overflow-hidden border-4 border-wood-dark bg-felt bg-[radial-gradient(ellipse_at_50%_35%,var(--color-felt)_0%,var(--color-felt-dark)_100%)] px-2 py-4 sm:min-h-[32rem] sm:px-6">
-            <Shoe shoeRef={shoeRef} />
+            <div className="voxel-block bg-wood p-2 sm:p-3">
+              <div className="relative flex min-h-[26rem] flex-col items-center justify-between gap-3 overflow-hidden border-4 border-wood-dark bg-felt bg-[radial-gradient(ellipse_at_50%_35%,var(--color-felt)_0%,var(--color-felt-dark)_100%)] px-2 py-4 sm:min-h-[32rem] sm:px-6">
+                <Shoe shoeRef={shoeRef} />
 
-            {kingslain && round.boss && (
-              <div className="pointer-events-none absolute inset-x-0 top-[22%] z-20 flex justify-center px-2">
-                <KingslayerBanner key={round.roundId} defeats={round.boss.defeats} />
+                {kingslain && round.boss && (
+                  <div className="pointer-events-none absolute inset-x-0 top-[22%] z-20 flex justify-center px-2">
+                    <KingslayerBanner key={round.roundId} defeats={round.boss.defeats} />
+                  </div>
+                )}
+
+                <DealerArea round={round} />
+
+                <div className="flex min-h-20 items-center justify-center" aria-live="polite">
+                  {result ? (
+                    <ResultBanner key={round?.roundId} tone={result.tone} title={result.title} detail={result.detail} />
+                  ) : (
+                    <p className="select-none text-center font-pixel text-[10px] uppercase tracking-[0.2em] text-gold/70 sm:text-xs">
+                      Dealer stands on all 17s
+                      <br />
+                      Wins and blackjack pay even money
+                    </p>
+                  )}
+                </div>
+
+                {round ? (
+                  <div className={`flex w-full items-start justify-center ${split ? "gap-3 sm:gap-10" : ""}`}>
+                    {round.hands.map((hand, i) => (
+                      <HandSeat
+                        key={hand.handId}
+                        hand={hand}
+                        index={i}
+                        split={split}
+                        settled={!!settled}
+                        active={!!playing && activeIndex === i}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center gap-2">
+                    <div className="min-h-20 sm:min-h-28" />
+                    <BetCircle active={pendingBet > 0} label={pendingBet > 0 ? `Bet ${pendingBet}` : "Place your bet"}>
+                      <ChipStack amount={pendingBet} />
+                    </BetCircle>
+                  </div>
+                )}
               </div>
-            )}
-
-            <DealerArea round={round} />
-
-            <div className="flex min-h-20 items-center justify-center" aria-live="polite">
-              {result ? (
-                <ResultBanner key={round?.roundId} tone={result.tone} title={result.title} detail={result.detail} />
-              ) : (
-                <p className="select-none text-center font-pixel text-[10px] uppercase tracking-[0.2em] text-gold/70 sm:text-xs">
-                  Dealer stands on all 17s
-                  <br />
-                  Blackjack pays 2 to 1
-                </p>
-              )}
             </div>
-
-            {round ? (
-              <div className={`flex w-full items-start justify-center ${split ? "gap-3 sm:gap-10" : ""}`}>
-                {round.hands.map((hand, i) => (
-                  <HandSeat
-                    key={hand.handId}
-                    hand={hand}
-                    index={i}
-                    split={split}
-                    settled={!!settled}
-                    active={!!playing && activeIndex === i}
-                  />
-                ))}
-              </div>
-            ) : (
-              <div className="flex flex-col items-center gap-2">
-                <div className="min-h-20 sm:min-h-28" />
-                <BetCircle active={pendingBet > 0} label={pendingBet > 0 ? `Bet ${pendingBet}` : "Place your bet"}>
-                  <ChipStack amount={pendingBet} />
-                </BetCircle>
-              </div>
-            )}
           </div>
+
+          {coachOn ? (
+            <CoachPanel lines={coachLines(round)} onDismiss={() => setCoach(false)} className="lg:mt-12 lg:w-72 lg:shrink-0" />
+          ) : (
+            <CoachSummon onSummon={() => setCoach(true)} className="self-end lg:mt-12" />
+          )}
         </div>
 
         <Panel tone="stone" className="p-3">
@@ -210,6 +234,7 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
                   {busy ? "Dealing…" : `Deal ${pendingBet > 0 ? pendingBet : ""}`.trim()}
                 </ActionButton>
               </div>
+              <CoachToggle on={coachOn} onChange={setCoach} />
               {balance === 0 && !busy && (
                 <p className="text-center text-base text-parchment/80">Your purse is empty. Visit the treasury to add credits.</p>
               )}
@@ -222,6 +247,7 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
                 <ActionButton
                   key={action}
                   hotkey={key}
+                  glow={recommended === action}
                   disabled={busy || !allowed.has(action)}
                   onClick={() => act(action)}
                   aria-keyshortcuts={key}

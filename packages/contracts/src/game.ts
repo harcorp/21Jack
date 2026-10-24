@@ -64,6 +64,8 @@ export const StartRoundRequest = z.object({
   accountId: Uuid,
   bet: Credits,
   requestId: Uuid,
+  /** Coach Mode: Claudalf the wizard advises every decision of this round. */
+  coach: z.boolean().optional(),
 });
 export type StartRoundRequest = z.infer<typeof StartRoundRequest>;
 
@@ -116,6 +118,8 @@ export type BossPayoutMetadata = z.infer<typeof BossPayoutMetadata>;
 /** Coach Mode (stretch): basic-strategy hint for the active hand and how the player followed it. */
 export const CoachView = z.object({
   recommended: Action.nullable(),
+  /** One short teaching sentence for the active hand, e.g. "Hard 16 against a 10: the King likely holds 20. Hit." */
+  reason: z.string().nullable(),
   history: z.array(z.object({ action: Action, recommended: Action, matched: z.boolean() })),
   score: z.object({ matched: z.number().int(), total: z.number().int() }),
 });

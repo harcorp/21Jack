@@ -16,12 +16,13 @@ export function applyBossDamage(startHp: number, outcomes: HandOutcome[], maxHp 
   let hp = Math.min(Math.max(startHp, 0), maxHp);
   let defeated = false;
   const hands = outcomes.map((outcome): BossPayoutMetadata => {
-    const damage = BOSS_DAMAGE[outcome];
-    if (defeated) return { damage, hpAfter: 0, defeated: false };
-    hp = Math.min(Math.max(hp + damage, 0), maxHp);
+    if (defeated) return { damage: 0, hpAfter: 0, defeated: false };
+    const before = hp;
+    hp = Math.min(Math.max(hp + BOSS_DAMAGE[outcome], 0), maxHp);
     const blow = hp === 0;
     if (blow) defeated = true;
-    return { damage, hpAfter: hp, defeated: blow };
+    // Record the real change, so a loss against a full-health king shows no heal.
+    return { damage: hp - before, hpAfter: hp, defeated: blow };
   });
   return { hp, delta: hp - startHp, defeated, nextHp: defeated ? maxHp : hp, hands };
 }

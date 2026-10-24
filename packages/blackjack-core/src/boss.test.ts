@@ -21,11 +21,19 @@ describe("applyBossDamage", () => {
   it("defeat shows hp 0, flags the final blow and resets next hp to max", () => {
     const r = applyBossDamage(1, ["blackjack"]);
     expect(r).toMatchObject({ hp: 0, delta: -1, defeated: true, nextHp: BOSS_MAX_HP });
-    expect(r.hands).toEqual([{ damage: -2, hpAfter: 0, defeated: true }]);
+    expect(r.hands).toEqual([{ damage: -1, hpAfter: 0, defeated: true }]);
   });
   it("a hand after the final blow cannot heal the fallen king", () => {
     const r = applyBossDamage(1, ["win", "loss"]);
     expect(r).toMatchObject({ hp: 0, defeated: true });
-    expect(r.hands[1]).toEqual({ damage: 1, hpAfter: 0, defeated: false });
+    expect(r.hands[1]).toEqual({ damage: 0, hpAfter: 0, defeated: false });
+  });
+});
+
+describe("applyBossDamage at full health", () => {
+  it("records no heal when the king is already at max hp", () => {
+    const r = applyBossDamage(BOSS_MAX_HP, ["loss"]);
+    expect(r).toMatchObject({ hp: BOSS_MAX_HP, delta: 0, defeated: false });
+    expect(r.hands).toEqual([{ damage: 0, hpAfter: BOSS_MAX_HP, defeated: false }]);
   });
 });

@@ -14,3 +14,5 @@ export { DEAL_SPRING, DEAL_STAGGER, stepped } from "./motion";
 export { BossBar, type BossBarProps } from "./BossBar";
 export { BossFx } from "./BossFx";
 export { KingslayerBanner } from "./KingslayerBanner";
+export { Claudalf } from "./Claudalf";
+export { CoachPanel, CoachSummon, CoachToggle } from "./CoachPanel";

@@ -11,10 +11,12 @@ import {
 import {
   applyAction,
   applyBossDamage,
+  coachViewFor,
   createDeck,
   extraStakeFor,
   extraStakeHandIndex,
   InvalidActionError,
+  recordCoach,
   shuffle as cryptoShuffle,
   startRound,
   toRoundView,
@@ -41,8 +43,13 @@ export function createGameService({ engine, store, shuffle = cryptoShuffle, log 
     return { hp, maxHp: BOSS_MAX_HP, delta: 0, defeated: false, defeats };
   }
 
-  const view = async (r: StoredRound): Promise<RoundView> =>
-    toRoundView(r.state, r.balance, { boss: r.boss?.view ?? (await bossView(r.accountId)) });
+  async function view(r: StoredRound): Promise<RoundView> {
+    const coach = coachViewFor(r.state);
+    return toRoundView(r.state, r.balance, {
+      boss: r.boss?.view ?? (await bossView(r.accountId)),
+      ...(coach ? { coach } : {}),
+    });
+  }
 
   /** Fixes the boss result once, when the round first becomes settled. Returns the record to persist with it. */
   async function withBoss(round: StoredRound): Promise<{ round: StoredRound; boss?: BossRecord }> {
@@ -120,7 +127,13 @@ export function createGameService({ engine, store, shuffle = cryptoShuffle, log 
           amount: req.bet,
           idempotencyKey: idempotencyKeys.initialBet(roundId, handId),
         });
-        const state = startRound({ deck: shuffle(createDeck()), bet: req.bet, roundId, accountId: req.accountId });
+        const state = startRound({
+          deck: shuffle(createDeck()),
+          bet: req.bet,
+          roundId,
+          accountId: req.accountId,
+          coach: req.coach ?? false,
+        });
         const { round, boss } = await withBoss({
           roundId,
           accountId: req.accountId,
@@ -171,7 +184,7 @@ export function createGameService({ engine, store, shuffle = cryptoShuffle, log 
 
       const { round: next, boss } = await withBoss({
         ...round,
-        state: applyAction(round.state, req.handIndex, req.action),
+        state: applyAction(recordCoach(round.state, req.handIndex, req.action), req.handIndex, req.action),
         version: round.version + 1,
         balance,
       });

@@ -11,3 +11,6 @@ next-env.d.ts
 
 # Local embedded Postgres (PGlite) data when DATABASE_URL is empty
 .data
+
+# Playwright screenshots
+.screens

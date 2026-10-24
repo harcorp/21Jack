@@ -3,6 +3,7 @@
 import type { Action, BossView, RoundView, WebActionRequest, WebStartRoundRequest } from "@21jack/contracts";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { GameApiError, requestJson, requestRound } from "./lib/api";
+import { useCoachPreference } from "./lib/coach";
 import { TableView } from "./TableView";
 
 export interface GameTableProps {
@@ -21,6 +22,7 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [boss, setBoss] = useState<BossView | null>(null);
+  const [coach, setCoach] = useCoachPreference();
   const pending = useRef(false);
   const onBalanceRef = useRef(onBalanceChange);
   onBalanceRef.current = onBalanceChange;
@@ -96,7 +98,7 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
 
   const onBet = (amount: number) => {
     if (!Number.isInteger(amount) || amount <= 0 || amount > balance) return;
-    const body: WebStartRoundRequest = { bet: amount, requestId: crypto.randomUUID() };
+    const body: WebStartRoundRequest = { bet: amount, requestId: crypto.randomUUID(), ...(coach ? { coach: true } : {}) };
     void run(
       () => requestRound(`${apiBase}/rounds`, { method: "POST", body: JSON.stringify(body) }),
       async (err) => {
@@ -129,6 +131,8 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
       busy={busy}
       error={error}
       boss={boss}
+      coach={coach}
+      onCoachChange={setCoach}
       onBet={onBet}
       onAction={onAction}
       onNewRound={onNewRound}

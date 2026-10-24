@@ -6,7 +6,7 @@ import { cx } from "./cx";
 export function BalancePill({ balance, className }: { balance: number | null; className?: string }) {
   return (
     <div
-      className={cx("gold-frame inline-flex min-h-11 items-center gap-2 bg-wood px-3 font-display text-lg font-bold text-gold-light", className)}
+      className={cx("gold-frame inline-flex min-h-11 items-center gap-2 bg-wood px-3 font-pixel text-lg text-gold-light", className)}
       role="status"
       aria-live="polite"
       aria-label={balance === null ? "Balance unavailable" : `Balance: ${formatCredits(balance)} credits`}

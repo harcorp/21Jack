@@ -30,6 +30,9 @@ export type RoundState = {
   dealer: Card[];
   hands: HandState[];
   activeHandIndex: number | null;
+  /** Coach Mode; missing on old rounds = off. */
+  coach?: boolean;
+  coachHistory?: { action: Action; recommended: Action; matched: boolean }[];
 };
 
 export class InvalidActionError extends Error {
@@ -48,7 +51,13 @@ function draw(state: RoundState): Card {
   return card;
 }
 
-export function startRound(input: { deck: Card[]; bet: number; roundId: string; accountId: string }): RoundState {
+export function startRound(input: {
+  deck: Card[];
+  bet: number;
+  roundId: string;
+  accountId: string;
+  coach?: boolean;
+}): RoundState {
   if (!Number.isInteger(input.bet) || input.bet <= 0) throw new InvalidActionError("Bet must be a positive integer");
   const state: RoundState = {
     roundId: input.roundId,
@@ -58,6 +67,7 @@ export function startRound(input: { deck: Card[]; bet: number; roundId: string; 
     dealer: [],
     hands: [{ cards: [], stake: input.bet, status: "playing", fromSplit: false, splitAces: false }],
     activeHandIndex: 0,
+    ...(input.coach ? { coach: true, coachHistory: [] } : {}),
   };
   const hand = state.hands[0]!;
   hand.cards.push(draw(state));

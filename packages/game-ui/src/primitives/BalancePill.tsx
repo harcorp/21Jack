@@ -35,7 +35,7 @@ export function BalancePill({ balance, label = "Balance" }: { balance: number; l
       aria-label={`${label}: ${balance} credits`}
     >
       <CoinIcon className="h-5 w-5 sm:h-6 sm:w-6" />
-      <span className="font-display text-lg font-bold tabular-nums sm:text-2xl" aria-hidden="true">
+      <span className="font-pixel text-lg tabular-nums sm:text-2xl" aria-hidden="true">
         {shown.toLocaleString("en-US")}
       </span>
     </div>

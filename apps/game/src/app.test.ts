@@ -197,6 +197,63 @@ describe.each(stores)("game service (%s)", (_name, makeStore) => {
     expect(engine.transactions.filter((t) => t.type === "payout" && t.roundId === id)).toHaveLength(1);
   });
 
+  describe("coach mode", () => {
+    const startCoached = (coach?: boolean) =>
+      call("POST", "/rounds", { accountId, bet: 10, requestId: randomUUID(), ...(coach !== undefined ? { coach } : {}) });
+
+    it("is off by default and when coach is false", async () => {
+      expect((await startCoached()).json).not.toHaveProperty("coach");
+      const other = await call("POST", "/rounds", { accountId: randomUUID(), bet: 10, requestId: randomUUID(), coach: false });
+      expect(other.json).not.toHaveProperty("coach");
+      const hit = await act(other.json.roundId, "hit");
+      expect(hit.json).not.toHaveProperty("coach");
+      expect((await store.getRound(other.json.roundId))!.state.coachHistory).toBeUndefined();
+    });
+
+    it("advises on start, records each move once and scores at settlement", async () => {
+      nextDeck = rig("10", "K", "6", "7", "2", "K");
+      const started = await startCoached(true);
+      expect(started.json.coach).toEqual({
+        recommended: "hit",
+        reason: "Hard 16 against a 10: the King likely holds 20. Hit.",
+        history: [],
+        score: { matched: 0, total: 0 },
+      });
+
+      const id = started.json.roundId;
+      const actionId = randomUUID();
+      const hit = await act(id, "hit", 0, actionId);
+      expect(hit.json.hands[0]!.total).toBe(18);
+      expect(hit.json.coach).toMatchObject({
+        recommended: "stand",
+        history: [{ action: "hit", recommended: "hit", matched: true }],
+        score: { matched: 1, total: 1 },
+      });
+      expect((await act(id, "hit", 0, actionId)).json).toEqual(hit.json);
+
+      const done = await act(id, "hit");
+      expect(done.json.status).toBe("settled");
+      expect(done.json.coach).toEqual({
+        recommended: null,
+        reason: null,
+        history: [
+          { action: "hit", recommended: "hit", matched: true },
+          { action: "hit", recommended: "stand", matched: false },
+        ],
+        score: { matched: 1, total: 2 },
+      });
+      expect((await call("GET", `/rounds/${id}`)).json.coach).toEqual(done.json.coach);
+    });
+
+    it("rounds stored without the flag read as coach off", async () => {
+      const id = (await startCoached(true)).json.roundId;
+      const round = (await store.getRound(id))!;
+      const { coach: _c, coachHistory: _h, ...legacy } = round.state;
+      await store.updateRound({ ...round, state: legacy, version: round.version + 1 }, round.version);
+      expect((await call("GET", `/rounds/${id}`)).json).not.toHaveProperty("coach");
+    });
+  });
+
   describe("boss fight", () => {
     const boss = async () => (await call("GET", `/boss?accountId=${accountId}`)).json as unknown as Record<string, unknown>;
     const natural = () => {
@@ -240,7 +297,7 @@ describe.each(stores)("game service (%s)", (_name, makeStore) => {
       const final = await natural();
       expect(final.json.boss).toEqual({ hp: 0, maxHp: 5, delta: -1, defeated: true, defeats: 1 });
       const payout = engine.transactions.find((t) => t.type === "payout" && t.roundId === final.json.roundId);
-      expect(payout?.metadata).toEqual({ boss: { damage: -2, hpAfter: 0, defeated: true } });
+      expect(payout?.metadata).toEqual({ boss: { damage: -1, hpAfter: 0, defeated: true } });
       expect(await boss()).toEqual({ hp: 5, maxHp: 5, delta: 0, defeated: false, defeats: 1 });
       expect((await call("GET", `/rounds/${final.json.roundId}`)).json.boss).toMatchObject({ hp: 0, defeated: true });
     });
