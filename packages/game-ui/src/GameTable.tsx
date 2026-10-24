@@ -1,6 +1,6 @@
 "use client";
 
-import type { Action, BossView, RoundView, WebActionRequest, WebStartRoundRequest } from "@21jack/contracts";
+import { newId, type Action, type BossView, type RoundView, type WebActionRequest, type WebStartRoundRequest } from "@21jack/contracts";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { GameApiError, requestJson, requestRound } from "./lib/api";
 import { useCoachPreference } from "./lib/coach";
@@ -98,7 +98,7 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
 
   const onBet = (amount: number) => {
     if (!Number.isInteger(amount) || amount <= 0 || amount > balance) return;
-    const body: WebStartRoundRequest = { bet: amount, requestId: crypto.randomUUID(), ...(coach ? { coach: true } : {}) };
+    const body: WebStartRoundRequest = { bet: amount, requestId: newId(), ...(coach ? { coach: true } : {}) };
     void run(
       () => requestRound(`${apiBase}/rounds`, { method: "POST", body: JSON.stringify(body) }),
       async (err) => {
@@ -113,7 +113,7 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
 
   const onAction = (action: Action, handIndex: number) => {
     if (!round || round.status !== "player_turn") return;
-    const body: WebActionRequest = { action, handIndex, actionId: crypto.randomUUID() };
+    const body: WebActionRequest = { action, handIndex, actionId: newId() };
     const id = encodeURIComponent(round.roundId);
     void run(() => requestRound(`${apiBase}/rounds/${id}/actions`, { method: "POST", body: JSON.stringify(body) }));
   };

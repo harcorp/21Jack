@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import type { MoneyResponse } from "@21jack/contracts";
+import { newId, type MoneyResponse } from "@21jack/contracts";
 import { useBalance } from "@/components/site/BalanceProvider";
 import { Alert, BalancePill, Button, CoinIcon, Input, Panel, formatCredits } from "@/components/ui";
 import { apiFetch, errorMessage } from "@/lib/api-client";
@@ -25,7 +25,7 @@ export function DepositPanel() {
     try {
       const res = await apiFetch<MoneyResponse>("/api/wallet/deposits", {
         method: "POST",
-        body: JSON.stringify({ amount, idempotencyKey: crypto.randomUUID() }),
+        body: JSON.stringify({ amount, idempotencyKey: newId() }),
       });
       setBalance(res.balance);
       setNotice({ tone: "success", text: `${formatCredits(amount)} credits added to your treasury.` });

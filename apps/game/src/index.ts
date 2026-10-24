@@ -11,8 +11,9 @@ const store = await createStoreFromEnv(process.env);
 const engine = createEngineFromEnv(process.env, serviceKey);
 const app = createGameApp({ engine, store, serviceKey });
 
-const server = serve({ fetch: app.fetch, port }, () => {
-  console.log(`game listening on http://localhost:${port} (engine: ${process.env.ENGINE_MODE ?? "real"})`);
+// Internal service: only apps/web (same machine) may reach it, never other devices on the network.
+const server = serve({ fetch: app.fetch, port, hostname: process.env.HOST ?? "127.0.0.1" }, () => {
+  console.log(`game listening on http://127.0.0.1:${port} (engine: ${process.env.ENGINE_MODE ?? "real"})`);
 });
 
 for (const signal of ["SIGINT", "SIGTERM"] as const) {

@@ -2,8 +2,8 @@ import "server-only";
 import { SERVICE_KEY_HEADER } from "@21jack/contracts";
 
 const urls = {
-  game: process.env.GAME_URL ?? "http://localhost:3001",
-  engine: process.env.ENGINE_URL ?? "http://localhost:3002",
+  game: process.env.GAME_URL ?? "http://127.0.0.1:3001",
+  engine: process.env.ENGINE_URL ?? "http://127.0.0.1:3002",
 };
 
 /** Server-side call to the game or engine service. The service key never reaches the browser. */

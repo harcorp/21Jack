@@ -10,6 +10,16 @@ cp .env.example .env      # fill DATABASE_URL (Neon) and SERVICE_KEY
 pnpm dev                  # web :3000, game :3001, engine :3002
 ```
 
+Open http://localhost:3000
+
+### Play from other computers (same Wi-Fi)
+
+```bash
+pnpm lan                  # prints http://<your-ip>:3000 to share, then runs pnpm dev
+```
+
+Only the website is exposed to the network; game and engine listen on 127.0.0.1. Each player creates their own account. If macOS asks, allow incoming connections for node.
+
 Open http://localhost:3000 — `GET /api/health` shows whether game and engine are reachable.
 
 ## Checks

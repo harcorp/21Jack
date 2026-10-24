@@ -104,5 +104,5 @@ export function createMockEngine(opts: { initialBalance?: number } = {}): MockEn
 
 export function createEngineFromEnv(env: NodeJS.ProcessEnv, serviceKey: string): EngineClient {
   if (env.ENGINE_MODE === "mock") return createMockEngine();
-  return createHttpEngine({ url: env.ENGINE_URL ?? "http://localhost:3002", serviceKey });
+  return createHttpEngine({ url: env.ENGINE_URL ?? "http://127.0.0.1:3002", serviceKey });
 }

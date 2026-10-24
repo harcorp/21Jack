@@ -9,7 +9,8 @@
     "test": "turbo run test",
     "check": "turbo run typecheck test",
     "smoke": "tsx scripts/smoke.ts",
-    "screens": "node scripts/screens.mjs"
+    "screens": "node scripts/screens.mjs",
+    "lan": "node scripts/lan.mjs"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
