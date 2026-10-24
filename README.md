@@ -15,8 +15,13 @@ Open http://localhost:3000 — `GET /api/health` shows whether game and engine a
 ## Checks
 
 ```bash
-pnpm check                # typecheck + unit tests for every package
+pnpm check                # typecheck + unit tests (rules, game service, engine money rules)
+pnpm smoke                # end-to-end through the web API (needs `pnpm dev` running)
 ```
+
+Leave `DATABASE_URL` empty to run on embedded Postgres (PGlite) stored in `.data/`; set it to a Neon URL to use Postgres.
+
+UI states preview without playing: http://localhost:3000/dev/table
 
 ## Layout and owners
 
@@ -34,4 +39,8 @@ Plan, contracts and visual direction: [PLAN.md](PLAN.md).
 
 ## Known limitations
 
-- Fill in before the demo.
+- Username-only login (no password) — workshop scope.
+- One player per table; the deck is reshuffled every round.
+- Game and engine keep in-process locks, so each service must run as a single instance.
+- `/dev/table` is not gated in production.
+- Coach Mode is a stretch goal: `recommend()` exists in blackjack-core but is not shown in the UI yet.
