@@ -1,14 +1,14 @@
 import Link from "next/link";
+import { crestRing48Src } from "./sprites";
+import { cx } from "./cx";
 
-/** Pixel "21" crown sigil + wordmark. */
-export function Logo() {
+/** House Flamingo crest + "21Jack" wordmark. */
+export function Logo({ className }: { className?: string }) {
   return (
-    <Link href="/" className="inline-flex min-h-11 items-center gap-2 font-display text-2xl font-medium text-gold-light focus-visible:outline-2 focus-visible:outline-torch">
-      <svg viewBox="0 0 10 8" aria-hidden="true" className="pixelated h-6 w-8" shapeRendering="crispEdges">
-        <path fill="#c9973a" d="M0 1h1v1h1v1h1v-2h1v2h2v-2h1v2h1v-1h1v-1h1v7h-10z" />
-        <path fill="#f2cf6b" d="M2 5h2v1h-1v1h1v0h-2v-1h1v-1h-1zM6 5h1v2h-1z" />
-      </svg>
-      21Jack
+    <Link href="/" aria-label="21Jack — home" className={cx("inline-flex min-h-11 items-center gap-3", className)}>
+      {/* eslint-disable-next-line @next/next/no-img-element -- tiny inline pixel sprite */}
+      <img src={crestRing48Src} alt="" aria-hidden="true" width={40} height={40} className="gh-pixelated size-10 shrink-0" />
+      <span className="gh-display gh-shadow-text hidden text-2xl text-gold-light min-[400px]:inline sm:inline">21Jack</span>
     </Link>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AdminAccountList, AdminTransactionList, EngineStats, type AdminAccount, type AdminTransaction } from "@21jack/contracts";
-import { Alert, Button, PageShell } from "@/components/ui";
+import { Alert, Button, PageShell, PixelIcon } from "@/components/ui";
 import { errorMessage } from "@/lib/api-client";
 import { AccountsTable } from "./AccountsTable";
 import { fetchParsed } from "./fetch";
@@ -39,16 +39,17 @@ export function EngineConsole() {
   }, [refresh]);
 
   return (
-    <PageShell>
-      <header className="flex flex-wrap items-end justify-between gap-4">
-        <div className="min-w-0">
-          <h1 className="font-display text-4xl font-bold text-gold-light">Casino Engine</h1>
-          <p className="mt-1 text-lg opacity-90">The treasury&apos;s ledger keeper: accounts, balances, deposits, bets, payouts — every coin counted once.</p>
-        </div>
-        <Button variant="wood" size="sm" onClick={() => void refresh()} busy={loading}>
+    <PageShell
+      eyebrow="Counting house"
+      title="Casino Engine"
+      intro="The treasury's ledger keeper: accounts, balances, deposits, bets, payouts — every coin counted once."
+      actions={
+        <Button variant="stone" size="sm" onClick={() => void refresh()} busy={loading}>
+          {loading ? null : <PixelIcon name="refresh" size={16} />}
           {loading ? "Refreshing…" : "Refresh"}
         </Button>
-      </header>
+      }
+    >
 
       {error ? (
         <Alert tone="error" title="The engine is not answering">

@@ -4,11 +4,11 @@ import { shortDate } from "./time";
 
 export function AccountsTable({ accounts }: { accounts: AdminAccount[] | null }) {
   return (
-    <Panel title="Accounts" tone="parchment">
+    <Panel title="Accounts" tone="stone" framed>
       {accounts === null ? (
-        <p className="opacity-70">Loading accounts…</p>
+        <p className="text-cream-muted">Loading accounts…</p>
       ) : accounts.length === 0 ? (
-        <p>No accounts yet.</p>
+        <p className="text-cream-muted">No accounts yet.</p>
       ) : (
         <Table caption="Accounts with balance and ledger sum">
           <thead>
@@ -23,11 +23,11 @@ export function AccountsTable({ accounts }: { accounts: AdminAccount[] | null })
           <tbody>
             {accounts.map((a) => (
               <Tr key={a.id}>
-                <Td className="whitespace-nowrap">{a.username}</Td>
-                <Td className="text-right font-pixel text-sm tabular-nums">{formatCredits(a.balance)}</Td>
-                <Td className="text-right font-pixel text-sm tabular-nums">{formatCredits(a.ledgerSum)}</Td>
+                <Td className="font-semibold whitespace-nowrap">{a.username}</Td>
+                <Td className="gh-num text-right text-[10px]">{formatCredits(a.balance)}</Td>
+                <Td className="gh-num text-right text-[10px]">{formatCredits(a.ledgerSum)}</Td>
                 <Td>{a.consistent ? <Badge tone="felt">✓ Consistent</Badge> : <Badge tone="carpet">✗ Mismatch</Badge>}</Td>
-                <Td className="font-pixel text-xs whitespace-nowrap">
+                <Td className="text-xs whitespace-nowrap text-cream-muted">
                   <time dateTime={a.createdAt}>{shortDate(a.createdAt)}</time>
                 </Td>
               </Tr>

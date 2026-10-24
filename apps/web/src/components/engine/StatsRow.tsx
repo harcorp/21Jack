@@ -7,7 +7,7 @@ export function StatsRow({ stats }: { stats: EngineStats | null }) {
   const bad = stats?.inconsistentAccounts ?? 0;
   return (
     <section aria-label="Engine stats">
-      <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      <dl className="grid grid-cols-2 gap-3 md:grid-cols-4">
         <StatTile label="Accounts" value={n(stats?.accounts)} />
         <StatTile label="Transactions" value={n(stats?.transactions)} />
         <StatTile label="Deposited" value={n(stats?.totalDeposited)} hint={stats ? `${formatCredits(stats.deposits)} deposits` : undefined} />
@@ -18,7 +18,7 @@ export function StatsRow({ stats }: { stats: EngineStats | null }) {
           className="col-span-2"
           label="Ledger integrity"
           tone={!stats ? "default" : bad === 0 ? "felt" : "carpet"}
-          value={!stats ? "—" : bad === 0 ? "✓ All balanced" : `✗ ${formatCredits(bad)}`}
+          value={!stats ? "—" : bad === 0 ? "All balanced" : `${formatCredits(bad)} off`}
           hint={stats && bad > 0 ? `${bad === 1 ? "account" : "accounts"} out of balance` : undefined}
         />
       </dl>

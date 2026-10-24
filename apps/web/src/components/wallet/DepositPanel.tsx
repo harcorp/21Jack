@@ -61,45 +61,53 @@ export function DepositPanel({
 
   return (
     <Panel tone="wood" framed title={title}>
-      <div className="mb-6 flex flex-wrap items-center gap-3">
-        <span className="font-pixel text-sm">Current purse</span>
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3 bg-[rgb(20_10_4/0.45)] px-4 py-3 shadow-[inset_0_0_0_2px_var(--gh-ink)]">
+        <span className="gh-field__label">Current purse</span>
         <BalancePill balance={balance} />
       </div>
 
-      <h3 className="mb-2 font-pixel text-sm">Quick deposit</h3>
-      <div className="mb-6 grid grid-cols-3 gap-3">
+      <h3 className="gh-field__label mb-2">Quick deposit</h3>
+      <div className="mb-6 grid grid-cols-3 gap-2 sm:gap-3">
         {QUICK_AMOUNTS.map((amount) => (
           <Button
             key={amount}
             variant="primary"
             size="lg"
+            className="gh-num px-2! text-sm! sm:text-base!"
             disabled={pending}
             onClick={() => void deposit(amount)}
             aria-label={`Deposit ${amount} credits`}
           >
-            <CoinIcon />+{amount}
+            <CoinIcon className="hidden sm:block" />+{amount}
           </Button>
         ))}
       </div>
 
-      <form onSubmit={submitCustom} className="flex flex-col gap-3 sm:flex-row sm:items-end" noValidate>
+      <form onSubmit={submitCustom} className="flex flex-col gap-3 sm:flex-row sm:items-start" noValidate>
         <Input
           className="flex-1"
           label="Custom amount"
           inputMode="numeric"
           pattern="[0-9]*"
           autoComplete="off"
+          placeholder="1,000"
           value={custom}
           onChange={(e) => setCustom(e.target.value)}
+          hint={`Whole numbers 1 to ${formatCredits(MAX_DEPOSIT)}`}
           error={customError}
         />
-        <Button type="submit" variant="wood" size="md" disabled={pending}>
+        <Button type="submit" variant="wood" size="md" disabled={pending} className="sm:mt-[26px]">
           Deposit
         </Button>
       </form>
 
-      <div className="mt-4 min-h-14">
-        {pending ? <p className="font-pixel text-sm">Counting coins…</p> : null}
+      <div className="mt-4 min-h-14" aria-live="polite">
+        {pending ? (
+          <p className="gh-label flex items-center gap-2 text-sm text-gold-light">
+            <span className="gh-spinner" aria-hidden="true" />
+            Counting coins…
+          </p>
+        ) : null}
         {notice ? <Alert tone={notice.tone}>{notice.text}</Alert> : null}
       </div>
       {footer}

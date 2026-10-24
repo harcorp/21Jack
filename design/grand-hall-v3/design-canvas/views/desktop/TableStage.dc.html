@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Table stage · desktop</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/_blob/196dfe1898f557f0ba8ff161e4f6f687">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="gh-root" style="position: relative; width: 1440px; height: 810px; overflow: hidden; background: #0E0C12; font-family: 'Inter', system-ui, sans-serif; color: #FBF4E4;">
+
+  <!-- ===== scene layers (far, table, king, foreground) ===== -->
+  <img class="gh-layer" src="/_blob/a9dd7aeb122d1b2a1b9765b2d58a65df" alt="">
+  <img class="gh-layer" src="/_blob/338416c2e15bbca2eb7e86d3d0b1a104" alt="">
+  <img src="{{kingSrc}}" alt="{{kingAlt}}" class="gh-pixelated" style="position: absolute; left: 39.722%; top: 14.444%; width: 20.556%; height: 38.025%;">
+  <img class="gh-layer" src="/_blob/b1fe15623ec14fa26ac6a8e68773a880" alt="">
+  <sc-for list="{{glows}}" as="g" hint-placeholder-count="6">
+    <div class="gh-glow" style="{{g}}"></div>
+  </sc-for>
+  <div class="gh-embers">
+    <i style="left: 9%; animation-delay: -1s;"></i><i style="left: 16%; animation-delay: -4s; animation-duration: 11s;"></i>
+    <i style="left: 23%; animation-delay: -7s;"></i><i style="left: 34%; animation-delay: -2.5s; animation-duration: 12s;"></i>
+    <i style="left: 46%; animation-delay: -6s; animation-duration: 10s;"></i><i style="left: 58%; animation-delay: -3s;"></i>
+    <i style="left: 67%; animation-delay: -8s; animation-duration: 12s;"></i><i style="left: 76%; animation-delay: -5s;"></i>
+    <i style="left: 84%; animation-delay: -0.5s; animation-duration: 10s;"></i><i style="left: 91%; animation-delay: -6.5s;"></i>
+  </div>
+  <div class="gh-vignette"></div>
+
+  <!-- ===== dealer hand ===== -->
+  <sc-if value="{{dealer.show}}" hint-placeholder-val="{{true}}">
+    <div style="position: absolute; left: 50%; top: 45.6%; transform: translate(-50%, -50%);">
+      <div style="position: relative; display: flex; align-items: flex-end; filter: drop-shadow(0 3px 0 rgba(10,8,12,.65));">
+        <sc-for list="{{dealer.cards}}" as="c" hint-placeholder-count="2">
+          <sc-if value="{{c.down}}" hint-placeholder-val="{{false}}">
+            <div class="gh-card gh-card--md gh-card--back" style="{{c.style}}"><img class="gh-card__crest" src="/_blob/dbbab820689b32c06d2e0ae8aeea6fea" alt=""></div>
+          </sc-if>
+          <sc-if value="{{c.up}}" hint-placeholder-val="{{true}}">
+            <div class="{{c.cls}}" style="{{c.style}}">
+              <div class="gh-card__corner"><span class="gh-card__rank">{{c.rank}}</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="{{c.pip}}"></path></svg></div>
+              <div class="gh-card__center">
+                <sc-if value="{{c.hasFace}}" hint-placeholder-val="{{false}}"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="{{c.face}}"></path></svg></sc-if>
+                <sc-if value="{{c.noFace}}" hint-placeholder-val="{{true}}"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="{{c.pip}}"></path></svg></sc-if>
+              </div>
+              <div class="gh-card__corner gh-card__corner--br"><span class="gh-card__rank">{{c.rank}}</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="{{c.pip}}"></path></svg></div>
+            </div>
+          </sc-if>
+        </sc-for>
+        <div style="position: absolute; left: calc(100% + 10px); bottom: 4px; display: flex; flex-direction: column; align-items: flex-start; gap: 6px; filter: none;">
+          <span class="gh-tag gh-tag--ghost">Dealer</span>
+          <span class="{{dealer.totalCls}}">{{dealer.total}}</span>
+          <sc-if value="{{dealer.hasNote}}" hint-placeholder-val="{{false}}"><span class="{{dealer.noteCls}}">{{dealer.note}}</span></sc-if>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ===== seats: hands on the felt + plates on the rim ===== -->
+  <sc-for list="{{seats}}" as="s" hint-placeholder-count="5">
+    <sc-if value="{{s.hasHands}}" hint-placeholder-val="{{true}}">
+      <div style="{{s.handsStyle}}">
+        <sc-for list="{{s.hands}}" as="h" hint-placeholder-count="1">
+          <div class="{{h.cls}}" style="display: flex; flex-direction: column; align-items: center; gap: 8px;">
+            <div style="position: relative; display: flex; align-items: flex-end; filter: drop-shadow(0 3px 0 rgba(10,8,12,.65));">
+              <sc-for list="{{h.cards}}" as="c" hint-placeholder-count="2">
+                <sc-if value="{{c.down}}" hint-placeholder-val="{{false}}">
+                  <div class="gh-card gh-card--md gh-card--back" style="{{c.style}}"><img class="gh-card__crest" src="/_blob/dbbab820689b32c06d2e0ae8aeea6fea" alt=""></div>
+                </sc-if>
+                <sc-if value="{{c.up}}" hint-placeholder-val="{{true}}">
+                  <div class="{{c.cls}}" style="{{c.style}}">
+                    <div class="gh-card__corner"><span class="gh-card__rank">{{c.rank}}</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="{{c.pip}}"></path></svg></div>
+                    <div class="gh-card__center">
+                      <sc-if value="{{c.hasFace}}" hint-placeholder-val="{{false}}"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="{{c.face}}"></path></svg></sc-if>
+                      <sc-if value="{{c.noFace}}" hint-placeholder-val="{{true}}"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="{{c.pip}}"></path></svg></sc-if>
+                    </div>
+                    <div class="gh-card__corner gh-card__corner--br"><span class="gh-card__rank">{{c.rank}}</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="{{c.pip}}"></path></svg></div>
+                  </div>
+                </sc-if>
+              </sc-for>
+              <div style="{{h.metaStyle}}">
+                <sc-if value="{{h.hasLabel}}" hint-placeholder-val="{{false}}"><span class="gh-hand__label">{{h.label}}</span></sc-if>
+                <span class="{{h.totalCls}}">{{h.total}}</span>
+                <sc-for list="{{h.tags}}" as="t" hint-placeholder-count="1"><span class="{{t.cls}}">{{t.text}}</span></sc-for>
+                <sc-if value="{{h.res.show}}" hint-placeholder-val="{{false}}">
+                  <div class="{{h.res.cls}}" style="min-width: 0; padding: 5px 12px 7px; position: relative;">
+                    <span class="gh-result__word" style="font-size: 19px;">{{h.res.word}}</span>
+                    <span class="gh-result__amount" style="font-size: 10px;">{{h.res.amount}}</span>
+                    <sc-if value="{{h.res.sparkle}}" hint-placeholder-val="{{false}}">
+                      <span class="gh-sparkle" style="left: -6px; top: -6px;"></span><span class="gh-sparkle" style="right: -5px; top: 6px; animation-delay: -.3s;"></span><span class="gh-sparkle" style="left: 40%; bottom: -7px; animation-delay: -.6s;"></span>
+                    </sc-if>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <div style="{{h.stackWrap}}"><i style="{{h.stackStyle}}"></i></div>
+              <span class="gh-num" style="font-size: 10px; color: #FFE08A; background: rgba(14,12,18,.85); padding: 4px 5px; box-shadow: inset 0 0 0 2px #1A1014;">{{h.stake}}</span>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{s.hasStake}}" hint-placeholder-val="{{false}}">
+      <div style="{{s.stakeStyle}}">
+        <div style="{{s.stackWrap}}"><i style="{{s.stackStyle}}"></i></div>
+        <span class="gh-num" style="font-size: 10px; color: #FFE08A; background: rgba(14,12,18,.85); padding: 4px 5px; box-shadow: inset 0 0 0 2px #1A1014;">{{s.stake}}</span>
+      </div>
+    </sc-if>
+
+    <div style="{{s.plateStyle}}">
+      <div style="display: flex; align-items: center; justify-content: center; gap: 5px; height: 22px;">
+        <span class="gh-seat__name">{{s.name}}</span>
+        <sc-if value="{{s.you}}" hint-placeholder-val="{{false}}"><span class="gh-tag gh-tag--you">You</span></sc-if>
+        <sc-if value="{{s.hasTag}}" hint-placeholder-val="{{false}}"><span class="{{s.tagCls}}">{{s.tag}}</span></sc-if>
+      </div>
+      <sc-if value="{{s.empty}}" hint-placeholder-val="{{false}}">
+        <div class="gh-portrait is-empty" style="color: #FFE08A;"><svg class="gh-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M5 0h2v1h-2zM5 1h2v1h-2zM5 2h2v1h-2zM5 3h2v1h-2zM5 4h2v1h-2zM0 5h12v1h-12zM0 6h12v1h-12zM5 7h2v1h-2zM5 8h2v1h-2zM5 9h2v1h-2zM5 10h2v1h-2zM5 11h2v1h-2z"></path></svg></div>
+        <button class="gh-btn gh-btn--sm" style="margin-top: 10px;">Sit here</button>
+      </sc-if>
+      <sc-if value="{{s.occupied}}" hint-placeholder-val="{{true}}">
+        <div class="{{s.portraitCls}}">
+          <img src="{{s.avatar}}" alt="{{s.name}}">
+          <sc-if value="{{s.ring}}" hint-placeholder-val="{{false}}">
+            <div class="gh-ring" style="{{s.ringStyle}}"></div>
+            <span class="gh-ring__time">{{s.time}}</span>
+          </sc-if>
+          <sc-if value="{{s.off}}" hint-placeholder-val="{{false}}">
+            <span style="position: absolute; right: -10px; bottom: -6px; width: 26px; height: 26px; display: grid; place-items: center; background: #7E1622; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><svg class="gh-icon" viewBox="0 0 12 12" style="width: 14px; height: 14px;" aria-hidden="true"><path d="M4 1h4v1h-4zM2 2h2v1h-2zM8 2h2v1h-2zM1 3h1v1h-1zM10 3h1v1h-1zM3 4h6v1h-6zM2 5h1v1h-1zM9 5h1v1h-1zM5 6h2v1h-2zM4 7h1v1h-1zM7 7h1v1h-1zM5 9h2v1h-2zM5 10h2v1h-2z"></path></svg></span>
+          </sc-if>
+        </div>
+        <div class="gh-hearts" style="margin-top: 6px;"><img src="{{s.h1}}" alt=""><img src="{{s.h2}}" alt=""><img src="{{s.h3}}" alt=""></div>
+        <div class="gh-plaque"><img src="/_blob/8e48760ccaadc96d48a1d642f25fe65f" alt=""><span>{{s.balance}}</span></div>
+      </sc-if>
+    </div>
+  </sc-for>
+
+  <!-- ===== HUD: table plate, boss bar, balance + menu ===== -->
+  <div class="gh-frame gh-frame--glass gh-notch" style="position: absolute; left: 20px; top: 16px; padding: 12px 18px 14px; display: flex; flex-direction: column; gap: 6px; min-width: 236px;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span class="gh-display" style="font-size: 22px; color: #FFE08A; text-shadow: 0 2px 0 #1A1014;">{{tableName}}</span>
+      <span class="gh-tag gh-tag--stone">{{modeTag}}</span>
+    </div>
+    <span style="font-size: 12px; color: #D9CBAE;">{{tableMeta}}</span>
+    <div style="display: flex; gap: 6px;"><span class="{{phaseCls}}">{{phase}}</span></div>
+  </div>
+
+  <div class="{{boss.cls}}" style="position: absolute; left: 50%; top: 4px; transform: translateX(-50%); width: 470px;">
+    <div class="gh-boss__frame">
+      <div class="gh-boss__track">
+        <sc-for list="{{boss.segs}}" as="g" hint-placeholder-count="10"><div class="{{g}}" style="height: 100%;"></div></sc-for>
+      </div>
+    </div>
+    <div class="gh-boss__crown" style="top: 0; width: 48px; height: 28px;">
+      <svg viewBox="0 0 12 12" style="width: 40px; height: 40px; fill: #E8B53A; filter: drop-shadow(0 2px 0 #1A1014) drop-shadow(0 0 6px rgba(255,200,90,.6)); shape-rendering: crispEdges;" aria-hidden="true"><path d="M0 1h1v1h-1zM5 1h2v1h-2zM11 1h1v1h-1zM0 2h2v1h-2zM4 2h4v1h-4zM10 2h2v1h-2zM0 3h2v1h-2zM3 3h6v1h-6zM10 3h2v1h-2zM0 4h12v1h-12zM0 5h12v1h-12zM0 6h12v1h-12zM0 7h12v1h-12zM0 8h12v1h-12zM0 10h12v1h-12zM0 11h12v1h-12z"></path></svg>
+    </div>
+    <div class="gh-boss__label"><span>{{boss.left}}</span><span class="gh-num" style="font-size: 10px; color: #FBF4E4;">{{boss.right}}</span></div>
+    <sc-if value="{{boss.hasDamage}}" hint-placeholder-val="{{false}}">
+      <span class="gh-num" style="position: absolute; right: -54px; top: 18px; font-size: 16px; color: #FFAA3B; text-shadow: 0 2px 0 #1A1014;">{{boss.damage}}</span>
+    </sc-if>
+  </div>
+
+  <div style="position: absolute; right: 20px; top: 16px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <div class="{{balanceCls}}"><img class="gh-balance__coin" src="/_blob/8e48760ccaadc96d48a1d642f25fe65f" alt=""><span class="gh-balance__value">{{balance}}</span><span class="gh-visually-hidden">credits</span></div>
+      <button class="gh-iconbtn" aria-label="Menu"><svg class="gh-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M0 1h12v1h-12zM0 2h12v1h-12zM0 5h12v1h-12zM0 6h12v1h-12zM0 9h12v1h-12zM0 10h12v1h-12z"></path></svg></button>
+    </div>
+    <sc-if value="{{hasDelta}}" hint-placeholder-val="{{false}}"><span class="gh-tag" style="margin-right: 58px;">{{delta}}</span></sc-if>
+  </div>
+
+  <!-- ===== table feed (multiplayer) ===== -->
+  <sc-if value="{{feed.show}}" hint-placeholder-val="{{false}}">
+    <div class="gh-frame gh-frame--glass gh-notch" style="position: absolute; left: 20px; top: 150px; width: 272px; padding: 12px 16px 14px; display: flex; flex-direction: column; gap: 6px;">
+      <span class="gh-eyebrow" style="font-size: 12px;">Table feed</span>
+      <sc-for list="{{feed.rows}}" as="r" hint-placeholder-count="3">
+        <div class="gh-feed__row"><span class="gh-feed__dot"></span><span>{{r}}</span></div>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <!-- ===== centre moments ===== -->
+  <sc-if value="{{betBanner}}" hint-placeholder-val="{{false}}">
+    <div class="gh-banner gh-notch" style="position: absolute; left: 50%; top: 57%; transform: translate(-50%, -50%); gap: 16px; padding: 12px 22px 12px 14px;">
+      <div style="position: relative; width: 48px; height: 48px; display: grid; place-items: center;">
+        <div class="gh-ring" style="inset: 0; --p: 80;"></div>
+        <span class="gh-num" style="font-size: 12px; color: #FFE08A;">12</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px;">
+        <span>Place your bets</span>
+        <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0; text-transform: none; color: #D9CBAE; text-shadow: none;">Everyone bets together · Min 10 · Max 500</span>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{natural}}" hint-placeholder-val="{{false}}">
+    <div class="gh-frame gh-frame--crimson gh-notch" style="position: absolute; left: 50%; top: 38%; transform: translate(-50%, -50%); padding: 16px 40px 18px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center;">
+      <span class="gh-eyebrow" style="color: #FFF1C2;">Natural at the deal</span>
+      <span class="gh-display" style="font-size: 52px; color: #FFE08A; text-shadow: 0 3px 0 #1A1014, 0 0 22px rgba(255,200,90,.7);">BLACKJACK!</span>
+      <span style="font-size: 14px; color: #FBF4E4;">Pays 1 to 1 · your 50 comes back as 100</span>
+      <span class="gh-sparkle" style="left: 14px; top: 12px;"></span><span class="gh-sparkle" style="right: 18px; top: 22px; animation-delay: -.3s;"></span>
+      <span class="gh-sparkle" style="left: 30%; bottom: 8px; animation-delay: -.5s;"></span><span class="gh-sparkle" style="right: 26%; top: 6px; animation-delay: -.7s;"></span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{watching}}" hint-placeholder-val="{{false}}">
+    <div class="gh-banner gh-notch" style="position: absolute; left: 50%; top: 92px; transform: translateX(-50%); gap: 14px; padding: 8px 10px 8px 16px;">
+      <svg class="gh-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M4 2h4v1h-4zM2 3h8v1h-8zM1 4h3v1h-3zM8 4h3v1h-3zM0 5h3v1h-3zM5 5h2v1h-2zM9 5h3v1h-3zM0 6h3v1h-3zM5 6h2v1h-2zM9 6h3v1h-3zM1 7h3v1h-3zM8 7h3v1h-3zM2 8h8v1h-8zM4 9h4v1h-4z"></path></svg>
+      <span>Watching</span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0; text-transform: none; color: #D9CBAE; text-shadow: none;">Seat 5 is free from the next round</span>
+      <button class="gh-btn gh-btn--sm">Sit down</button>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{toast}}" hint-placeholder-val="{{false}}">
+    <div class="gh-toast gh-notch" role="alert" style="position: absolute; left: 50%; top: 92px; transform: translateX(-50%); white-space: nowrap;">
+      <svg class="gh-icon" viewBox="0 0 12 12" aria-hidden="true" style="color: #FFE08A;"><path d="M4 0h4v1h-4zM2 1h8v1h-8zM1 2h4v1h-4zM7 2h4v1h-4zM1 3h10v1h-10zM0 4h5v1h-5zM7 4h5v1h-5zM0 5h5v1h-5zM7 5h5v1h-5zM0 6h5v1h-5zM7 6h5v1h-5zM0 7h5v1h-5zM7 7h5v1h-5zM1 8h4v1h-4zM7 8h4v1h-4zM1 9h10v1h-10zM2 10h8v1h-8zM4 11h4v1h-4z"></path></svg>
+      <span><strong>Not enough credits to double.</strong> Nothing changed.</span>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{resume}}" hint-placeholder-val="{{false}}">
+    <div style="position: absolute; inset: 0; background: rgba(8, 6, 12, .62);"></div>
+    <div class="gh-frame gh-frame--wood gh-notch" style="position: absolute; left: 50%; top: 45%; transform: translate(-50%, -50%); width: 460px; box-sizing: border-box; padding: 28px 32px 30px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center;">
+      <span class="gh-eyebrow">Welcome back</span>
+      <h2 class="gh-display" style="margin: 0; font-size: 36px; color: #FFE08A; text-shadow: 0 3px 0 #1A1014;">Round in progress</h2>
+      <p style="margin: 0; font-size: 15px; color: #EFE3C8; line-height: 1.5;">Your 16 against the dealer's 10 is waiting where you left it. Nothing changed while you were away.</p>
+      <button class="gh-btn gh-btn--lg" style="margin-top: 6px;">Resume</button>
+    </div>
+  </sc-if>
+
+  <!-- ===== dock: chip tray / action bar / status ===== -->
+  <sc-if value="{{dock.tray}}" hint-placeholder-val="{{false}}">
+    <div class="gh-tray gh-notch" style="position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); gap: 10px; padding: 12px 14px 14px;">
+      <sc-for list="{{dock.chips}}" as="k" hint-placeholder-count="6">
+        <div class="gh-tray__slot" style="width: 62px; height: 62px;"><button class="{{k.cls}}" style="width: 50px; height: 50px;" aria-label="{{k.aria}}" disabled="{{k.disabled}}">{{k.label}}</button></div>
+      </sc-for>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 0 10px; min-width: 96px;">
+        <span class="gh-label" style="font-size: 13px; color: #FFE08A;">Bet</span>
+        <span class="gh-num" style="font-size: 20px; color: #FBF4E4; text-shadow: 0 2px 0 #1A1014;">{{dock.bet}}</span>
+      </div>
+      <button class="gh-btn gh-btn--stone gh-btn--sm">Clear</button>
+      <button class="gh-btn gh-btn--lg" style="min-width: 140px;">{{dock.go}}</button>
+      <sc-if value="{{dock.hasHint}}" hint-placeholder-val="{{false}}"><span style="font-size: 12px; color: #EFE3C8; max-width: 92px; line-height: 1.3;">{{dock.hint}}</span></sc-if>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{dock.act}}" hint-placeholder-val="{{false}}">
+    <div class="{{dock.barCls}}" style="position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%);">
+      <sc-for list="{{dock.actions}}" as="a" hint-placeholder-count="4">
+        <button class="{{a.cls}}" disabled="{{a.disabled}}" aria-keyshortcuts="{{a.key}}">
+          <span class="gh-action__key">{{a.key}}</span>
+          <span>{{a.label}}</span>
+          <span class="gh-action__sub">{{a.sub}}</span>
+        </button>
+      </sc-for>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{dock.status}}" hint-placeholder-val="{{false}}">
+    <div class="gh-banner gh-notch" style="position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); gap: 14px; padding: 10px 12px 10px 18px; font-size: 17px; white-space: nowrap;">
+      <sc-if value="{{dock.hasRing}}" hint-placeholder-val="{{false}}">
+        <div style="position: relative; width: 36px; height: 36px; display: grid; place-items: center;"><div class="gh-ring" style="inset: 0; --p: 60;"></div><span class="gh-num" style="font-size: 10px; color: #FFE08A;">{{dock.ringText}}</span></div>
+      </sc-if>
+      <span>{{dock.title}}</span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 0; text-transform: none; color: #D9CBAE; text-shadow: none;">{{dock.sub}}</span>
+      <sc-if value="{{dock.hasBtn}}" hint-placeholder-val="{{false}}"><button class="{{dock.btnCls}}">{{dock.btn}}</button></sc-if>
+    </div>
+  </sc-if>
+
+  <div class="gh-footnote" style="position: absolute; left: 50%; bottom: 3px; transform: translateX(-50%); font-size: 10px; letter-spacing: .2em;">Fictional credits only</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"state":{"editor":"enum","options":["solo-betting","solo-natural","solo-turn","solo-split","solo-double","solo-results","solo-nocredits","solo-resume","multi-betting","multi-yourturn","multi-otherturn","multi-dealer","multi-settled","multi-watching"],"default":"multi-yourturn"},"$preview":{"width":1440,"height":810}}'>
+class Component extends DCLogic {
+  renderVals() {
+    var B = '/_blob/';
+    var AV = {
+      squire: B + 'b62a995e7e35d3b276fb8c5ae3617da9', archer: B + '7551e5e3315c2f952444455aa850eedd',
+      mage: B + '8019fcd3dc0390a16f27654004c46eb5', knight: B + 'eebae6019292d15016a8e6e5d77b5f95',
+      bard: B + '811d7cd5520aa564799d7734d6588bff', smith: B + '1c727f9947503a677ca30194070f9acc',
+      healer: B + '41ef01000365c4329f47ceb9f03ef044', rogue: B + '5a9a8e41c63e361f92c36bad5dae4cdb',
+      noble: B + 'cf1be27d1c03247843147b6102a493b2', ranger: B + 'f6594df8aa754be97079ed7e43c40629',
+      monk: B + '80328e3182c2c6e433e400126a191ee6', jester: B + 'c7aec92efcf6d7107f68fea64057c59c'
+    };
+    var KING = {
+      idle: B + '912c7f52ef464b9390cf8d0792b9caf2', breath: B + '09dad4bf37009e47eff6dad922169d15',
+      blink: B + 'ef5c7ea9b3c901c39b90f05d03b6db96', smug: B + '512649b9d7056376564dbd45263a66a2',
+      grimace: B + '613726e634c6cdc197c07ba04659d08d'
+    };
+    var HEART = { 1: B + '6d7d68f4a1b61b862df8ef76204152b5', 0: B + 'dd5bd442c88f745ce924855baae230b4' };
+    var PIP = {
+      s: 'M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z',
+      h: 'M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z',
+      d: 'M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z',
+      c: 'M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z'
+    };
+    var FACE = {
+      K: 'M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z',
+      Q: 'M4 0h1v1h-1zM3 1h3v1h-3zM0 2h1v1h-1zM3 2h3v1h-3zM8 2h1v1h-1zM0 3h2v1h-2zM3 3h3v1h-3zM7 3h2v1h-2zM0 4h9v1h-9zM1 5h7v1h-7zM2 6h5v1h-5zM1 8h7v1h-7z',
+      J: 'M6 0h2v1h-2zM5 1h2v1h-2zM4 2h2v1h-2zM2 3h5v1h-5zM1 4h7v1h-7zM0 5h9v1h-9zM0 6h9v1h-9zM0 8h9v1h-9z'
+    };
+    var fmt = function (n) { return Number(n).toLocaleString('en-US'); };
+
+    // cards: 'As', '10h', 'Kd', 'down'; append '>' for the sideways doubled card
+    var mkCards = function (codes) {
+      return codes.map(function (code, i) {
+        var side = code.slice(-1) === '>';
+        if (side) code = code.slice(0, -1);
+        var style = i === 0 ? '' : 'margin-left: -34px;';
+        if (side) style = 'margin-left: -22px; margin-bottom: 14px; transform: rotate(90deg);';
+        if (code === 'down') return { down: true, up: false, style: style };
+        var s = code.slice(-1), r = code.slice(0, -1);
+        var red = s === 'h' || s === 'd';
+        return {
+          down: false, up: true, rank: r, pip: PIP[s], face: FACE[r] || '', hasFace: !!FACE[r], noFace: !FACE[r],
+          cls: 'gh-card gh-card--md' + (red ? ' is-red' : ''), style: style
+        };
+      });
+    };
+
+    // stake chips as one element: top chip + lower chips drawn as box-shadows
+    var CH = {
+      1000: ['#3B2456', '#FFE08A'], 500: ['#E8B53A', '#2A160C'], 100: ['#38333D', '#E8B53A'],
+      25: ['#1A6340', '#FBF4E4'], 10: ['#A11F2D', '#FBF4E4'], 5: ['#EFE3C8', '#A11F2D']
+    };
+    var stack = function (amount) {
+      var left = amount, list = [];
+      [1000, 500, 100, 25, 10, 5].forEach(function (d) { while (left >= d && list.length < 7) { list.push(d); left -= d; } });
+      if (!list.length) list = [5];
+      list.reverse(); // biggest at the bottom
+      var top = CH[list[list.length - 1]];
+      var sh = ['0 0 0 2px #1A1014'];
+      for (var i = list.length - 2, k = 1; i >= 0; i--, k++) {
+        sh.push('0 ' + (k * 5) + 'px 0 0 ' + CH[list[i]][0]);
+        sh.push('0 ' + (k * 5) + 'px 0 2px #1A1014');
+      }
+      var h = 16 + (list.length - 1) * 5 + 4;
+      return {
+        wrap: 'position: relative; width: 48px; height: ' + h + 'px; display: flex; justify-content: center;',
+        chip: 'display: block; width: 44px; height: 16px; border-radius: 50%; background: radial-gradient(50% 50% at 50% 42%, ' + top[0] + ' 0 56%, ' + top[1] + ' 56% 66%, ' + top[0] + ' 66%); box-shadow: ' + sh.join(', ') + ';'
+      };
+    };
+
+    var POS = {
+      A: { x: 25.43, y: 53.8, rx: 14.82, ry: 56.12, side: 'left', no: 5 },
+      B: { x: 32.95, y: 62.86, rx: 23.58, ry: 70.81, side: 'left', no: 4 },
+      C: { x: 50, y: 67.09, rx: 50, ry: 78.53, side: 'right', no: 3 },
+      D: { x: 67.05, y: 62.86, rx: 76.42, ry: 70.81, side: 'right', no: 2 },
+      E: { x: 74.57, y: 53.8, rx: 85.18, ry: 56.12, side: 'right', no: 1 }
+    };
+    var TAG = {
+      betting: 'gh-tag gh-tag--stone', ready: 'gh-tag gh-tag--soft', waiting: 'gh-tag gh-tag--ghost', turn: 'gh-tag gh-tag--torch',
+      stood: 'gh-tag gh-tag--stone', out: 'gh-tag gh-tag--ghost', off: 'gh-tag gh-tag--crimson', done: 'gh-tag gh-tag--stone'
+    };
+    var RES = {
+      victory: ['gh-result gh-result--victory', 'VICTORY'], push: ['gh-result gh-result--push', 'PUSH'],
+      defeat: ['gh-result gh-result--defeat', 'DEFEAT'], blackjack: ['gh-result gh-result--blackjack', 'BLACKJACK']
+    };
+
+    var mkHand = function (h, side) {
+      var st = stack(h.stake);
+      var tags = (h.tags || []).map(function (t) { return { text: t[0], cls: t[1] }; });
+      if (h.soft) tags.unshift({ text: 'Soft', cls: 'gh-tag gh-tag--soft' });
+      var totalCls = 'gh-total' + (h.total === '21' ? ' is-21' : '') + (h.bust ? ' is-bust' : '');
+      var r = h.res ? RES[h.res] : null;
+      return {
+        cls: 'gh-hand' + (h.active ? ' is-active' : '') + (h.waiting ? ' is-waiting' : ''),
+        cards: mkCards(h.cards), total: h.total, totalCls: totalCls, tags: tags,
+        hasLabel: !!h.label, label: h.label || '',
+        metaStyle: 'position: absolute; bottom: 2px; ' + (side === 'left' ? 'right: calc(100% + 10px); align-items: flex-end;' : 'left: calc(100% + 10px); align-items: flex-start;') + ' display: flex; flex-direction: column; gap: 5px; filter: none; white-space: nowrap;',
+        res: r ? { show: true, cls: r[0], word: r[1], amount: h.payout, sparkle: h.res === 'blackjack' } : { show: false, cls: '', word: '', amount: '', sparkle: false },
+        stackWrap: st.wrap, stackStyle: st.chip, stake: fmt(h.stake)
+      };
+    };
+
+    var mkSeat = function (key, d) {
+      var p = POS[key];
+      var hands = (d.hands || []).map(function (h, i) {
+        var side = p.side;
+        if (d.hands.length === 2) side = i === 0 ? 'left' : 'right';
+        return mkHand(h, side);
+      });
+      var st = stack(d.stake || 5);
+      var hearts = d.hearts || [1, 1, 1];
+      var empty = d.status === 'empty';
+      var portrait = 'gh-portrait' + (d.you ? ' is-you' : '') + (d.status === 'turn' ? ' is-active' : '') + ((d.status === 'out' || d.status === 'off') ? ' is-off' : '');
+      return {
+        hasHands: hands.length > 0, hands: hands,
+        handsStyle: 'position: absolute; left: ' + p.x + '%; top: ' + p.y + '%; transform: translate(-50%, calc(-100% + 20px)); display: flex; align-items: flex-end; gap: ' + (hands.length === 2 ? 34 : 0) + 'px;',
+        hasStake: !hands.length && !!d.stake, stake: fmt(d.stake || 0),
+        stakeStyle: 'position: absolute; left: ' + p.x + '%; top: ' + p.y + '%; transform: translate(-50%, -50%); display: flex; align-items: center; gap: 6px;',
+        stackWrap: st.wrap, stackStyle: st.chip,
+        plateStyle: 'position: absolute; left: ' + p.rx + '%; top: ' + p.ry + '%; transform: translate(-50%, -60px); width: 190px; display: flex; flex-direction: column; align-items: center; gap: 4px;' + (d.status === 'out' || d.status === 'off' ? ' opacity: .9;' : ''),
+        name: empty ? 'Seat ' + p.no : d.name, you: !!d.you, empty: empty, occupied: !empty,
+        hasTag: !!d.tag, tag: d.tag || '', tagCls: TAG[d.status] || 'gh-tag gh-tag--stone',
+        portraitCls: portrait, avatar: AV[d.avatar || 'squire'],
+        ring: d.status === 'turn' && d.timer != null, ringStyle: '--p: ' + Math.round((d.timer || 0) * 100) + ';', time: d.time || '',
+        off: d.status === 'off',
+        h1: HEART[hearts[0]], h2: HEART[hearts[1]], h3: HEART[hearts[2]],
+        balance: fmt(d.balance || 0)
+      };
+    };
+
+    var actions = function (o) {
+      var def = [
+        ['hit', 'Hit', 'H', 'Take a card'], ['stand', 'Stand', 'S', 'Keep total'],
+        ['double', 'Double', 'D', '+50 · one card'], ['split', 'Split', 'P', '+50 · two hands']
+      ];
+      return def.map(function (a) {
+        var s = (o && o[a[0]]) || { st: 'on' };
+        var cls = 'gh-action gh-action--' + a[0];
+        if (s.st === 'off') cls += ' is-disabled';
+        if (s.st === 'broke') cls += ' is-broke';
+        if (s.st === 'busy') cls += ' is-busy';
+        return { cls: cls, disabled: s.st === 'off' || s.st === 'broke', key: a[2], label: a[1], sub: s.sub || a[3] };
+      });
+    };
+    var chips = function (sel, maxOk) {
+      return [[5, '5', '--5'], [10, '10', '--10'], [25, '25', '--25'], [100, '100', '--100'], [500, '500', '--500'], [1000, '1K', '--1k']].map(function (c) {
+        var off = c[0] > maxOk;
+        return { cls: 'gh-chip gh-chip' + c[2] + (c[0] === sel ? ' is-selected' : '') + (off ? ' is-disabled' : ''), label: c[1], aria: 'Add ' + c[1] + ' credits', disabled: off };
+      });
+    };
+    var bossSegs = function (hp, hits) {
+      var out = [];
+      for (var i = 0; i < 10; i++) {
+        if (i < hp) out.push('gh-boss__hp');
+        else if (i < hp + (hits || 0)) out.push('gh-boss__hp is-hit');
+        else out.push('gh-boss__hp is-empty');
+      }
+      return out;
+    };
+
+    var noDock = { tray: false, act: false, status: false, chips: [], actions: [], bet: '', go: '', hasHint: false, hint: '', barCls: 'gh-actionbar', hasRing: false, ringText: '', title: '', sub: '', hasBtn: false, btn: '', btnCls: '' };
+    var dock = function (o) { var d = {}; for (var k in noDock) d[k] = noDock[k]; for (var j in o) d[j] = o[j]; return d; };
+
+    // ---------- states ----------
+    var me = { name: 'Nicolas', avatar: 'knight', you: true };
+    var solo = function (o) {
+      var s = {
+        mode: 'Solo', table: 'Solo table', meta: 'Min 10 · Max 500 · Hand 24', boss: 7, hits: 0, bossLeft: 'The King',
+        balance: 1190, dealer: null, seats: { C: Object.assign({}, me, o.me) }, feed: null, king: 'idle'
+      };
+      for (var k in o) if (k !== 'me') s[k] = o[k];
+      return s;
+    };
+    var MARIANA = { name: 'Mariana', avatar: 'healer', balance: 2735 };
+    var LUIS = { name: 'Luis', avatar: 'bard', balance: 1930 };
+    var ANDRES = { name: 'Andrés', avatar: 'ranger', balance: 3890 };
+    var with_ = function (base, o) { var r = {}; for (var a in base) r[a] = base[a]; for (var b in o) r[b] = o[b]; return r; };
+
+    var S = {
+      'solo-betting': solo({
+        phase: 'Betting', phaseCls: 'gh-tag gh-tag--torch', king: 'blink', balance: 1240,
+        me: { status: 'betting', tag: 'Betting', stake: 50, balance: 1240, hearts: [1, 1, 0] },
+        dock: dock({ tray: true, chips: chips(25, 1000), bet: '50', go: 'Deal' })
+      }),
+      'solo-natural': solo({
+        phase: 'Natural · paid', phaseCls: 'gh-tag', king: 'grimace', balance: 1290, delta: '+100',
+        dealer: { cards: ['9c', 'down'], total: '?', note: 'No blackjack', noteCls: 'gh-tag gh-tag--ghost' },
+        me: { status: 'done', balance: 1290, hearts: [1, 1, 1], hands: [{ cards: ['As', 'Kh'], total: '21', stake: 50, res: 'blackjack', payout: '+100' }] },
+        natural: true,
+        dock: dock({ status: true, title: 'Paid at once', sub: 'A natural pays 1 to 1 · 2× stake returned', hasBtn: true, btn: 'Next hand', btnCls: 'gh-btn gh-btn--sm' })
+      }),
+      'solo-turn': solo({
+        phase: 'Your turn', phaseCls: 'gh-tag gh-tag--torch',
+        dealer: { cards: ['10s', 'down'], total: '?' },
+        me: { status: 'turn', balance: 1190, hearts: [1, 1, 0], hands: [{ cards: ['Ac', '6d'], total: '17', soft: true, stake: 50, active: true }] },
+        dock: dock({ act: true, actions: actions({ split: { st: 'off', sub: 'Pairs only' } }) })
+      }),
+      'solo-split': solo({
+        phase: 'Split · left hand', phaseCls: 'gh-tag gh-tag--torch', balance: 1140,
+        dealer: { cards: ['6d', 'down'], total: '?' },
+        me: {
+          status: 'turn', balance: 1140, hearts: [1, 1, 0], hands: [
+            { cards: ['8s', '3d'], total: '11', stake: 50, active: true, label: 'Left' },
+            { cards: ['8h', '10c'], total: '18', stake: 50, waiting: true, label: 'Right' }]
+        },
+        dock: dock({ act: true, actions: actions({ split: { st: 'off', sub: 'One split per round' }, double: { st: 'on', sub: '+50 · after split' } }) })
+      }),
+      'solo-double': solo({
+        phase: 'Dealer next', phaseCls: 'gh-tag gh-tag--stone', king: 'breath', balance: 1140,
+        dealer: { cards: ['10s', 'down'], total: '?' },
+        me: { status: 'done', balance: 1140, hearts: [1, 1, 0], hands: [{ cards: ['5s', '6h', '10d>'], total: '21', stake: 100, tags: [['Doubled', 'gh-tag gh-tag--torch']] }] },
+        dock: dock({ status: true, title: 'Doubled', sub: 'Stake 50 → 100 · one card, dealt sideways · hand finished' })
+      }),
+      'solo-results': solo({
+        phase: 'Settled', phaseCls: 'gh-tag', balance: 1290, delta: '+150', hits: 1, boss: 6, bossDamage: '−1',
+        dealer: { cards: ['6d', '10h', '2s'], total: '18', note: 'Stands on 18', noteCls: 'gh-tag gh-tag--stone' },
+        me: {
+          status: 'done', balance: 1290, hearts: [1, 1, 1], hands: [
+            { cards: ['8s', '3d', '9c'], total: '20', stake: 50, label: 'Left', res: 'victory', payout: '+100' },
+            { cards: ['8h', '10c'], total: '18', stake: 50, label: 'Right', res: 'push', payout: '+50' }]
+        },
+        dock: dock({ status: true, title: 'Round settled', sub: '+150 returned to your wallet', hasBtn: true, btn: 'Next hand', btnCls: 'gh-btn gh-btn--sm' })
+      }),
+      'solo-nocredits': solo({
+        phase: 'Your turn', phaseCls: 'gh-tag gh-tag--torch', king: 'smug', balance: 30,
+        dealer: { cards: ['7c', 'down'], total: '?' },
+        me: { status: 'turn', balance: 30, hearts: [0, 1, 0], hands: [{ cards: ['5d', '6c'], total: '11', stake: 50, active: true }] },
+        toast: true,
+        dock: dock({ act: true, actions: actions({ double: { st: 'broke', sub: 'Need 20 more' }, split: { st: 'off', sub: 'Pairs only' } }) })
+      }),
+      'solo-resume': solo({
+        phase: 'Round in progress', phaseCls: 'gh-tag gh-tag--torch',
+        dealer: { cards: ['10c', 'down'], total: '?' },
+        me: { status: 'turn', balance: 1190, hearts: [1, 1, 0], hands: [{ cards: ['9s', '7d'], total: '16', stake: 50 }] },
+        resume: true, dock: dock({})
+      }),
+
+      'multi-betting': {
+        mode: 'Boss mode', table: 'Ember Hall', meta: 'Min 10 · Max 500 · Round 13', phase: 'Betting · 12s', phaseCls: 'gh-tag gh-tag--torch',
+        boss: 6, bossLeft: 'The King · team boss', balance: 1240, king: 'blink', betBanner: true,
+        seats: {
+          E: with_(MARIANA, { status: 'ready', tag: 'Ready', stake: 25, balance: 2760, hearts: [1, 0, 1] }),
+          D: with_(LUIS, { status: 'betting', tag: 'Betting', balance: 1950, hearts: [1, 1, 1] }),
+          C: with_(me, { status: 'betting', tag: 'Betting', stake: 50, balance: 1240, hearts: [1, 1, 0] }),
+          B: with_(ANDRES, { status: 'out', tag: 'Sitting out', hearts: [1, 1, 0] }),
+          A: { status: 'empty' }
+        },
+        feed: ['Luis joined seat 2', 'Andrés is sitting out', 'Mariana is ready', 'Bets close in 12 seconds'],
+        dock: dock({ tray: true, chips: chips(25, 1000), bet: '50', go: 'Ready', hasHint: true, hint: 'Bets close in 12s' })
+      },
+      'multi-yourturn': {
+        mode: 'Boss mode', table: 'Ember Hall', meta: 'Min 10 · Max 500 · Round 13', phase: 'Your turn · 14s', phaseCls: 'gh-tag gh-tag--torch',
+        boss: 6, bossLeft: 'The King · team boss', balance: 1190, king: 'idle',
+        dealer: { cards: ['Ks', 'down'], total: '?' },
+        seats: {
+          E: with_(MARIANA, { status: 'stood', tag: 'Stood', hearts: [1, 0, 1], hands: [{ cards: ['10h', '2c', '7s'], total: '19', stake: 25 }] }),
+          D: with_(LUIS, { status: 'done', tag: 'Doubled', hearts: [1, 1, 1], hands: [{ cards: ['5s', '6h', '5d>'], total: '16', stake: 40 }] }),
+          C: with_(me, { status: 'turn', timer: 0.62, time: '14', tag: 'Your turn', balance: 1190, hearts: [1, 1, 0], hands: [{ cards: ['10c', '6d'], total: '16', stake: 50, active: true }] }),
+          B: with_(ANDRES, { status: 'out', tag: 'Sitting out', hearts: [1, 1, 0] }),
+          A: { status: 'empty' }
+        },
+        feed: ['Dealer shows a king', 'Mariana hit · stands on 19', 'Luis doubled · 16', 'Your turn'],
+        dock: dock({ act: true, actions: actions({ split: { st: 'off', sub: 'Pairs only' } }) })
+      },
+      'multi-otherturn': {
+        mode: 'Boss mode', table: 'Ember Hall', meta: 'Min 10 · Max 500 · Round 13', phase: "Mariana's turn · 9s", phaseCls: 'gh-tag gh-tag--torch',
+        boss: 6, bossLeft: 'The King · team boss', balance: 1190, king: 'breath',
+        dealer: { cards: ['Ks', 'down'], total: '?' },
+        seats: {
+          E: with_(MARIANA, { status: 'turn', timer: 0.4, time: '9', tag: 'Turn', hearts: [1, 0, 1], hands: [{ cards: ['10h', '2c'], total: '12', stake: 25, active: true }] }),
+          D: with_(LUIS, { status: 'waiting', tag: 'Waiting', balance: 1950, hearts: [1, 1, 1], hands: [{ cards: ['5s', '6h'], total: '11', stake: 20, waiting: true }] }),
+          C: with_(me, { status: 'waiting', tag: 'Waiting', balance: 1190, hearts: [1, 1, 0], hands: [{ cards: ['10c', '6d'], total: '16', stake: 50, waiting: true }] }),
+          B: with_(ANDRES, { status: 'out', tag: 'Sitting out', hearts: [1, 1, 0] }),
+          A: { status: 'empty' }
+        },
+        feed: ['Round 13 dealt', 'Dealer shows a king', 'Mariana is playing seat 1', 'Turns run right to left'],
+        dock: dock({ status: true, hasRing: true, ringText: '9', title: "Mariana's turn", sub: 'Luis plays next, then you' })
+      },
+      'multi-dealer': {
+        mode: 'Boss mode', table: 'Ember Hall', meta: 'Min 10 · Max 500 · Round 13', phase: 'Dealer plays', phaseCls: 'gh-tag gh-tag--stone',
+        boss: 6, bossLeft: 'The King · team boss', balance: 1190, king: 'smug',
+        dealer: { cards: ['Ks', '7h'], total: '17', note: 'Stands on all 17', noteCls: 'gh-tag gh-tag--stone' },
+        seats: {
+          E: with_(MARIANA, { status: 'stood', tag: 'Stood', hearts: [1, 0, 1], hands: [{ cards: ['10h', '2c', '7s'], total: '19', stake: 25 }] }),
+          D: with_(LUIS, { status: 'done', tag: 'Doubled', hearts: [1, 1, 1], hands: [{ cards: ['5s', '6h', '5d>'], total: '16', stake: 40 }] }),
+          C: with_(me, { status: 'stood', tag: 'Stood', balance: 1190, hearts: [1, 1, 0], hands: [{ cards: ['10c', '6d', '4s'], total: '20', stake: 50 }] }),
+          B: with_(ANDRES, { status: 'out', tag: 'Sitting out', hearts: [1, 1, 0] }),
+          A: { status: 'empty' }
+        },
+        feed: ['You hit · stand on 20', 'All seats finished', 'Dealer reveals 7 · 17', 'Dealer stands on all 17'],
+        dock: dock({ status: true, title: 'Dealer stands on 17', sub: 'Every hand settles against this same dealer hand' })
+      },
+      'multi-settled': {
+        mode: 'Boss mode', table: 'Ember Hall', meta: 'Min 10 · Max 500 · Round 13', phase: 'Settled', phaseCls: 'gh-tag',
+        boss: 4, hits: 2, bossDamage: '−2', bossShake: true, bossLeft: 'The King · team boss', balance: 1290, delta: '+100', king: 'grimace',
+        dealer: { cards: ['Ks', '7h'], total: '17', note: 'Stood on 17', noteCls: 'gh-tag gh-tag--stone' },
+        seats: {
+          E: with_(MARIANA, { status: 'done', balance: 2785, hearts: [0, 1, 1], hands: [{ cards: ['10h', '2c', '7s'], total: '19', stake: 25, res: 'victory', payout: '+50' }] }),
+          D: with_(LUIS, { status: 'done', balance: 1910, hearts: [1, 1, 0], hands: [{ cards: ['5s', '6h', '5d>'], total: '16', stake: 40, res: 'defeat', payout: '+0' }] }),
+          C: with_(me, { status: 'done', balance: 1290, hearts: [1, 0, 1], hands: [{ cards: ['10c', '6d', '4s'], total: '20', stake: 50, res: 'victory', payout: '+100' }] }),
+          B: with_(ANDRES, { status: 'out', tag: 'Sitting out', hearts: [1, 1, 0] }),
+          A: { status: 'empty' }
+        },
+        feed: ['Mariana wins · +50', 'Luis loses · +0', 'You win · +100', 'Two wins hit the king · 4 / 10'],
+        dock: dock({ status: true, hasRing: true, ringText: '5', title: 'Round 13 settled', sub: 'Next round in 5s', hasBtn: true, btn: 'Results', btnCls: 'gh-btn gh-btn--stone gh-btn--sm' })
+      },
+      'multi-watching': {
+        mode: 'Boss mode', table: 'Ember Hall', meta: 'Min 10 · Max 500 · Round 14', phase: "Luis's turn · 11s", phaseCls: 'gh-tag gh-tag--torch',
+        boss: 4, bossLeft: 'The King · team boss', balance: 1240, king: 'idle', watching: true,
+        dealer: { cards: ['9d', 'down'], total: '?' },
+        seats: {
+          E: with_(MARIANA, { status: 'stood', tag: 'Stood', balance: 2785, hearts: [1, 1, 1], hands: [{ cards: ['Qd', '8c'], total: '18', stake: 25 }] }),
+          D: with_(LUIS, { status: 'turn', timer: 0.55, time: '11', tag: 'Turn', balance: 1910, hearts: [1, 1, 0], hands: [{ cards: ['9s', '3d'], total: '12', stake: 20, active: true }] }),
+          C: { name: 'John', avatar: 'squire', status: 'waiting', tag: 'Waiting', balance: 2210, hearts: [1, 0, 0], hands: [{ cards: ['10d', '10c'], total: '20', stake: 100, waiting: true }] },
+          B: with_(ANDRES, { status: 'off', tag: 'Reconnecting', hearts: [1, 1, 0], hands: [{ cards: ['7c', '8h'], total: '15', stake: 10, waiting: true }] }),
+          A: { status: 'empty' }
+        },
+        feed: ['John joined seat 3', 'Andrés lost connection', 'Mariana stands on 18', "Luis's turn"],
+        dock: dock({ status: true, title: "You're watching", sub: 'Only seated players see the action buttons' })
+      }
+    };
+
+    var key = this.props.state || 'multi-yourturn';
+    var st = S[key] || S['multi-yourturn'];
+    var seats = ['A', 'B', 'C', 'D', 'E'].filter(function (k) { return st.seats[k]; }).map(function (k) { return mkSeat(k, st.seats[k]); });
+    var dl = st.dealer;
+    var dealer = dl ? {
+      show: true, cards: mkCards(dl.cards), total: dl.total,
+      totalCls: 'gh-total' + (dl.total === '?' ? ' is-hidden' : '') + (dl.total === '21' ? ' is-21' : ''),
+      hasNote: !!dl.note, note: dl.note || '', noteCls: dl.noteCls || 'gh-tag gh-tag--stone'
+    } : { show: false, cards: [], total: '', totalCls: 'gh-total', hasNote: false, note: '', noteCls: '' };
+    var d = st.dock || dock({});
+
+    return {
+      kingSrc: KING[st.king || 'idle'], kingAlt: 'The king dealer (' + (st.king || 'idle') + ')',
+      glows: [
+        'left: 14.84%; top: 17.96%;', 'left: 85.16%; top: 17.96%; animation-delay: -1.1s;',
+        'left: 22.11%; top: 14.77%; width: 110px; height: 110px; animation-delay: -.4s;', 'left: 77.89%; top: 14.77%; width: 110px; height: 110px; animation-delay: -1.6s;',
+        'left: 17.5%; top: 39.5%; width: 200px; height: 200px; animation-delay: -.6s;', 'left: 82.5%; top: 39.5%; width: 200px; height: 200px; animation-delay: -1.7s;',
+        'left: 4.96%; top: 89.64%; width: 260px; height: 260px; animation-delay: -.3s;', 'left: 95.04%; top: 89.64%; width: 260px; height: 260px; animation-delay: -2s;'
+      ],
+      dealer: dealer,
+      seats: seats,
+      tableName: st.table, modeTag: st.mode, tableMeta: st.meta, phase: st.phase, phaseCls: st.phaseCls,
+      boss: {
+        cls: 'gh-boss' + (st.bossShake ? ' is-shake' : ''), segs: bossSegs(st.boss, st.hits),
+        left: st.bossLeft, right: st.boss + ' / 10', hasDamage: !!st.bossDamage, damage: st.bossDamage || ''
+      },
+      balance: fmt(st.balance), balanceCls: 'gh-balance' + (st.delta ? ' is-up' : '') + (st.balance < 50 ? ' is-zero' : ''),
+      hasDelta: !!st.delta, delta: st.delta || '',
+      feed: st.feed ? { show: true, rows: st.feed } : { show: false, rows: [] },
+      betBanner: !!st.betBanner, natural: !!st.natural, watching: !!st.watching, toast: !!st.toast, resume: !!st.resume,
+      dock: d
+    };
+  }
+}
+</script>
+</body>
+</html>

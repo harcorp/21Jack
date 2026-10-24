@@ -4,19 +4,26 @@ import { cx } from "./cx";
 export type StatTone = "default" | "gold" | "carpet" | "felt";
 
 const tones: Record<StatTone, string> = {
-  default: "bg-stone text-parchment",
-  gold: "bg-gold text-ink",
-  carpet: "bg-carpet text-parchment",
-  felt: "bg-felt text-parchment",
+  default: "",
+  gold: "shadow-[inset_0_0_0_2px_var(--gh-ink),inset_0_0_0_4px_var(--gh-gold-200),var(--gh-glow-gold)]",
+  carpet: "gh-frame--crimson",
+  felt: "gh-frame--felt",
 };
 
-/** Compact HUD tile: small label on top, large legible number below. */
+const valueTones: Record<StatTone, string> = {
+  default: "text-cream",
+  gold: "text-gold-light",
+  carpet: "text-cream",
+  felt: "text-gold-light",
+};
+
+/** HUD plaque: small Pixelify label on top, large Press Start number below. Render inside a <dl>. */
 export function StatTile({ label, value, hint, tone = "default", className }: { label: ReactNode; value: ReactNode; hint?: ReactNode; tone?: StatTone; className?: string }) {
   return (
-    <div className={cx("voxel-block flex min-w-0 flex-col gap-1 px-3 py-2", tones[tone], className)}>
-      <dt className="font-pixel text-xs uppercase opacity-90">{label}</dt>
-      <dd className="truncate font-pixel text-2xl tabular-nums">{value}</dd>
-      {hint ? <dd className="font-pixel text-xs opacity-90">{hint}</dd> : null}
+    <div className={cx("gh-frame gh-frame--thin flex min-w-0 flex-col gap-2 bg-surface-sunken px-4 py-3", tones[tone], className)}>
+      <dt className="gh-label text-xs text-gold-light">{label}</dt>
+      <dd className={cx("gh-num gh-shadow-text truncate text-base sm:text-xl", valueTones[tone])}>{value}</dd>
+      {hint ? <dd className="text-xs text-cream-muted">{hint}</dd> : null}
     </div>
   );
 }

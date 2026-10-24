@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Feedback and system states</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/_blob/196dfe1898f557f0ba8ff161e4f6f687">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFE08A}a:hover{color:#FFF1C2}
+.cap{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B8A88A}
+.sec{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:20px;color:#FFE08A;margin:0;text-shadow:0 2px 0 #1A1014}
+</style>
+</helmet>
+<div class="gh-root" style="width: 1440px; height: 1000px; box-sizing: border-box; padding: 40px 56px; display: flex; flex-direction: column; gap: 28px; background: radial-gradient(120% 60% at 50% 0%, #2A2630 0%, #14121A 60%, #0E0C12 100%);">
+  <header style="display: flex; flex-direction: column; gap: 6px;">
+    <div class="gh-eyebrow">UI components</div>
+    <h1 class="gh-display gh-shadow-text" style="margin: 0; font-size: 44px; color: #FFE08A;">Feedback and system states</h1>
+    <p style="margin: 0; font-size: 15px; color: #D9CBAE;">Toasts, banners, loading, lost connection, empty lists and the zero balance. Errors always say what did not change.</p>
+  </header>
+
+  <div style="display: flex; gap: 48px;">
+    <section style="width: 520px; display: flex; flex-direction: column; gap: 14px;">
+      <h2 class="sec">Toast</h2>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div class="gh-toast gh-notch" role="alert">
+          <svg viewBox="0 0 12 12" aria-hidden="true" style="width: 22px; height: 22px; flex: none; fill: #FFE08A; shape-rendering: crispEdges;"><path d="M4 0h4v1h-4zM2 1h8v1h-8zM1 2h4v1h-4zM7 2h4v1h-4zM1 3h10v1h-10zM0 4h5v1h-5zM7 4h5v1h-5zM0 5h5v1h-5zM7 5h5v1h-5zM0 6h5v1h-5zM7 6h5v1h-5zM0 7h5v1h-5zM7 7h5v1h-5zM1 8h4v1h-4zM7 8h4v1h-4zM1 9h10v1h-10zM2 10h8v1h-8zM4 11h4v1h-4z"></path></svg>
+          <div style="display: flex; flex-direction: column; gap: 2px; flex: 1;"><strong>Not enough credits to double.</strong><span>Nothing changed.</span></div>
+          <button class="gh-iconbtn" type="button" aria-label="Dismiss" style="width: 44px; height: 44px;"><svg class="gh-icon" viewBox="0 0 12 12" aria-hidden="true" style="width: 12px; height: 12px;"><path d="M0 0h2v1h-2zM10 0h2v1h-2zM0 1h3v1h-3zM9 1h3v1h-3zM1 2h3v1h-3zM8 2h3v1h-3zM2 3h3v1h-3zM7 3h3v1h-3zM3 4h6v1h-6zM4 5h4v1h-4zM4 6h4v1h-4zM3 7h6v1h-6zM2 8h3v1h-3zM7 8h3v1h-3zM1 9h3v1h-3zM8 9h3v1h-3zM0 10h3v1h-3zM9 10h3v1h-3zM0 11h2v1h-2zM10 11h2v1h-2z"></path></svg></button>
+        </div>
+        <span class="cap">Error · rejected move, state unchanged</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div class="gh-toast gh-toast--success gh-notch" role="status">
+          <svg viewBox="0 0 12 12" aria-hidden="true" style="width: 22px; height: 22px; flex: none; fill: #FFE08A; shape-rendering: crispEdges;"><path d="M10 1h2v1h-2zM9 2h3v1h-3zM8 3h3v1h-3zM7 4h3v1h-3zM0 5h2v1h-2zM6 5h3v1h-3zM0 6h3v1h-3zM5 6h3v1h-3zM1 7h5v1h-5zM2 8h3v1h-3zM3 9h1v1h-1z"></path></svg>
+          <strong style="flex: 1;">Deposit added</strong>
+          <span class="gh-tag gh-tag--you" style="height: 26px; font-size: 15px;">+500</span>
+        </div>
+        <span class="cap">Success</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div class="gh-toast gh-toast--info gh-notch" role="status">
+          <svg viewBox="0 0 12 12" aria-hidden="true" style="width: 22px; height: 22px; flex: none; fill: #FFE08A; shape-rendering: crispEdges;"><path d="M4 0h4v1h-4zM3 1h6v1h-6zM3 2h6v1h-6zM3 3h6v1h-6zM4 4h4v1h-4zM2 6h8v1h-8zM1 7h10v1h-10zM0 8h12v1h-12zM0 9h12v1h-12zM0 10h12v1h-12z"></path></svg>
+          <span style="flex: 1;"><strong style="font-size: 15px;">Luis</strong> joined seat 2</span>
+        </div>
+        <span class="cap">Info · table events</span>
+      </div>
+    </section>
+
+    <section style="flex: 1; display: flex; flex-direction: column; gap: 14px;">
+      <h2 class="sec">Banner</h2>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div class="gh-banner gh-notch" role="status" style="justify-content: space-between;">
+          <span style="display: flex; align-items: center; gap: 12px;"><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 24px; height: 24px; fill: currentColor; shape-rendering: crispEdges;"><path d="M4 2h4v1h-4zM2 3h8v1h-8zM1 4h3v1h-3zM8 4h3v1h-3zM0 5h3v1h-3zM5 5h2v1h-2zM9 5h3v1h-3zM0 6h3v1h-3zM5 6h2v1h-2zM9 6h3v1h-3zM1 7h3v1h-3zM8 7h3v1h-3zM2 8h8v1h-8zM4 9h4v1h-4z"></path></svg>Watching</span>
+          <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0; text-transform: none; color: #EFE3C8; text-shadow: none;">Seat 4 is free</span>
+          <button class="gh-btn gh-btn--sm gh-notch" type="button">Sit down</button>
+        </div>
+        <span class="cap">Spectator · Sit down appears when a seat frees up</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px;">
+        <div class="gh-banner gh-notch" role="status" style="justify-content: space-between;">
+          <span style="display: flex; align-items: center; gap: 12px;"><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 22px; height: 22px; fill: currentColor; shape-rendering: crispEdges;"><path d="M4 0h4v1h-4zM9 0h1v1h-1zM2 1h2v1h-2zM8 1h2v1h-2zM1 2h1v1h-1zM7 2h3v1h-3zM1 3h1v1h-1zM0 4h1v1h-1zM0 5h1v1h-1zM11 5h1v1h-1zM0 6h1v1h-1zM11 6h1v1h-1zM11 7h1v1h-1zM10 8h1v1h-1zM2 9h3v1h-3zM10 9h1v1h-1zM2 10h2v1h-2zM8 10h2v1h-2zM2 11h1v1h-1zM4 11h4v1h-4z"></path></svg>Round in progress</span>
+          <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 500; font-size: 14px; letter-spacing: 0; text-transform: none; color: #EFE3C8; text-shadow: none;">Round 12 is still open · stake 20</span>
+          <button class="gh-btn gh-btn--sm gh-notch" type="button">Resume</button>
+        </div>
+        <span class="cap">Unfinished round · nothing is dealt again</span>
+      </div>
+    </section>
+  </div>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">System states</h2>
+    <div style="display: grid; grid-template-columns: 250px 330px 330px minmax(0, 1fr); gap: 24px; align-items: stretch;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-frame gh-frame--glass gh-notch" role="status" aria-live="polite" style="flex: 1; min-height: 300px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; background: radial-gradient(80% 70% at 50% 40%, rgba(240, 122, 26, .18), rgba(14, 12, 18, .9) 70%);">
+          <img src="/_blob/9af88dc97eb5aff13ebc048993d39efd" alt="" class="gh-pixelated" style="width: 96px; height: 96px;">
+          <span class="gh-spinner" style="width: 24px; height: 24px;"></span>
+          <span class="gh-display" style="font-size: 18px; color: #FFE08A;">Shuffling the deck…</span>
+        </div>
+        <span class="cap">Loading</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-frame gh-frame--crimson gh-notch" role="alert" style="flex: 1; box-sizing: border-box; display: flex; flex-direction: column; gap: 14px; padding: 22px 24px;">
+          <svg viewBox="0 0 12 12" aria-hidden="true" style="width: 40px; height: 40px; fill: #FFE08A; shape-rendering: crispEdges;"><path d="M4 1h4v1h-4zM2 2h2v1h-2zM8 2h2v1h-2zM1 3h1v1h-1zM10 3h1v1h-1zM3 4h6v1h-6zM2 5h1v1h-1zM9 5h1v1h-1zM5 6h2v1h-2zM4 7h1v1h-1zM7 7h1v1h-1zM5 9h2v1h-2zM5 10h2v1h-2z"></path></svg>
+          <h3 class="gh-panel-title" style="font-size: 24px;">Connection lost</h3>
+          <p style="margin: 0; font-size: 14px; color: #FBF4E4;">Reconnecting… attempt 2 of 5. Your seat and stake are kept.</p>
+          <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; padding: 3px; background: #1A1014;" aria-hidden="true"><i style="height: 10px; background: #FFE08A;"></i><i style="height: 10px; background: #FFE08A;"></i><i style="height: 10px; background: #5C0F18;"></i><i style="height: 10px; background: #5C0F18;"></i><i style="height: 10px; background: #5C0F18;"></i></div>
+          <div style="display: flex; gap: 10px; align-items: center; margin-top: auto;">
+            <button class="gh-btn gh-btn--stone gh-btn--sm" type="button" disabled>Retry in 4s</button>
+            <button class="gh-btn gh-btn--stone gh-btn--sm" type="button">Retry</button>
+          </div>
+          <span style="font-size: 12px; color: #EFE3C8;">Left: while retrying · right: after attempt 5</span>
+        </div>
+        <span class="cap">Connection lost · reconnecting</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-frame gh-frame--wood gh-notch" role="status" style="flex: 1; box-sizing: border-box; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 22px 24px;">
+          <div class="gh-balance is-zero"><img class="gh-balance__coin" src="/_blob/8e48760ccaadc96d48a1d642f25fe65f" alt=""><span class="gh-balance__value">0</span></div>
+          <h3 class="gh-panel-title" style="font-size: 24px;">You have 0 credits</h3>
+          <p style="margin: 0; font-size: 14px; color: #EFE3C8; line-height: 1.5;">New accounts start at zero. Credits are fictional.</p>
+          <button class="gh-btn gh-btn--lg gh-notch" type="button" style="margin-top: auto;">Deposit</button>
+        </div>
+        <span class="cap">Zero balance</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
+          <div class="gh-frame gh-frame--stone gh-notch" style="flex: 1; box-sizing: border-box; display: flex; align-items: center; gap: 18px; padding: 18px 22px;">
+            <svg viewBox="0 0 12 12" aria-hidden="true" style="width: 40px; height: 40px; flex: none; fill: #E8B53A; shape-rendering: crispEdges;"><path d="M0 0h2v1h-2zM10 0h2v1h-2zM0 1h3v1h-3zM9 1h3v1h-3zM1 2h3v1h-3zM8 2h3v1h-3zM2 3h3v1h-3zM7 3h3v1h-3zM3 4h6v1h-6zM4 5h4v1h-4zM3 6h6v1h-6zM2 7h3v1h-3zM7 7h3v1h-3zM1 8h2v1h-2zM9 8h2v1h-2zM0 9h3v1h-3zM9 9h3v1h-3zM0 10h2v1h-2zM10 10h2v1h-2z"></path></svg>
+            <div style="display: flex; flex-direction: column; gap: 6px; flex: 1;"><h3 class="gh-panel-title">No tables yet</h3><span style="font-size: 13px; color: #EFE3C8;">Create one and invite your team.</span></div>
+            <button class="gh-btn gh-btn--sm gh-notch" type="button">Create table</button>
+          </div>
+          <div class="gh-frame gh-frame--stone gh-notch" style="flex: 1; box-sizing: border-box; display: flex; align-items: center; gap: 18px; padding: 18px 22px;">
+            <svg viewBox="0 0 12 12" aria-hidden="true" style="width: 40px; height: 40px; flex: none; fill: #E8B53A; shape-rendering: crispEdges;"><path d="M1 0h9v1h-9zM0 1h1v1h-1zM2 1h1v1h-1zM9 1h1v1h-1zM0 2h1v1h-1zM2 2h1v1h-1zM9 2h1v1h-1zM1 3h2v1h-2zM4 3h4v1h-4zM9 3h1v1h-1zM2 4h1v1h-1zM9 4h1v1h-1zM2 5h1v1h-1zM4 5h4v1h-4zM9 5h1v1h-1zM2 6h1v1h-1zM9 6h1v1h-1zM2 7h1v1h-1zM4 7h3v1h-3zM9 7h1v1h-1zM2 8h1v1h-1zM9 8h1v1h-1zM2 9h9v1h-9zM2 10h1v1h-1zM10 10h1v1h-1zM3 11h8v1h-8z"></path></svg>
+            <div style="display: flex; flex-direction: column; gap: 6px; flex: 1;"><h3 class="gh-panel-title">No transactions yet</h3><span style="font-size: 13px; color: #EFE3C8;">Deposits and bets will show here.</span></div>
+            <button class="gh-btn gh-btn--wood gh-btn--sm gh-notch" type="button">Deposit</button>
+          </div>
+        </div>
+        <span class="cap">Empty lists · table browser, ledger</span>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

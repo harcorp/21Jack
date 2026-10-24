@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Panels and forms</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/_blob/196dfe1898f557f0ba8ff161e4f6f687">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFE08A}a:hover{color:#FFF1C2}
+.cap{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B8A88A}
+.sec{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:20px;color:#FFE08A;margin:0;text-shadow:0 2px 0 #1A1014}
+.tile{appearance:none;border:0;cursor:pointer;position:relative;width:72px;height:72px;display:grid;place-items:center;background:radial-gradient(circle at 50% 35%,#4A4450,#1E1B24 75%);box-shadow:inset 0 0 0 2px #1A1014,inset 0 0 0 4px #615A66}
+.tile img{width:56px;height:56px;image-rendering:pixelated}
+</style>
+</helmet>
+<div class="gh-root" style="width: 1440px; height: 1140px; box-sizing: border-box; padding: 40px 56px; display: flex; flex-direction: column; gap: 24px; background: radial-gradient(120% 60% at 50% 0%, #2A2630 0%, #14121A 60%, #0E0C12 100%);">
+  <header style="display: flex; flex-direction: column; gap: 6px;">
+    <div class="gh-eyebrow">UI components</div>
+    <h1 class="gh-display gh-shadow-text" style="margin: 0; font-size: 44px; color: #FFE08A;">Panels and forms</h1>
+    <p style="margin: 0; font-size: 15px; color: #D9CBAE;">Framed surfaces and inputs for Register, Log in, Treasury and the Create table dialog.</p>
+  </header>
+
+  <div style="display: flex; gap: 40px;">
+    <div style="width: 788px; display: flex; flex-direction: column; gap: 24px;">
+      <section style="display: flex; flex-direction: column; gap: 14px;">
+        <h2 class="sec">Panel</h2>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 8px;"><div class="gh-frame gh-frame--wood gh-notch" style="height: 96px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px;"><h3 class="gh-panel-title">Treasury</h3><span style="font-size: 13px; color: #EFE3C8;">Wood · dialogs, wallet</span></div><span class="cap">Wood</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px;"><div class="gh-frame gh-frame--stone gh-notch" style="height: 96px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px;"><h3 class="gh-panel-title">Ledger</h3><span style="font-size: 13px; color: #EFE3C8;">Stone · lists, forms</span></div><span class="cap">Stone</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px;"><div class="gh-frame gh-frame--crimson gh-notch" style="height: 96px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px;"><h3 class="gh-panel-title">Leave table?</h3><span style="font-size: 13px; color: #FBF4E4;">Crimson · warnings</span></div><span class="cap">Crimson</span></div>
+          <div style="display: flex; flex-direction: column; gap: 8px;"><div class="gh-frame gh-frame--glass gh-notch" style="height: 96px; box-sizing: border-box; display: flex; flex-direction: column; gap: 6px;"><h3 class="gh-panel-title">Table feed</h3><span style="font-size: 13px; color: #EFE3C8;">Glass · over the scene</span></div><span class="cap">Glass</span></div>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 14px;">
+        <h2 class="sec">TextField</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; row-gap: 18px;">
+          <div class="gh-field"><label class="gh-field__label" for="tf-default">Username · default</label><input class="gh-input" id="tf-default" type="text" placeholder="Pick a name"><span class="gh-field__hint">3 to 16 letters or numbers</span></div>
+          <div class="gh-field"><label class="gh-field__label" for="tf-focus">Username · focus</label><input class="gh-input is-focus" id="tf-focus" type="text" value="nico"><span class="gh-field__hint">3 to 16 letters or numbers</span></div>
+          <div class="gh-field"><label class="gh-field__label" for="tf-filled">Username · filled</label><input class="gh-input" id="tf-filled" type="text" value="nico_cs"><span class="gh-field__hint">Looks good</span></div>
+          <div class="gh-field"><label class="gh-field__label" for="tf-error">Username · error</label><input class="gh-input is-error" id="tf-error" type="text" value="mariana" aria-invalid="true" aria-describedby="tf-error-msg"><span class="gh-field__error" id="tf-error-msg"><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 12px; height: 12px; fill: currentColor; shape-rendering: crispEdges;"><path d="M4 0h4v1h-4zM2 1h8v1h-8zM1 2h4v1h-4zM7 2h4v1h-4zM1 3h10v1h-10zM0 4h5v1h-5zM7 4h5v1h-5zM0 5h5v1h-5zM7 5h5v1h-5zM0 6h5v1h-5zM7 6h5v1h-5zM0 7h5v1h-5zM7 7h5v1h-5zM1 8h4v1h-4zM7 8h4v1h-4zM1 9h10v1h-10zM2 10h8v1h-8zM4 11h4v1h-4z"></path></svg>Username taken</span></div>
+          <div class="gh-field"><label class="gh-field__label" for="tf-disabled" style="color: #A9A1AD;">Username · disabled</label><input class="gh-input" id="tf-disabled" type="text" value="nico_cs" disabled style="opacity: .6;"><span class="gh-field__hint">Set when you registered</span></div>
+          <div class="gh-field"><label class="gh-field__label" for="tf-pass">Password</label><div style="position: relative;"><input class="gh-input" id="tf-pass" type="password" value="castlegate" style="padding-right: 56px;"><button class="gh-iconbtn" type="button" aria-label="Show password" style="position: absolute; right: 4px; top: 4px; width: 40px; height: 40px; box-shadow: inset 0 0 0 2px #1A1014, inset 0 0 0 4px #C8902A;"><svg class="gh-icon" viewBox="0 0 12 12" aria-hidden="true" style="width: 16px; height: 16px;"><path d="M4 2h4v1h-4zM2 3h8v1h-8zM1 4h3v1h-3zM8 4h3v1h-3zM0 5h3v1h-3zM5 5h2v1h-2zM9 5h3v1h-3zM0 6h3v1h-3zM5 6h2v1h-2zM9 6h3v1h-3zM1 7h3v1h-3zM8 7h3v1h-3zM2 8h8v1h-8zM4 9h4v1h-4z"></path></svg></button></div><span class="gh-field__hint">At least 8 characters</span></div>
+          <div class="gh-field" style="grid-column: span 2;">
+            <label class="gh-field__label" for="tf-amount">Deposit amount</label>
+            <div style="display: flex; gap: 12px; align-items: center;">
+              <input class="gh-input gh-input--num" id="tf-amount" type="text" inputmode="numeric" value="1,000" style="width: 300px;">
+              <button class="gh-btn gh-btn--stone gh-btn--sm" type="button">+50</button>
+              <button class="gh-btn gh-btn--stone gh-btn--sm" type="button">+100</button>
+              <button class="gh-btn gh-btn--stone gh-btn--sm" type="button">+500</button>
+            </div>
+            <span class="gh-field__hint">Whole numbers 1 to 1,000,000 · quick picks add to the amount</span>
+          </div>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column; gap: 14px;">
+        <h2 class="sec">Segmented, Switch, AvatarPicker</h2>
+        <div style="display: flex; gap: 40px; align-items: flex-start;">
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div class="gh-seg" role="radiogroup" aria-label="Visibility"><button class="gh-seg__opt" type="button" role="radio" aria-checked="false">Public</button><button class="gh-seg__opt is-on" type="button" role="radio" aria-checked="true">Private</button></div>
+            <span class="cap">Segmented</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <div style="display: flex; gap: 20px; align-items: center;">
+              <span style="display: flex; align-items: center; gap: 10px;"><button class="gh-switch is-on" type="button" role="switch" aria-checked="true" aria-label="Sound"></button><span style="font-size: 14px; color: #EFE3C8;">Sound on</span></span>
+              <span style="display: flex; align-items: center; gap: 10px;"><button class="gh-switch" type="button" role="switch" aria-checked="false" aria-label="Sound"></button><span style="font-size: 14px; color: #EFE3C8;">Sound off</span></span>
+            </div>
+            <span class="cap">Switch</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <div role="radiogroup" aria-label="Choose an avatar" style="display: grid; grid-template-columns: repeat(12, 56px); gap: 8px;">
+            <button class="tile" type="button" role="radio" aria-checked="true" aria-label="Squire" style="width: 56px; height: 56px; box-shadow: inset 0 0 0 2px #1A1014, inset 0 0 0 5px #FFE08A, 0 0 14px 3px rgba(255, 200, 90, .5);"><img src="/_blob/b62a995e7e35d3b276fb8c5ae3617da9" alt="" style="width: 44px; height: 44px;"><span style="position: absolute; right: -6px; top: -6px; width: 20px; height: 20px; display: grid; place-items: center; background: #E8B53A; box-shadow: 0 0 0 2px #1A1014;"><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 12px; height: 12px; fill: #2A160C; shape-rendering: crispEdges;"><path d="M10 1h2v1h-2zM9 2h3v1h-3zM8 3h3v1h-3zM7 4h3v1h-3zM0 5h2v1h-2zM6 5h3v1h-3zM0 6h3v1h-3zM5 6h3v1h-3zM1 7h5v1h-5zM2 8h3v1h-3zM3 9h1v1h-1z"></path></svg></span></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Archer" style="width: 56px; height: 56px;"><img src="/_blob/7551e5e3315c2f952444455aa850eedd" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Mage" style="width: 56px; height: 56px;"><img src="/_blob/8019fcd3dc0390a16f27654004c46eb5" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Knight" style="width: 56px; height: 56px;"><img src="/_blob/eebae6019292d15016a8e6e5d77b5f95" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Bard" style="width: 56px; height: 56px;"><img src="/_blob/811d7cd5520aa564799d7734d6588bff" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Smith" style="width: 56px; height: 56px;"><img src="/_blob/1c727f9947503a677ca30194070f9acc" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Healer" style="width: 56px; height: 56px;"><img src="/_blob/41ef01000365c4329f47ceb9f03ef044" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Rogue" style="width: 56px; height: 56px;"><img src="/_blob/5a9a8e41c63e361f92c36bad5dae4cdb" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Noble" style="width: 56px; height: 56px;"><img src="/_blob/cf1be27d1c03247843147b6102a493b2" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Ranger" style="width: 56px; height: 56px;"><img src="/_blob/f6594df8aa754be97079ed7e43c40629" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Monk" style="width: 56px; height: 56px;"><img src="/_blob/80328e3182c2c6e433e400126a191ee6" alt="" style="width: 44px; height: 44px;"></button>
+            <button class="tile" type="button" role="radio" aria-checked="false" aria-label="Jester" style="width: 56px; height: 56px;"><img src="/_blob/c7aec92efcf6d7107f68fea64057c59c" alt="" style="width: 44px; height: 44px;"></button>
+          </div>
+          <span class="cap">AvatarPicker · 12 original avatars, selected one gets a gold ring and check</span>
+        </div>
+      </section>
+    </div>
+
+    <section style="flex: 1; display: flex; flex-direction: column; gap: 14px;">
+      <h2 class="sec">Dialog · Create table</h2>
+      <div class="gh-frame gh-frame--wood gh-notch" role="dialog" aria-labelledby="dlg-title" style="box-sizing: border-box; padding: 26px 28px 28px; display: flex; flex-direction: column; gap: 18px; box-shadow: inset 0 0 0 2px #1A1014, inset 0 0 0 4px #E8B53A, inset 0 0 0 6px #8A5A14, inset 0 0 0 8px rgba(0, 0, 0, .35), 0 24px 60px rgba(0, 0, 0, .6);">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <h3 class="gh-panel-title" id="dlg-title" style="font-size: 26px;">Create table</h3>
+          <button class="gh-iconbtn" type="button" aria-label="Close" style="width: 44px; height: 44px;"><svg class="gh-icon" viewBox="0 0 12 12" aria-hidden="true" style="width: 14px; height: 14px;"><path d="M0 0h2v1h-2zM10 0h2v1h-2zM0 1h3v1h-3zM9 1h3v1h-3zM1 2h3v1h-3zM8 2h3v1h-3zM2 3h3v1h-3zM7 3h3v1h-3zM3 4h6v1h-6zM4 5h4v1h-4zM4 6h4v1h-4zM3 7h6v1h-6zM2 8h3v1h-3zM7 8h3v1h-3zM1 9h3v1h-3zM8 9h3v1h-3zM0 10h3v1h-3zM9 10h3v1h-3zM0 11h2v1h-2zM10 11h2v1h-2z"></path></svg></button>
+        </div>
+        <hr class="gh-rule">
+        <div class="gh-field"><label class="gh-field__label" for="dlg-name">Table name</label><input class="gh-input" id="dlg-name" type="text" value="Ember Hall"></div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
+          <div class="gh-field"><label class="gh-field__label" for="dlg-min">Min bet</label><input class="gh-input gh-input--num" id="dlg-min" type="text" inputmode="numeric" value="10"></div>
+          <div class="gh-field"><label class="gh-field__label" for="dlg-max">Max bet</label><input class="gh-input gh-input--num" id="dlg-max" type="text" inputmode="numeric" value="500"></div>
+        </div>
+        <div class="gh-field">
+          <span class="gh-field__label" id="dlg-vis">Visibility</span>
+          <div class="gh-seg" role="radiogroup" aria-labelledby="dlg-vis" style="align-self: flex-start;"><button class="gh-seg__opt" type="button" role="radio" aria-checked="false">Public</button><button class="gh-seg__opt is-on" type="button" role="radio" aria-checked="true">Private</button></div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 16px; background: rgba(20, 10, 4, .55); box-shadow: inset 0 0 0 2px #1A1014, inset 0 0 0 4px #C8902A;">
+          <div style="display: flex; flex-direction: column; gap: 8px;"><span class="cap" style="color: #EFE3C8;">Invite code</span><span class="gh-num gh-shadow-text" style="font-size: 20px; color: #FFE08A; letter-spacing: .06em;">K7Q-29X</span></div>
+          <button class="gh-btn gh-btn--stone gh-btn--sm" type="button">Copy</button>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #EFE3C8; line-height: 1.5;">Private tables don't appear in the browser. Share the code with your team.</p>
+        <div style="display: flex; justify-content: flex-end; gap: 12px;">
+          <button class="gh-btn gh-btn--stone gh-notch" type="button">Cancel</button>
+          <button class="gh-btn gh-notch" type="button">Create</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1140}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

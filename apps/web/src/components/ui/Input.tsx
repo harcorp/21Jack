@@ -1,35 +1,36 @@
 import { useId, type ComponentProps } from "react";
+import { PixelIcon } from "./PixelIcon";
 import { cx } from "./cx";
 
 type InputProps = ComponentProps<"input"> & { label: string; hint?: string; error?: string | null };
 
-export function Input({ label, hint, error, className, id, ...rest }: InputProps) {
+/** Grand Hall text field (`.gh-field` + `.gh-input`). Numeric inputs use the number face. */
+export function Input({ label, hint, error, className, id, inputMode, ...rest }: InputProps) {
   const auto = useId();
   const inputId = id ?? auto;
   const describedBy = [hint && `${inputId}-hint`, error && `${inputId}-error`].filter(Boolean).join(" ") || undefined;
+  const numeric = inputMode === "numeric" || inputMode === "decimal" || rest.type === "number";
   return (
-    <div className={cx("flex flex-col gap-1", className)}>
-      <label htmlFor={inputId} className="font-pixel text-sm">
+    <div className={cx("gh-field min-w-0", className)}>
+      <label htmlFor={inputId} className="gh-field__label">
         {label}
       </label>
       <input
         id={inputId}
+        inputMode={inputMode}
         aria-invalid={error ? true : undefined}
         aria-describedby={describedBy}
-        className={cx(
-          "voxel-block min-h-12 bg-parchment px-3 font-display text-lg text-ink placeholder:text-ink/50",
-          "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-torch",
-          error && "border-carpet",
-        )}
+        className={cx("gh-input disabled:cursor-not-allowed disabled:opacity-60", numeric && "gh-input--num", error && "is-error")}
         {...rest}
       />
       {hint ? (
-        <p id={`${inputId}-hint`} className="text-sm opacity-80">
+        <p id={`${inputId}-hint`} className="gh-field__hint">
           {hint}
         </p>
       ) : null}
       {error ? (
-        <p id={`${inputId}-error`} className="text-sm font-bold text-torch">
+        <p id={`${inputId}-error`} className="gh-field__error">
+          <PixelIcon name="info" size={12} />
           {error}
         </p>
       ) : null}

@@ -1,33 +1,49 @@
+import { heartEmptySrc, heartFullSrc, kingPortraitSrc } from "./sprites";
 import { cx } from "./cx";
 
-function Heart({ full }: { full: boolean }) {
-  return (
-    <svg viewBox="0 0 7 6" aria-hidden="true" className="pixelated size-6" shapeRendering="crispEdges">
-      <path fill="#1a1410" d="M1 0h2v1h1v-1h2v1h1v2h-1v1h-1v1h-1v1h-1v-1h-1v-1h-1v-1h-1v-2h1z" />
-      <path fill={full ? "#7e1c1c" : "#4a4a55"} d="M1 1h2v1h1v-1h2v2h-1v1h-1v1h-1v-1h-1v-1h-1z" />
-      {full ? <path fill="#f1e6cc" d="M1 1h1v1h-1z" /> : null}
-    </svg>
-  );
-}
-
-/** Pixel hearts showing the King's health. */
+/** The King's health as the Grand Hall boss bar: one segment per heart, crown portrait on top. */
 export function HeartMeter({ hp, maxHp, className }: { hp: number; maxHp: number; className?: string }) {
+  const defeated = hp <= 0;
   return (
-    <div role="img" aria-label={`King's health: ${hp} of ${maxHp} hearts`} className={cx("inline-flex flex-wrap gap-1", className)}>
-      {Array.from({ length: maxHp }, (_, i) => (
-        <Heart key={i} full={i < hp} />
-      ))}
+    <div role="img" aria-label={`King's health: ${hp} of ${maxHp} hearts`} className={cx("gh-boss w-full max-w-[520px] pt-7", defeated && "is-defeated", className)}>
+      <div className="gh-boss__frame mx-2">
+        <div className="gh-boss__track" style={{ gridTemplateColumns: `repeat(${Math.max(maxHp, 1)}, minmax(0, 1fr))` }}>
+          {Array.from({ length: maxHp }, (_, i) => (
+            <span key={i} className={cx("gh-boss__hp", i >= hp && "is-empty")} />
+          ))}
+        </div>
+      </div>
+      <span className="gh-portrait gh-portrait--sm absolute top-0 left-1/2 -translate-x-1/2" aria-hidden="true">
+        {/* eslint-disable-next-line @next/next/no-img-element -- tiny inline pixel sprite */}
+        <img src={kingPortraitSrc} alt="" width={36} height={36} />
+      </span>
+      <div className="gh-boss__label mx-2" aria-hidden="true">
+        <span>{defeated ? "Defeated" : "The King"}</span>
+        <span className="gh-num text-xs">
+          {hp} / {maxHp}
+        </span>
+      </div>
     </div>
   );
 }
 
 /** Signed hp change: negative = damage dealt to the King, positive = King healed. */
 export function HeartDelta({ value, className }: { value: number; className?: string }) {
-  if (value === 0) return <span className={cx("font-pixel text-xs opacity-70", className)}>0 ♥</span>;
+  const heart = (full: boolean) => (
+    // eslint-disable-next-line @next/next/no-img-element -- tiny inline pixel sprite
+    <img src={full ? heartFullSrc : heartEmptySrc} alt="" aria-hidden="true" width={12} height={12} className="gh-pixelated inline-block size-3" />
+  );
+  if (value === 0)
+    return (
+      <span className={cx("inline-flex items-center gap-1 gh-num text-[10px] text-cream-dim", className)}>
+        0 {heart(false)}
+      </span>
+    );
   const dealt = value < 0;
   return (
-    <span className={cx("font-pixel text-xs whitespace-nowrap", dealt ? "text-wood" : "text-carpet", className)}>
-      {dealt ? `−${-value}` : `+${value}`} ♥<span className="sr-only">{dealt ? " dealt to the King" : " healed by the King"}</span>
+    <span className={cx("inline-flex items-center gap-1 gh-num text-[10px] whitespace-nowrap", dealt ? "text-gold-light" : "text-danger", className)}>
+      {dealt ? `−${-value}` : `+${value}`} {heart(!dealt)}
+      <span className="sr-only">{dealt ? " dealt to the King" : " healed by the King"}</span>
     </span>
   );
 }

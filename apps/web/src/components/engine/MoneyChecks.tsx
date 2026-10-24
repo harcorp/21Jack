@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MoneyCheckReport, type MoneyCheckStep } from "@21jack/contracts";
-import { Alert, Badge, Button, Panel, Table, Td, Th, Tr, formatCredits } from "@/components/ui";
+import { Alert, Badge, Button, Panel, PixelIcon, Table, Td, Th, Tr, formatCredits } from "@/components/ui";
 import { errorMessage } from "@/lib/api-client";
 import { fetchParsed } from "./fetch";
 import { useReducedMotion } from "./useReducedMotion";
@@ -44,7 +44,7 @@ export function MoneyChecks({ onDone }: { onDone: () => Promise<void> }) {
 
   return (
     <Panel title="Money checks" framed tone="wood">
-      <p className="-mt-2 mb-4 text-base opacity-90">
+      <p className="-mt-2 mb-4 text-base text-cream-muted">
         Runs live requests against the engine with a fresh audit account: deposits, bets, split and double stakes, payouts, overdrafts and replayed keys.
       </p>
       <div className="flex flex-wrap items-center gap-3">
@@ -53,11 +53,11 @@ export function MoneyChecks({ onDone }: { onDone: () => Promise<void> }) {
         </Button>
         {report ? (
           <div className="flex flex-wrap items-center gap-2" role="status">
-            <Badge tone={allPassed ? "gold" : "carpet"} className="text-sm">
+            <Badge tone={allPassed ? "gold" : "carpet"}>
               {report.passed}/{report.total} passed
             </Badge>
-            <span className="font-pixel text-xs">
-              Audit account <span className="text-gold-light">{report.username}</span>
+            <span className="text-xs text-cream-muted">
+              Audit account <span className="font-semibold text-gold-light">{report.username}</span>
             </span>
           </div>
         ) : null}
@@ -70,7 +70,7 @@ export function MoneyChecks({ onDone }: { onDone: () => Promise<void> }) {
       ) : null}
 
       {report && report.steps.length > 0 ? (
-        <div className="mt-4 bg-parchment p-2 sm:p-3">
+        <div className="mt-4">
           <Table caption="Money check steps">
             <thead>
               <Tr>
@@ -100,21 +100,21 @@ function StepRow({ step }: { step: MoneyCheckStep }) {
   const statusTone = rejected ? "torch" : step.status >= 200 && step.status < 300 ? "felt" : step.pass ? "stone" : "carpet";
   return (
     <Tr className="transition-[opacity,translate] duration-300 motion-safe:starting:translate-y-1 starting:opacity-0">
-      <Td className={step.pass ? "font-pixel text-lg text-felt" : "font-pixel text-lg text-carpet"}>
-        <span aria-hidden="true">{step.pass ? "✓" : "✗"}</span>
+      <Td className={step.pass ? "text-gold-light" : "text-danger"}>
+        <PixelIcon name={step.pass ? "check" : "close"} size={16} />
         <span className="sr-only">{step.pass ? "Passed" : "Failed"}</span>
       </Td>
       <Td className="min-w-48">
-        <p className="font-display font-semibold">{step.name}</p>
-        <p className="font-pixel text-xs break-words opacity-80">{step.request}</p>
+        <p className="font-semibold">{step.name}</p>
+        <p className="font-mono text-xs break-words text-cream-dim">{step.request}</p>
       </Td>
       <Td className="min-w-48 text-sm">
         <p>
-          <span className="font-pixel text-xs opacity-70">Expected </span>
+          <span className="gh-label text-[11px] text-cream-dim">Expected </span>
           {step.expected}
         </p>
-        <p className={step.pass ? undefined : "font-bold text-carpet"}>
-          <span className="font-pixel text-xs opacity-70">Actual </span>
+        <p className={step.pass ? undefined : "font-bold text-danger"}>
+          <span className="gh-label text-[11px] text-cream-dim">Actual </span>
           {step.actual}
         </p>
       </Td>
@@ -122,7 +122,7 @@ function StepRow({ step }: { step: MoneyCheckStep }) {
         <Badge tone={statusTone}>{step.status}</Badge>
         {rejected ? <Badge tone="torch" className="ml-1">rejected as expected</Badge> : null}
       </Td>
-      <Td className="text-right font-pixel text-sm tabular-nums">{step.balance === null ? "—" : formatCredits(step.balance)}</Td>
+      <Td className="gh-num text-right text-[10px]">{step.balance === null ? "—" : formatCredits(step.balance)}</Td>
     </Tr>
   );
 }

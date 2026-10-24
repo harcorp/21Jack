@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Buttons and actions</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../../design-system/grand-hall.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFE08A}a:hover{color:#FFF1C2}
+.cap{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B8A88A}
+.sec{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:20px;color:#FFE08A;margin:0;text-shadow:0 2px 0 #1A1014}
+</style>
+</helmet>
+<div class="gh-root" style="width: 1440px; height: 1200px; box-sizing: border-box; padding: 36px 56px; display: flex; flex-direction: column; gap: 22px; background: radial-gradient(120% 60% at 50% 0%, #2A2630 0%, #14121A 60%, #0E0C12 100%);">
+  <header style="display: flex; flex-direction: column; gap: 6px;">
+    <div class="gh-eyebrow">UI components</div>
+    <h1 class="gh-display gh-shadow-text" style="margin: 0; font-size: 44px; color: #FFE08A;">Buttons and actions</h1>
+    <p style="margin: 0; font-size: 15px; color: #D9CBAE;">PixelButton for every screen, ActionButton for Hit, Stand, Double and Split. All buttons lock while a request is in flight.</p>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">PixelButton · variants × states</h2>
+    <div style="display: flex; gap: 32px;">
+      <div style="display: grid; grid-template-columns: 90px repeat(6, minmax(0, 1fr)); column-gap: 12px; row-gap: 10px; align-items: center; width: 1050px;">
+        <span></span><span class="cap">Default</span><span class="cap">Hover</span><span class="cap">Pressed</span><span class="cap">Focus</span><span class="cap">Disabled</span><span class="cap">Loading</span>
+
+        <span class="cap">Gold</span>
+        <button class="gh-btn gh-notch" type="button">Deal</button>
+        <button class="gh-btn gh-notch" type="button" style="filter: brightness(1.08);">Deal</button>
+        <button class="gh-btn gh-notch is-pressed" type="button">Deal</button>
+        <button class="gh-btn is-focus" type="button">Deal</button>
+        <button class="gh-btn gh-notch" type="button" disabled>Deal</button>
+        <button class="gh-btn gh-notch is-loading" type="button" aria-busy="true"><span class="gh-spinner"></span><span class="gh-btn__label">Deal</span></button>
+
+        <span class="cap">Crimson</span>
+        <button class="gh-btn gh-btn--crimson gh-notch" type="button">Leave</button>
+        <button class="gh-btn gh-btn--crimson gh-notch" type="button" style="filter: brightness(1.08);">Leave</button>
+        <button class="gh-btn gh-btn--crimson gh-notch is-pressed" type="button">Leave</button>
+        <button class="gh-btn gh-btn--crimson is-focus" type="button">Leave</button>
+        <button class="gh-btn gh-btn--crimson gh-notch" type="button" disabled>Leave</button>
+        <button class="gh-btn gh-btn--crimson gh-notch is-loading" type="button" aria-busy="true"><span class="gh-spinner"></span><span class="gh-btn__label">Leave</span></button>
+
+        <span class="cap">Stone</span>
+        <button class="gh-btn gh-btn--stone gh-notch" type="button">Cancel</button>
+        <button class="gh-btn gh-btn--stone gh-notch" type="button" style="filter: brightness(1.08);">Cancel</button>
+        <button class="gh-btn gh-btn--stone gh-notch is-pressed" type="button">Cancel</button>
+        <button class="gh-btn gh-btn--stone is-focus" type="button">Cancel</button>
+        <button class="gh-btn gh-btn--stone gh-notch" type="button" disabled>Cancel</button>
+        <button class="gh-btn gh-btn--stone gh-notch is-loading" type="button" aria-busy="true"><span class="gh-spinner"></span><span class="gh-btn__label">Cancel</span></button>
+
+        <span class="cap">Felt</span>
+        <button class="gh-btn gh-btn--felt gh-notch" type="button">Ready</button>
+        <button class="gh-btn gh-btn--felt gh-notch" type="button" style="filter: brightness(1.08);">Ready</button>
+        <button class="gh-btn gh-btn--felt gh-notch is-pressed" type="button">Ready</button>
+        <button class="gh-btn gh-btn--felt is-focus" type="button">Ready</button>
+        <button class="gh-btn gh-btn--felt gh-notch" type="button" disabled>Ready</button>
+        <button class="gh-btn gh-btn--felt gh-notch is-loading" type="button" aria-busy="true"><span class="gh-spinner"></span><span class="gh-btn__label">Ready</span></button>
+
+        <span class="cap">Wood</span>
+        <button class="gh-btn gh-btn--wood gh-notch" type="button">Deposit</button>
+        <button class="gh-btn gh-btn--wood gh-notch" type="button" style="filter: brightness(1.08);">Deposit</button>
+        <button class="gh-btn gh-btn--wood gh-notch is-pressed" type="button">Deposit</button>
+        <button class="gh-btn gh-btn--wood is-focus" type="button">Deposit</button>
+        <button class="gh-btn gh-btn--wood gh-notch" type="button" disabled>Deposit</button>
+        <button class="gh-btn gh-btn--wood gh-notch is-loading" type="button" aria-busy="true"><span class="gh-spinner"></span><span class="gh-btn__label">Deposit</span></button>
+
+        <span class="cap">Ghost</span>
+        <button class="gh-btn gh-btn--ghost" type="button">Watch</button>
+        <button class="gh-btn gh-btn--ghost" type="button" style="filter: brightness(1.15); background: rgba(232, 181, 58, .12);">Watch</button>
+        <button class="gh-btn gh-btn--ghost is-pressed" type="button" style="background: rgba(232, 181, 58, .2);">Watch</button>
+        <button class="gh-btn gh-btn--ghost is-focus" type="button">Watch</button>
+        <button class="gh-btn gh-btn--ghost" type="button" disabled>Watch</button>
+        <button class="gh-btn gh-btn--ghost is-loading" type="button" aria-busy="true"><span class="gh-spinner"></span><span class="gh-btn__label">Watch</span></button>
+      </div>
+
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; padding-left: 28px; box-shadow: inset 2px 0 0 #38333D;">
+        <span class="cap">Sizes</span>
+        <div style="display: flex; align-items: center; gap: 10px;"><button class="gh-btn gh-btn--sm gh-notch" type="button">Join</button><span class="cap">SM · 44</span></div>
+        <div style="display: flex; align-items: center; gap: 10px;"><button class="gh-btn gh-notch" type="button">Join</button><span class="cap">MD · 48</span></div>
+        <div style="display: flex; align-items: center; gap: 10px;"><button class="gh-btn gh-btn--lg gh-notch" type="button">Join</button><span class="cap">LG · 64</span></div>
+        <div style="display: flex; align-items: center; gap: 10px;"><button class="gh-btn gh-btn--xl gh-notch" type="button">Play</button><span class="cap">XL · 96</span></div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <button class="gh-iconbtn" type="button" aria-label="Open menu"><svg class="gh-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M0 1h12v1h-12zM0 2h12v1h-12zM0 5h12v1h-12zM0 6h12v1h-12zM0 9h12v1h-12zM0 10h12v1h-12z"></path></svg></button>
+          <span class="cap">Icon · 48</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">ActionButton · Hit, Stand, Double, Split</h2>
+    <div style="display: grid; grid-template-columns: 90px repeat(6, minmax(0, 1fr)); column-gap: 16px; row-gap: 12px; align-items: center;">
+      <span></span><span class="cap">Enabled</span><span class="cap">Hover</span><span class="cap">Pressed</span><span class="cap">Focus</span><span class="cap">Disabled</span><span class="cap">Not enough credits</span>
+
+      <span class="cap">Hit</span>
+      <button class="gh-action gh-action--hit" type="button"><span class="gh-action__key">H</span>Hit</button>
+      <button class="gh-action gh-action--hit" type="button" style="filter: brightness(1.1);"><span class="gh-action__key">H</span>Hit</button>
+      <button class="gh-action gh-action--hit is-pressed" type="button"><span class="gh-action__key">H</span>Hit</button>
+      <button class="gh-action gh-action--hit is-focus" type="button"><span class="gh-action__key">H</span>Hit</button>
+      <button class="gh-action gh-action--hit" type="button" disabled><span class="gh-action__key">H</span>Hit<span class="gh-action__sub">Hand finished</span></button>
+      <span style="font-size: 13px; color: #B8A88A;">Never: Hit adds no stake</span>
+
+      <span class="cap">Stand</span>
+      <button class="gh-action gh-action--stand" type="button"><span class="gh-action__key">S</span>Stand</button>
+      <button class="gh-action gh-action--stand" type="button" style="filter: brightness(1.1);"><span class="gh-action__key">S</span>Stand</button>
+      <button class="gh-action gh-action--stand is-pressed" type="button"><span class="gh-action__key">S</span>Stand</button>
+      <button class="gh-action gh-action--stand is-focus" type="button"><span class="gh-action__key">S</span>Stand</button>
+      <button class="gh-action gh-action--stand" type="button" disabled><span class="gh-action__key">S</span>Stand<span class="gh-action__sub">Hand finished</span></button>
+      <span style="font-size: 13px; color: #B8A88A;">Never: Stand adds no stake</span>
+
+      <span class="cap">Double</span>
+      <button class="gh-action gh-action--double" type="button"><span class="gh-action__key">D</span>Double<span class="gh-action__sub">+10 stake</span></button>
+      <button class="gh-action gh-action--double" type="button" style="filter: brightness(1.1);"><span class="gh-action__key">D</span>Double<span class="gh-action__sub">+10 stake</span></button>
+      <button class="gh-action gh-action--double is-pressed" type="button"><span class="gh-action__key">D</span>Double<span class="gh-action__sub">+10 stake</span></button>
+      <button class="gh-action gh-action--double is-focus" type="button"><span class="gh-action__key">D</span>Double<span class="gh-action__sub">+10 stake</span></button>
+      <button class="gh-action gh-action--double" type="button" disabled><span class="gh-action__key">D</span>Double<span class="gh-action__sub">First two cards only</span></button>
+      <button class="gh-action gh-action--double is-broke" type="button" aria-disabled="true"><span class="gh-action__key">D</span>Double<span class="gh-action__sub" style="display: flex; align-items: center; gap: 4px;"><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 10px; height: 10px; fill: currentColor; shape-rendering: crispEdges;"><path d="M4 0h4v1h-4zM3 1h2v1h-2zM7 1h2v1h-2zM3 2h1v1h-1zM8 2h1v1h-1zM3 3h1v1h-1zM8 3h1v1h-1zM1 4h10v1h-10zM1 5h10v1h-10zM1 6h4v1h-4zM7 6h4v1h-4zM1 7h4v1h-4zM7 7h4v1h-4zM1 8h5v1h-5zM7 8h4v1h-4zM1 9h10v1h-10zM1 10h10v1h-10z"></path></svg>Need 20 more</span></button>
+
+      <span class="cap">Split</span>
+      <button class="gh-action gh-action--split" type="button"><span class="gh-action__key">P</span>Split<span class="gh-action__sub">+10 stake</span></button>
+      <button class="gh-action gh-action--split" type="button" style="filter: brightness(1.1);"><span class="gh-action__key">P</span>Split<span class="gh-action__sub">+10 stake</span></button>
+      <button class="gh-action gh-action--split is-pressed" type="button"><span class="gh-action__key">P</span>Split<span class="gh-action__sub">+10 stake</span></button>
+      <button class="gh-action gh-action--split is-focus" type="button"><span class="gh-action__key">P</span>Split<span class="gh-action__sub">+10 stake</span></button>
+      <button class="gh-action gh-action--split" type="button" disabled><span class="gh-action__key">P</span>Split<span class="gh-action__sub">Pairs only</span></button>
+      <button class="gh-action gh-action--split is-broke" type="button" aria-disabled="true"><span class="gh-action__key">P</span>Split<span class="gh-action__sub" style="display: flex; align-items: center; gap: 4px;"><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 10px; height: 10px; fill: currentColor; shape-rendering: crispEdges;"><path d="M4 0h4v1h-4zM3 1h2v1h-2zM7 1h2v1h-2zM3 2h1v1h-1zM8 2h1v1h-1zM3 3h1v1h-1zM8 3h1v1h-1zM1 4h10v1h-10zM1 5h10v1h-10zM1 6h4v1h-4zM7 6h4v1h-4zM1 7h4v1h-4zM7 7h4v1h-4zM1 8h5v1h-5zM7 8h4v1h-4zM1 9h10v1h-10zM1 10h10v1h-10z"></path></svg>Need 20 more</span></button>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">ActionBar · normal and locked</h2>
+    <div style="display: flex; gap: 56px; align-items: flex-start;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-actionbar" role="group" aria-label="Your move">
+          <button class="gh-action gh-action--hit" type="button"><span class="gh-action__key">H</span>Hit</button>
+          <button class="gh-action gh-action--stand" type="button"><span class="gh-action__key">S</span>Stand</button>
+          <button class="gh-action gh-action--double" type="button"><span class="gh-action__key">D</span>Double<span class="gh-action__sub">+10 stake</span></button>
+          <button class="gh-action gh-action--split" type="button" disabled><span class="gh-action__key">P</span>Split<span class="gh-action__sub">Pairs only</span></button>
+        </div>
+        <span class="cap">Normal · only the active player sees it</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-actionbar is-locked" role="group" aria-label="Your move" aria-busy="true">
+          <button class="gh-action gh-action--hit is-busy is-pressed" type="button" aria-disabled="true"><span class="gh-action__key">H</span><span class="gh-spinner"></span><span class="gh-action__sub">Sending…</span></button>
+          <button class="gh-action gh-action--stand" type="button" aria-disabled="true"><span class="gh-action__key">S</span>Stand</button>
+          <button class="gh-action gh-action--double" type="button" aria-disabled="true"><span class="gh-action__key">D</span>Double<span class="gh-action__sub">+10 stake</span></button>
+          <button class="gh-action gh-action--split" type="button" disabled><span class="gh-action__key">P</span>Split<span class="gh-action__sub">Pairs only</span></button>
+        </div>
+        <span class="cap">Locked · request in flight, every button waits</span>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

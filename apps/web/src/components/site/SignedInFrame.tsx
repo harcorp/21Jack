@@ -10,7 +10,7 @@ export function SignedInFrame({ account, children }: { account: SessionAccount; 
     <BalanceProvider initialBalance={account.balance}>
       <SiteHeader username={account.username} />
       {account.balance === null ? (
-        <div className="mx-auto w-full max-w-4xl px-4 pt-4">
+        <div className="mx-auto w-full max-w-5xl px-4 pt-4">
           <Alert tone="error" title="Treasury unreachable">
             We could not load your balance. Some actions may fail until the castle services are back.
           </Alert>

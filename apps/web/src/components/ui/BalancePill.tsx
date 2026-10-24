@@ -1,18 +1,36 @@
-import { CoinIcon } from "./CoinIcon";
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { coinSrc } from "./sprites";
 import { formatCredits } from "./format";
 import { cx } from "./cx";
 
-/** Gold HUD pill shared by the site header and the game table. `null` = unknown (service down). */
+/** HUD balance (Grand Hall `.gh-balance`). `null` = unknown (service down). Flashes gold when credits come in. */
 export function BalancePill({ balance, className }: { balance: number | null; className?: string }) {
+  const previous = useRef(balance);
+  const [up, setUp] = useState(false);
+
+  useEffect(() => {
+    const before = previous.current;
+    previous.current = balance;
+    if (balance === null || before === null || balance <= before) return;
+    setUp(true);
+    const t = setTimeout(() => setUp(false), 1200);
+    return () => clearTimeout(t);
+  }, [balance]);
+
   return (
     <div
-      className={cx("gold-frame inline-flex min-h-11 items-center gap-2 bg-wood px-3 font-pixel text-lg text-gold-light", className)}
+      className={cx("gh-balance max-w-full", balance === 0 && "is-zero", up && "is-up", className)}
       role="status"
       aria-live="polite"
       aria-label={balance === null ? "Balance unavailable" : `Balance: ${formatCredits(balance)} credits`}
     >
-      <CoinIcon />
-      <span className="tabular-nums">{balance === null ? "—" : formatCredits(balance)}</span>
+      {/* eslint-disable-next-line @next/next/no-img-element -- tiny inline pixel sprite */}
+      <img src={coinSrc} alt="" aria-hidden="true" width={32} height={32} className="gh-balance__coin shrink-0" />
+      <span className="gh-balance__value whitespace-nowrap" aria-hidden="true">
+        {balance === null ? "—" : formatCredits(balance)}
+      </span>
     </div>
   );
 }

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chip selector</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/_blob/196dfe1898f557f0ba8ff161e4f6f687">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFE08A}a:hover{color:#FFF1C2}
+.cap{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B8A88A}
+.sec{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:20px;color:#FFE08A;margin:0;text-shadow:0 2px 0 #1A1014}
+</style>
+</helmet>
+<div class="gh-root" style="width: 1440px; height: 860px; box-sizing: border-box; padding: 40px 56px; display: flex; flex-direction: column; gap: 24px; background: radial-gradient(120% 60% at 50% 0%, #2A2630 0%, #14121A 60%, #0E0C12 100%);">
+  <header style="display: flex; flex-direction: column; gap: 6px;">
+    <div class="gh-eyebrow">UI components</div>
+    <h1 class="gh-display gh-shadow-text" style="margin: 0; font-size: 44px; color: #FFE08A;">Chip selector</h1>
+    <p style="margin: 0; font-size: 15px; color: #D9CBAE;">The betting tray, styled like the dealer's chip tray. Tap chips to build a bet, then Deal (solo) or Ready (multiplayer).</p>
+  </header>
+
+  <div style="display: flex; gap: 36px;">
+    <section style="width: 880px; display: flex; flex-direction: column; gap: 16px;">
+      <h2 class="sec">Desktop tray · solo</h2>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-tray gh-notch" role="group" aria-label="Place a bet">
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--5" type="button" aria-label="Add 5">5</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--10" type="button" aria-label="Add 10">10</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--25" type="button" aria-label="Add 25">25</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--100" type="button" aria-label="Add 100">100</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--500" type="button" aria-label="Add 500">500</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--1k" type="button" aria-label="Add 1,000">1K</button></div>
+          <div style="width: 104px; display: flex; flex-direction: column; gap: 8px; padding-left: 6px;"><span class="cap" style="color: #EFE3C8;">Bet</span><span class="gh-num gh-shadow-text" style="font-size: 24px; color: #FFE08A;">0</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><button class="gh-btn gh-btn--stone gh-btn--sm" type="button" disabled>Undo</button><button class="gh-btn gh-btn--stone gh-btn--sm" type="button" disabled>Clear</button></div>
+          <button class="gh-btn gh-btn--lg gh-notch" type="button" disabled>Deal</button>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: baseline;"><span class="cap">Empty</span><span style="font-size: 13px; color: #D9CBAE;">Min 10 · Max 500</span></div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-tray gh-notch" role="group" aria-label="Place a bet">
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--5" type="button" aria-label="Add 5">5</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--10" type="button" aria-label="Add 10">10</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--25 is-selected" type="button" aria-label="Add 25" aria-pressed="true">25</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--100" type="button" aria-label="Add 100">100</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--500" type="button" aria-label="Add 500">500</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--1k" type="button" aria-label="Add 1,000">1K</button></div>
+          <div style="width: 104px; display: flex; flex-direction: column; gap: 8px; padding-left: 6px;"><span class="cap" style="color: #EFE3C8;">Bet</span><span class="gh-num gh-shadow-text" style="font-size: 24px; color: #FFE08A;">35</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><button class="gh-btn gh-btn--stone gh-btn--sm" type="button">Undo</button><button class="gh-btn gh-btn--stone gh-btn--sm" type="button">Clear</button></div>
+          <button class="gh-btn gh-btn--lg gh-notch" type="button">Deal</button>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: baseline;"><span class="cap">Building a bet</span><span style="font-size: 13px; color: #D9CBAE;">10 + 25 placed · the last chip lifts</span></div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-tray gh-notch" role="group" aria-label="Place a bet">
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--5" type="button" disabled aria-label="Add 5">5</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--10" type="button" disabled aria-label="Add 10">10</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--25" type="button" disabled aria-label="Add 25">25</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--100" type="button" disabled aria-label="Add 100">100</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--500" type="button" disabled aria-label="Add 500">500</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--1k" type="button" disabled aria-label="Add 1,000">1K</button></div>
+          <div style="width: 104px; display: flex; flex-direction: column; gap: 8px; padding-left: 6px;"><span class="cap" style="color: #EFE3C8;">Bet</span><span class="gh-num gh-shadow-text" style="font-size: 24px; color: #FFE08A;">500</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><button class="gh-btn gh-btn--stone gh-btn--sm" type="button">Undo</button><button class="gh-btn gh-btn--stone gh-btn--sm" type="button">Clear</button></div>
+          <button class="gh-btn gh-btn--lg gh-notch" type="button">Deal</button>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: baseline;"><span class="cap">Max reached</span><span style="font-size: 13px; color: #FFE08A;">Table max reached · chips that would go over are locked</span></div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-tray gh-notch" role="group" aria-label="Place a bet">
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--5" type="button" aria-label="Add 5">5</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--10" type="button" aria-label="Add 10">10</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--25" type="button" aria-label="Add 25">25</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--100" type="button" disabled aria-label="Add 100, not enough credits">100</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--500" type="button" disabled aria-label="Add 500, not enough credits">500</button></div>
+          <div class="gh-tray__slot"><button class="gh-chip gh-chip--1k" type="button" disabled aria-label="Add 1,000, not enough credits">1K</button></div>
+          <div style="width: 104px; display: flex; flex-direction: column; gap: 8px; padding-left: 6px;"><span class="cap" style="color: #EFE3C8;">Bet</span><span class="gh-num gh-shadow-text" style="font-size: 24px; color: #FFE08A;">0</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px;"><button class="gh-btn gh-btn--stone gh-btn--sm" type="button" disabled>Undo</button><button class="gh-btn gh-btn--stone gh-btn--sm" type="button" disabled>Clear</button></div>
+          <button class="gh-btn gh-btn--lg gh-notch" type="button" disabled>Deal</button>
+        </div>
+        <div style="display: flex; gap: 16px; align-items: center;"><span class="cap">Low balance</span><span style="font-size: 13px; color: #FF7A88; font-weight: 600;">Only 30 credits left</span><button class="gh-btn gh-btn--wood gh-btn--sm" type="button">Deposit</button></div>
+      </div>
+    </section>
+
+    <section style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
+      <h2 class="sec">Multiplayer end · Ready</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-tray gh-notch" style="gap: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 8px; padding-left: 6px;"><span class="cap" style="color: #EFE3C8;">Bet</span><span class="gh-num gh-shadow-text" style="font-size: 24px; color: #FFE08A;">50</span></div>
+          <button class="gh-btn gh-btn--felt gh-btn--lg gh-notch" type="button">Ready</button>
+          <div role="timer" aria-label="Bets close in 9 seconds" style="width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(#FFAA3B 0 60%, rgba(26, 16, 20, .85) 0); box-shadow: 0 0 0 2px #1A1014, 0 0 0 4px #E8B53A;"><span class="gh-num" style="width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: #1E1B24; font-size: 14px; color: #FFE08A;">9</span></div>
+        </div>
+        <span class="cap">Shared countdown · bets close in 9</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-tray gh-notch" style="gap: 16px;">
+          <div style="display: flex; flex-direction: column; gap: 8px; padding-left: 6px;"><span class="cap" style="color: #EFE3C8;">Bet</span><span class="gh-num gh-shadow-text" style="font-size: 24px; color: #FFE08A;">50</span></div>
+          <button class="gh-btn gh-btn--felt gh-btn--lg gh-notch" type="button" disabled><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 16px; height: 16px; fill: currentColor; shape-rendering: crispEdges;"><path d="M10 1h2v1h-2zM9 2h3v1h-3zM8 3h3v1h-3zM7 4h3v1h-3zM0 5h2v1h-2zM6 5h3v1h-3zM0 6h3v1h-3zM5 6h3v1h-3zM1 7h5v1h-5zM2 8h3v1h-3zM3 9h1v1h-1z"></path></svg>Ready</button>
+          <span style="font-size: 13px; color: #D9CBAE; max-width: 110px; line-height: 1.35;">Waiting for others</span>
+        </div>
+        <span class="cap">Ready · chips locked until the deal</span>
+      </div>
+
+      <h2 class="sec" style="margin-top: 6px;">Mobile tray · 358 wide</h2>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-tray gh-notch" role="group" aria-label="Place a bet" style="width: 358px; box-sizing: border-box; flex-direction: column; align-items: stretch; gap: 12px; padding: 14px;">
+          <div style="display: flex; align-items: center; justify-content: space-between;">
+            <span style="display: flex; align-items: baseline; gap: 10px;"><span class="cap" style="color: #EFE3C8;">Bet</span><span class="gh-num gh-shadow-text" style="font-size: 20px; color: #FFE08A;">35</span></span>
+            <button class="gh-btn gh-btn--stone gh-btn--sm" type="button">Clear</button>
+          </div>
+          <div style="display: flex; gap: 10px; overflow-x: auto; padding: 8px 2px 10px;">
+            <button class="gh-chip gh-chip--5" type="button" aria-label="Add 5" style="width: 44px; height: 44px; font-size: 8px;">5</button>
+            <button class="gh-chip gh-chip--10" type="button" aria-label="Add 10" style="width: 44px; height: 44px; font-size: 8px;">10</button>
+            <button class="gh-chip gh-chip--25 is-selected" type="button" aria-label="Add 25" aria-pressed="true" style="width: 44px; height: 44px; font-size: 8px;">25</button>
+            <button class="gh-chip gh-chip--100" type="button" aria-label="Add 100" style="width: 44px; height: 44px; font-size: 8px;">100</button>
+            <button class="gh-chip gh-chip--500" type="button" aria-label="Add 500" style="width: 44px; height: 44px; font-size: 8px;">500</button>
+            <button class="gh-chip gh-chip--1k" type="button" aria-label="Add 1,000" style="width: 44px; height: 44px; font-size: 8px;">1K</button>
+          </div>
+          <button class="gh-btn gh-btn--lg gh-btn--block gh-notch" type="button">Deal</button>
+        </div>
+        <span class="cap">Fixed to the bottom of the phone</span>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":860}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

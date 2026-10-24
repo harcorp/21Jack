@@ -47,7 +47,7 @@ export function LoginForm() {
         error={fieldError}
         required
       />
-      <Button type="submit" variant="primary" size="lg" busy={busy}>
+      <Button type="submit" variant="primary" size="lg" busy={busy} className="gh-btn--block">
         {busy ? "Opening the gate…" : "Open the gate"}
       </Button>
       {error ? <Alert tone="error">{error}</Alert> : null}

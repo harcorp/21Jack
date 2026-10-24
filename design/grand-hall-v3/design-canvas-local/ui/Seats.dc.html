@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Seats</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../../design-system/grand-hall.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFE08A}a:hover{color:#FFF1C2}
+.cap{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B8A88A;text-align:center}
+.sec{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:20px;color:#FFE08A;margin:0;text-shadow:0 2px 0 #1A1014}
+</style>
+</helmet>
+<div class="gh-root" style="width: 1440px; height: 1000px; box-sizing: border-box; padding: 40px 56px; display: flex; flex-direction: column; gap: 24px; background: radial-gradient(120% 60% at 50% 0%, #2A2630 0%, #14121A 60%, #0E0C12 100%);">
+  <header style="display: flex; flex-direction: column; gap: 6px;">
+    <div class="gh-eyebrow">UI components</div>
+    <h1 class="gh-display gh-shadow-text" style="margin: 0; font-size: 44px; color: #FFE08A;">Seats</h1>
+    <p style="margin: 0; font-size: 15px; color: #D9CBAE;">PlayerSeat sits on the table rim: name, portrait in a gold ring, three hearts and a coin plaque with that player's own balance.</p>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 16px;">
+    <h2 class="sec">PlayerSeat · every state</h2>
+    <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); row-gap: 28px; column-gap: 16px; padding: 24px 0 8px; background: radial-gradient(90% 120% at 50% 100%, rgba(26, 99, 64, .35), rgba(0, 0, 0, 0) 70%);">
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat">
+          <span class="gh-seat__name" style="color: #B8A88A;">Seat 4</span>
+          <div class="gh-portrait is-empty"><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 24px; height: 24px; fill: #E8B53A; shape-rendering: crispEdges;"><path d="M5 0h2v1h-2zM5 1h2v1h-2zM5 2h2v1h-2zM5 3h2v1h-2zM5 4h2v1h-2zM0 5h12v1h-12zM0 6h12v1h-12zM5 7h2v1h-2zM5 8h2v1h-2zM5 9h2v1h-2zM5 10h2v1h-2zM5 11h2v1h-2z"></path></svg></div>
+          <button class="gh-btn gh-btn--sm gh-notch" type="button" style="margin-top: 10px;">Sit here</button>
+        </div>
+        <span class="cap">Empty · between rounds</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat">
+          <span class="gh-seat__name">Luis</span>
+          <div class="gh-portrait"><img src="../../assets/sprites/gh-avatar-05-bard.png" alt="Luis"></div>
+          <div class="gh-hearts" aria-label="Last three hands: won, won, lost"><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-empty.png" alt=""></div>
+          <div class="gh-plaque"><img src="../../assets/sprites/gh-coin-16.png" alt=""><span>2,760</span></div>
+          <span class="gh-tag gh-tag--torch">Betting</span>
+        </div>
+        <span class="cap">Occupied · betting</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat">
+          <span class="gh-seat__name">Andrés</span>
+          <div class="gh-portrait"><img src="../../assets/sprites/gh-avatar-04-knight.png" alt="Andrés"></div>
+          <div class="gh-hearts" aria-label="Last three hands: won, lost, won"><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-empty.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""></div>
+          <div class="gh-plaque"><img src="../../assets/sprites/gh-coin-16.png" alt=""><span>1,320</span></div>
+          <span class="gh-tag gh-tag--soft"><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 10px; height: 10px; fill: currentColor; shape-rendering: crispEdges;"><path d="M10 1h2v1h-2zM9 2h3v1h-3zM8 3h3v1h-3zM7 4h3v1h-3zM0 5h2v1h-2zM6 5h3v1h-3zM0 6h3v1h-3zM5 6h3v1h-3zM1 7h5v1h-5zM2 8h3v1h-3zM3 9h1v1h-1z"></path></svg>Ready</span>
+        </div>
+        <span class="cap">Ready · bet placed</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat" style="opacity: .72;">
+          <span class="gh-seat__name">David</span>
+          <div class="gh-portrait"><img src="../../assets/sprites/gh-avatar-10-ranger.png" alt="David"></div>
+          <div class="gh-hearts" aria-label="No hands played yet"><img src="../../assets/sprites/gh-heart-empty.png" alt=""><img src="../../assets/sprites/gh-heart-empty.png" alt=""><img src="../../assets/sprites/gh-heart-empty.png" alt=""></div>
+          <div class="gh-plaque"><img src="../../assets/sprites/gh-coin-16.png" alt=""><span>500</span></div>
+          <span class="gh-tag gh-tag--stone">Waiting · next round</span>
+        </div>
+        <span class="cap">Waiting · joined mid-round</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat">
+          <span class="gh-seat__name">Mariana</span>
+          <div class="gh-portrait is-active"><img src="../../assets/sprites/gh-avatar-02-archer.png" alt="Mariana"><div class="gh-ring" style="--p: 62;"></div><span class="gh-ring__time">14</span></div>
+          <div class="gh-hearts" aria-label="Last three hands: won, won, won"><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""></div>
+          <div class="gh-plaque"><img src="../../assets/sprites/gh-coin-16.png" alt=""><span>1,950</span></div>
+          <span class="gh-tag gh-tag--torch">Mariana's turn</span>
+        </div>
+        <span class="cap">Active turn · glow + countdown ring</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat">
+          <span class="gh-tag gh-tag--you" style="margin-bottom: -2px;">You</span>
+          <div class="gh-portrait is-you is-active"><img src="../../assets/sprites/gh-avatar-01-squire.png" alt="You"><div class="gh-ring" style="--p: 80;"></div><span class="gh-ring__time">18</span></div>
+          <div class="gh-hearts" aria-label="Last three hands: won, lost, won"><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-empty.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""></div>
+          <div class="gh-plaque"><img src="../../assets/sprites/gh-coin-16.png" alt=""><span>3,890</span></div>
+          <span class="gh-tag gh-tag--you">Your turn</span>
+        </div>
+        <span class="cap">You · active turn</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat">
+          <span class="gh-tag gh-tag--you" style="margin-bottom: -2px;">You</span>
+          <div class="gh-portrait is-you"><img src="../../assets/sprites/gh-avatar-01-squire.png" alt="You"></div>
+          <div class="gh-hearts" aria-label="Last three hands: won, lost, won"><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-empty.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""></div>
+          <div class="gh-plaque"><img src="../../assets/sprites/gh-coin-16.png" alt=""><span>3,890</span></div>
+          <span class="gh-tag gh-tag--ghost">Waiting for Luis</span>
+        </div>
+        <span class="cap">You · gold outline, not your turn</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat">
+          <span class="gh-seat__name">Luis</span>
+          <div class="gh-portrait"><img src="../../assets/sprites/gh-avatar-05-bard.png" alt="Luis"></div>
+          <div class="gh-hearts" aria-label="Last three hands: won, won, won"><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""></div>
+          <div class="gh-plaque"><img src="../../assets/sprites/gh-coin-16.png" alt=""><span>2,780</span></div>
+          <div class="gh-result gh-result--victory" style="min-width: 0; padding: 4px 12px 6px;"><span class="gh-result__word" style="font-size: 17px;">Victory</span><span class="gh-result__amount" style="font-size: 10px;">+20</span></div>
+        </div>
+        <span class="cap">Finished · with result</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat is-off">
+          <span class="gh-seat__name" style="color: #B8A88A;">John</span>
+          <div class="gh-portrait is-off"><img src="../../assets/sprites/gh-avatar-06-smith.png" alt="John"></div>
+          <div class="gh-hearts" aria-label="Last three hands: lost, won, lost"><img src="../../assets/sprites/gh-heart-empty.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-empty.png" alt=""></div>
+          <div class="gh-plaque"><img src="../../assets/sprites/gh-coin-16.png" alt=""><span>40</span></div>
+          <span class="gh-tag gh-tag--ghost">Sitting out</span>
+        </div>
+        <span class="cap">Sitting out · no bet this round</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div class="gh-seat is-off">
+          <span class="gh-seat__name" style="color: #B8A88A;">Edgar</span>
+          <div class="gh-portrait is-off"><img src="../../assets/sprites/gh-avatar-03-mage.png" alt="Edgar"><span style="position: absolute; right: -8px; bottom: -6px; width: 26px; height: 26px; display: grid; place-items: center; background: #7E1622; box-shadow: 0 0 0 2px #1A1014, 0 0 0 4px #E0566A;"><svg viewBox="0 0 12 12" aria-hidden="true" style="width: 14px; height: 14px; fill: #FBF4E4; shape-rendering: crispEdges;"><path d="M4 1h4v1h-4zM2 2h2v1h-2zM8 2h2v1h-2zM1 3h1v1h-1zM10 3h1v1h-1zM3 4h6v1h-6zM2 5h1v1h-1zM9 5h1v1h-1zM5 6h2v1h-2zM4 7h1v1h-1zM7 7h1v1h-1zM5 9h2v1h-2zM5 10h2v1h-2z"></path></svg></span></div>
+          <div class="gh-hearts" aria-label="Last three hands: won, lost, won"><img src="../../assets/sprites/gh-heart-full.png" alt=""><img src="../../assets/sprites/gh-heart-empty.png" alt=""><img src="../../assets/sprites/gh-heart-full.png" alt=""></div>
+          <div class="gh-plaque"><img src="../../assets/sprites/gh-coin-16.png" alt=""><span>1,100</span></div>
+          <span class="gh-tag gh-tag--crimson">Reconnecting…</span>
+        </div>
+        <span class="cap">Disconnected · hand auto-stands on timeout</span>
+      </div>
+    </div>
+    <p style="margin: 0; font-size: 13px; color: #B8A88A;">Hearts show the seat's last three hands at this table: full = win or push, empty = loss. The plaque always shows that player's own balance.</p>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">MiniPortraitRow · mobile, other players</h2>
+    <div style="display: flex; gap: 40px; align-items: flex-start;">
+      <div class="gh-frame gh-frame--glass gh-notch" role="list" aria-label="Other players" style="width: 358px; box-sizing: border-box; padding: 12px 12px 10px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;">
+        <div role="listitem" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+          <div class="gh-portrait gh-portrait--sm is-active" style="position: relative;"><img src="../../assets/sprites/gh-avatar-02-archer.png" alt=""><div class="gh-ring" style="--p: 62; inset: -9px;"></div></div>
+          <span style="font-size: 11px; font-weight: 600; color: #FBF4E4;">Mariana</span>
+          <span class="gh-total" style="height: 22px; font-size: 8px; padding: 0 6px;">16</span>
+          <span class="gh-tag gh-tag--torch" style="height: 18px; font-size: 10px; padding: 0 5px;">Turn</span>
+        </div>
+        <div role="listitem" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+          <div class="gh-portrait gh-portrait--sm"><img src="../../assets/sprites/gh-avatar-05-bard.png" alt=""></div>
+          <span style="font-size: 11px; font-weight: 600; color: #FBF4E4;">Luis</span>
+          <span class="gh-total" style="height: 22px; font-size: 8px; padding: 0 6px;">20</span>
+          <span class="gh-tag gh-tag--stone" style="height: 18px; font-size: 10px; padding: 0 5px;">Stood</span>
+        </div>
+        <div role="listitem" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+          <div class="gh-portrait gh-portrait--sm"><img src="../../assets/sprites/gh-avatar-04-knight.png" alt=""></div>
+          <span style="font-size: 11px; font-weight: 600; color: #FBF4E4;">Andrés</span>
+          <span class="gh-total" style="height: 22px; font-size: 8px; padding: 0 6px;">12</span>
+          <span class="gh-tag gh-tag--ghost" style="height: 18px; font-size: 10px; padding: 0 5px;">Next</span>
+        </div>
+        <div role="listitem" style="display: flex; flex-direction: column; align-items: center; gap: 5px;">
+          <div class="gh-portrait gh-portrait--sm"><img src="../../assets/sprites/gh-avatar-10-ranger.png" alt=""></div>
+          <span style="font-size: 11px; font-weight: 600; color: #FBF4E4;">David</span>
+          <span class="gh-total is-bust" style="height: 22px; font-size: 8px; padding: 0 6px;">23</span>
+          <span class="gh-tag gh-tag--crimson" style="height: 18px; font-size: 10px; padding: 0 5px;">Bust</span>
+        </div>
+      </div>
+      <p style="margin: 0; max-width: 420px; font-size: 14px; color: #D9CBAE; line-height: 1.5;">On a phone your own seat and hands are shown large. Everyone else collapses into this row: small portrait, name, hand total and turn state, in turn order from left to right.</p>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

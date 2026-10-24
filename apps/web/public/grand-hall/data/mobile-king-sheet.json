@@ -1,0 +1,15 @@
+{
+ "frames": [
+  "idle",
+  "breath",
+  "blink",
+  "smug",
+  "grimace"
+ ],
+ "frameW": 468,
+ "frameH": 484,
+ "left%": 20.0,
+ "top%": 11.848,
+ "width%": 60.0,
+ "height%": 28.673
+}

@@ -14,12 +14,12 @@ const dash = <span aria-hidden="true">—</span>;
 
 export function GlobalLedger({ transactions }: { transactions: AdminTransaction[] | null }) {
   return (
-    <Panel title="Global ledger" tone="parchment">
-      <p className="-mt-2 mb-3 text-sm opacity-80">Latest 100 entries across all accounts, newest first.</p>
+    <Panel title="Global ledger" tone="stone" framed>
+      <p className="-mt-2 mb-3 text-sm text-cream-muted">Latest 100 entries across all accounts, newest first.</p>
       {transactions === null ? (
-        <p className="opacity-70">Loading ledger…</p>
+        <p className="text-cream-muted">Loading ledger…</p>
       ) : transactions.length === 0 ? (
-        <p>The ledger is empty.</p>
+        <p className="text-cream-muted">The ledger is empty.</p>
       ) : (
         <Table caption="Global ledger, newest first">
           <thead>
@@ -41,21 +41,21 @@ export function GlobalLedger({ transactions }: { transactions: AdminTransaction[
               const hand = handNumber(tx.handId);
               return (
                 <Tr key={tx.id}>
-                  <Td className="font-pixel text-xs whitespace-nowrap">
+                  <Td className="text-xs whitespace-nowrap text-cream-muted">
                     <time dateTime={tx.createdAt}>{shortDate(tx.createdAt)}</time>
                   </Td>
-                  <Td className="whitespace-nowrap">{tx.username}</Td>
+                  <Td className="font-semibold whitespace-nowrap">{tx.username}</Td>
                   <Td>
                     <Badge tone={typeTone[tx.type]}>{tx.type}</Badge>
                   </Td>
-                  <Td className="font-pixel text-xs">{tx.kind ?? dash}</Td>
-                  <Td className="font-pixel text-xs">{tx.roundId ? tx.roundId.slice(0, 8) : dash}</Td>
-                  <Td className="font-pixel text-xs">{hand ?? dash}</Td>
+                  <Td className="text-xs">{tx.kind ?? dash}</Td>
+                  <Td className="font-mono text-xs text-cream-muted">{tx.roundId ? tx.roundId.slice(0, 8) : dash}</Td>
+                  <Td className="gh-num text-[10px]">{hand ?? dash}</Td>
                   <Td>{tx.outcome ? <Badge tone={outcomeTone[tx.outcome]}>{tx.outcome}</Badge> : dash}</Td>
                   <Td className="text-right whitespace-nowrap">
-                    <Amount value={tx.amount} onLight />
+                    <Amount value={tx.amount} className="text-[10px]" />
                   </Td>
-                  <Td className="text-right font-pixel text-sm tabular-nums">{formatCredits(tx.balanceAfter)}</Td>
+                  <Td className="gh-num text-right text-[10px]">{formatCredits(tx.balanceAfter)}</Td>
                   <Td className="whitespace-nowrap">{tx.replays > 0 ? <Badge tone="torch">Duplicate blocked ×{tx.replays}</Badge> : dash}</Td>
                 </Tr>
               );

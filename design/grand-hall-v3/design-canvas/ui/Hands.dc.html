@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hands and results</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/_blob/196dfe1898f557f0ba8ff161e4f6f687">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFE08A}a:hover{color:#FFF1C2}
+.cap{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B8A88A;text-align:center}
+.sec{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:20px;color:#FFE08A;margin:0;text-shadow:0 2px 0 #1A1014}
+.felt{background:radial-gradient(120% 140% at 50% 0%,#1A6340 0%,#0F3A26 70%);box-shadow:inset 0 0 0 2px #1A1014,inset 0 0 0 4px #8A5A14}
+</style>
+</helmet>
+<div class="gh-root" style="width: 1440px; height: 1460px; box-sizing: border-box; padding: 40px 56px; display: flex; flex-direction: column; gap: 24px; background: radial-gradient(120% 60% at 50% 0%, #2A2630 0%, #14121A 60%, #0E0C12 100%);">
+  <header style="display: flex; flex-direction: column; gap: 6px;">
+    <div class="gh-eyebrow">UI components</div>
+    <h1 class="gh-display gh-shadow-text" style="margin: 0; font-size: 44px; color: #FFE08A;">Hands and results</h1>
+    <p style="margin: 0; font-size: 15px; color: #D9CBAE;">Cards, totals, stakes and outcomes as they appear on the felt. Every hand settles against the same dealer hand.</p>
+  </header>
+
+  <div style="display: flex; gap: 32px;">
+    <section style="flex: 1; display: flex; flex-direction: column; gap: 14px;">
+      <h2 class="sec">DealerHand</h2>
+      <div class="felt gh-notch" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; padding: 22px 16px 16px;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="gh-cards" role="img" aria-label="King of spades and a face-down card">
+              <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+              <div class="gh-card gh-card--back"><img class="gh-card__crest" src="/_blob/dbbab820689b32c06d2e0ae8aeea6fea" alt=""></div>
+            </div>
+            <span class="gh-total is-hidden" aria-label="Dealer total hidden">?</span>
+          </div>
+          <span class="cap">Hidden · total stays a ?</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="gh-cards" role="img" aria-label="King of spades, nine of hearts">
+              <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+              <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">9</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+            </div>
+            <span class="gh-total">19</span>
+          </div>
+          <span class="cap">Revealed · stands on 19</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="gh-cards" role="img" aria-label="King of spades, four of diamonds, queen of clubs">
+              <div class="gh-card gh-card--sm"><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+              <div class="gh-card gh-card--sm is-red"><div class="gh-card__corner"><span class="gh-card__rank">4</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+              <div class="gh-card gh-card--sm"><div class="gh-card__corner"><span class="gh-card__rank">Q</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M4 0h1v1h-1zM3 1h3v1h-3zM0 2h1v1h-1zM3 2h3v1h-3zM8 2h1v1h-1zM0 3h2v1h-2zM3 3h3v1h-3zM7 3h2v1h-2zM0 4h9v1h-9zM1 5h7v1h-7zM2 6h5v1h-5zM1 8h7v1h-7z"></path></svg></div></div>
+            </div>
+            <span class="gh-total is-bust">24</span>
+          </div>
+          <span class="cap">Dealer busts · king grimaces</span>
+        </div>
+      </div>
+    </section>
+
+    <section style="width: 560px; display: flex; flex-direction: column; gap: 14px;">
+      <h2 class="sec">ResultBadge · per hand</h2>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; padding-top: 10px;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+          <div class="gh-result gh-result--victory" style="min-width: 220px;"><span class="gh-result__word">Victory</span><span class="gh-result__amount">+20</span></div>
+          <span class="cap">Win · 2× stake returned</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+          <div class="gh-result gh-result--push" style="min-width: 220px;"><span class="gh-result__word">Push</span><span class="gh-result__amount">+10</span></div>
+          <span class="cap">Tie · stake returned</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+          <div class="gh-result gh-result--defeat" style="min-width: 220px;"><span class="gh-result__word">Defeat</span><span class="gh-result__amount">+0</span></div>
+          <span class="cap">Loss · nothing returned</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 6px;">
+          <div class="gh-result gh-result--blackjack" style="min-width: 220px; position: relative;"><span class="gh-result__word">Blackjack</span><span class="gh-result__amount">+20</span><i class="gh-sparkle" style="left: 8px; top: 6px;"></i><i class="gh-sparkle" style="right: 10px; top: 10px; animation-delay: -.3s;"></i><i class="gh-sparkle" style="right: 40px; bottom: 6px; animation-delay: -.6s;"></i></div>
+          <span class="cap">Natural · same 2× as a win</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">PlayerHand · totals, soft, 21 and bust</h2>
+    <div class="felt gh-notch" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding: 26px 20px 18px;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div class="gh-hand">
+          <div class="gh-cards" role="img" aria-label="Ten of clubs, six of hearts">
+            <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">10</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+            <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">6</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+          </div>
+          <div class="gh-hand__meta"><span class="gh-total">16</span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><div class="gh-stack" aria-label="Stake 10"><i class="c10"></i></div><span class="gh-num" style="font-size: 10px; color: #FBF4E4;">10</span></div>
+        </div>
+        <span class="cap">Hard 16 · stake 10</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div class="gh-hand">
+          <div class="gh-cards" role="img" aria-label="Ace of hearts, six of spades">
+            <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+            <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">6</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+          </div>
+          <div class="gh-hand__meta"><span class="gh-total">17</span><span class="gh-tag gh-tag--soft">Soft</span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><div class="gh-stack" aria-label="Stake 25"><i class="c25"></i></div><span class="gh-num" style="font-size: 10px; color: #FBF4E4;">25</span></div>
+        </div>
+        <span class="cap">Soft 17 · ace counts as 11</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div class="gh-hand">
+          <div class="gh-cards" role="img" aria-label="Seven of diamonds, four of spades, king of hearts">
+            <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">7</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+            <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">4</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+            <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+          </div>
+          <div class="gh-hand__meta"><span class="gh-total is-21">21</span><span class="gh-tag gh-tag--stone">Stands</span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><div class="gh-stack" aria-label="Stake 10"><i class="c10"></i></div><span class="gh-num" style="font-size: 10px; color: #FBF4E4;">10</span></div>
+        </div>
+        <span class="cap">21 · stands automatically</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div class="gh-hand">
+          <div class="gh-cards" role="img" aria-label="King of clubs, six of diamonds, eight of spades">
+            <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+            <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">6</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+            <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">8</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+          </div>
+          <div class="gh-hand__meta"><span class="gh-total is-bust">24</span><span class="gh-tag gh-tag--crimson">Bust</span></div>
+          <div style="display: flex; align-items: center; gap: 8px; opacity: .55;"><div class="gh-stack" aria-label="Stake 10, lost"><i class="c10"></i></div><span class="gh-num" style="font-size: 10px; color: #FBF4E4;">10</span></div>
+        </div>
+        <span class="cap">Bust · loses at once</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">Double and Split</h2>
+    <div class="felt gh-notch" style="display: grid; grid-template-columns: 1fr 1.3fr 1.3fr; gap: 16px; padding: 30px 20px 18px;">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div class="gh-hand">
+          <div class="gh-cards" role="img" aria-label="Five of diamonds, six of clubs, ten of spades dealt sideways" style="padding-right: 26px;">
+            <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">5</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+            <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">6</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+            <div class="gh-card gh-card--sideways"><div class="gh-card__corner"><span class="gh-card__rank">10</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+          </div>
+          <div class="gh-hand__meta"><span class="gh-total is-21">21</span><span class="gh-tag">Doubled</span></div>
+          <div style="display: flex; align-items: center; gap: 8px;"><div class="gh-stack" aria-label="Stake 20"><i class="c10"></i><i class="c10"></i></div><span class="gh-num" style="font-size: 10px; color: #FBF4E4;">20</span></div>
+        </div>
+        <span class="cap">Double · stake 10 → 20, one card sideways</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div style="display: flex; gap: 30px; align-items: flex-start;">
+          <div class="gh-hand is-active">
+            <span class="gh-hand__label" style="color: #FFE08A;">Left · playing</span>
+            <div class="gh-cards" role="img" aria-label="Left hand: eight of spades, three of diamonds">
+              <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">8</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+              <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">3</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+            </div>
+            <div class="gh-hand__meta"><span class="gh-total">11</span></div>
+            <div style="display: flex; align-items: center; gap: 8px;"><div class="gh-stack" aria-label="Stake 10"><i class="c10"></i></div><span class="gh-num" style="font-size: 10px; color: #FBF4E4;">10</span></div>
+          </div>
+          <div class="gh-hand is-waiting">
+            <span class="gh-hand__label">Right · next</span>
+            <div class="gh-cards" role="img" aria-label="Right hand: eight of hearts, king of diamonds">
+              <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">8</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+              <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+            </div>
+            <div class="gh-hand__meta"><span class="gh-total">18</span></div>
+            <div style="display: flex; align-items: center; gap: 8px;"><div class="gh-stack" aria-label="Stake 10"><i class="c10"></i></div><span class="gh-num" style="font-size: 10px; color: #FBF4E4;">10</span></div>
+          </div>
+        </div>
+        <span class="cap">Split · left first, active hand glows</span>
+      </div>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px;">
+        <div style="display: flex; gap: 30px; align-items: flex-start;">
+          <div class="gh-hand">
+            <span class="gh-hand__label">Left</span>
+            <div class="gh-cards" role="img" aria-label="Left hand: ace of spades, nine of diamonds">
+              <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+              <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">9</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+            </div>
+            <div class="gh-hand__meta"><span class="gh-total">20</span><span class="gh-tag gh-tag--stone">1 card only</span></div>
+          </div>
+          <div class="gh-hand">
+            <span class="gh-hand__label">Right</span>
+            <div class="gh-cards" role="img" aria-label="Right hand: ace of hearts, king of clubs">
+              <div class="gh-card is-red"><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+              <div class="gh-card"><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+            </div>
+            <div class="gh-hand__meta"><span class="gh-total is-21">21</span><span class="gh-tag gh-tag--stone">1 card only</span></div>
+          </div>
+        </div>
+        <span class="cap">Split aces · one card each, no hit or double</span>
+        <span style="font-size: 12px; color: #EFE3C8;">21 after a split settles as VICTORY, not BLACKJACK.</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">Natural at the deal · its own moment</h2>
+    <div style="display: flex; gap: 24px; align-items: stretch;">
+      <div class="gh-frame gh-notch" role="status" style="position: relative; flex: 1; display: flex; align-items: center; gap: 32px; padding: 24px 36px; background: radial-gradient(90% 140% at 30% 50%, #5C0F18 0%, #2A1018 55%, #14121A 100%); box-shadow: inset 0 0 0 2px #1A1014, inset 0 0 0 4px #FFE08A, inset 0 0 0 6px #C8902A, inset 0 0 0 8px rgba(0, 0, 0, .35), 0 0 40px 8px rgba(255, 200, 90, .25);">
+        <div class="gh-cards" role="img" aria-label="Ace of spades, king of hearts">
+          <div class="gh-card gh-card--lg"><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+          <div class="gh-card gh-card--lg is-red"><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <span class="gh-eyebrow">At the deal</span>
+          <span class="gh-display" style="font-size: 54px; color: #FFE08A; text-shadow: 0 3px 0 #1A1014, 0 0 24px rgba(255, 200, 90, .6);">Natural Blackjack</span>
+          <span style="display: flex; align-items: center; gap: 12px;"><span style="font-size: 15px; color: #EFE3C8;">Pays 2× the stake returned</span><span class="gh-tag gh-tag--you" style="height: 28px; font-size: 16px;">+20</span></span>
+        </div>
+        <img src="/_blob/613726e634c6cdc197c07ba04659d08d" alt="The king grimaces" class="gh-pixelated" style="width: 150px; height: 156px; object-fit: contain; margin-left: auto;">
+        <i class="gh-sparkle" style="left: 40px; top: 20px;"></i><i class="gh-sparkle" style="left: 300px; top: 26px; animation-delay: -.3s;"></i><i class="gh-sparkle" style="left: 520px; bottom: 24px; animation-delay: -.5s;"></i><i class="gh-sparkle" style="left: 640px; top: 30px; animation-delay: -.7s;"></i>
+      </div>
+      <div class="gh-frame gh-notch" style="width: 300px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; padding: 22px 24px;">
+        <span class="cap" style="text-align: left;">Both have blackjack</span>
+        <div class="gh-result gh-result--push" style="min-width: 0; align-self: flex-start;"><span class="gh-result__word">Push</span><span class="gh-result__amount">+10</span></div>
+        <p style="margin: 0; font-size: 13px; color: #D9CBAE; line-height: 1.5;">Both sides are checked right after the deal, before Split or Double. If the dealer also has a natural, the stake comes back and the round ends.</p>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1460}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

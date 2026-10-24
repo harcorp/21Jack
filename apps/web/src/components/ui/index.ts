@@ -14,3 +14,6 @@ export { PageShell } from "./PageShell";
 export { Panel, type PanelTone } from "./Panel";
 export { StatTile, type StatTone } from "./StatTile";
 export { Table, Td, Th, Tr } from "./Table";
+export { PixelIcon, type PixelIconName } from "./PixelIcon";
+export * as sprites from "./sprites";
+export { Crest, CrestBanner, Embers } from "./Heraldry";

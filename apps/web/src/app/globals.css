@@ -1,11 +1,52 @@
 @import "tailwindcss";
+/* Design-system component classes sit in the components layer so Tailwind utilities can override them. */
+@import "@21jack/theme/grand-hall.css" layer(components);
 @import "@21jack/theme/theme.css";
 @source "../../../../packages/game-ui/src";
 
+html {
+  background: var(--gh-stone-950);
+  color-scheme: dark;
+}
+
 body {
-  background: var(--color-stone-dark);
-  color: var(--color-parchment);
-  font-family: var(--font-display);
-  /* The digits face has no bold: keep numerals crisp instead of faux-bolding them. */
+  background: var(--gh-bg);
+  color: var(--gh-text);
+  font-family: var(--gh-font-body);
+  font-size: var(--gh-text-body);
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  /* Pixel faces have no real bold: keep glyphs crisp instead of faux-bolding them. */
   font-synthesis-weight: none;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gh-focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--gh-gold-400);
+  color: var(--gh-wood-900);
+}
+
+/* Hall backdrop for every non-table screen: stone courses, warm torch light from both sides, a vignette. */
+.gh-hall-bg {
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(60% 50% at 0% 30%, rgb(240 122 26 / 0.16), transparent 70%),
+    radial-gradient(60% 50% at 100% 30%, rgb(240 122 26 / 0.16), transparent 70%),
+    radial-gradient(120% 80% at 50% 0%, rgb(59 36 86 / 0.45), transparent 60%),
+    repeating-linear-gradient(90deg, transparent 0 94px, rgb(0 0 0 / 0.22) 94px 96px),
+    repeating-linear-gradient(180deg, transparent 0 46px, rgb(0 0 0 / 0.22) 46px 48px),
+    linear-gradient(180deg, var(--gh-stone-800), var(--gh-stone-950));
+}
+.gh-hall-bg::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgb(8 6 12 / 0.6));
 }

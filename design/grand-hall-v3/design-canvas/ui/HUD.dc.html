@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>HUD, boss bar and feed</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/_blob/196dfe1898f557f0ba8ff161e4f6f687">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pixelify+Sans:wght@400..700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFE08A}a:hover{color:#FFF1C2}
+.cap{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B8A88A}
+.sec{font-family:'Pixelify Sans','Courier New',monospace;font-weight:700;font-size:20px;color:#FFE08A;margin:0;text-shadow:0 2px 0 #1A1014}
+</style>
+</helmet>
+<div class="gh-root" style="width: 1440px; height: 1160px; box-sizing: border-box; padding: 40px 56px; display: flex; flex-direction: column; gap: 26px; background: radial-gradient(120% 60% at 50% 0%, #2A2630 0%, #14121A 60%, #0E0C12 100%);">
+  <header style="display: flex; flex-direction: column; gap: 6px;">
+    <div class="gh-eyebrow">UI components</div>
+    <h1 class="gh-display gh-shadow-text" style="margin: 0; font-size: 44px; color: #FFE08A;">HUD, boss bar and feed</h1>
+    <p style="margin: 0; font-size: 15px; color: #D9CBAE;">Everything that sits on the edges of the table: balance, menu, the king's health, table info, the feed and the shared countdown.</p>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">BalancePill and MenuButton · top right</h2>
+    <div style="display: flex; gap: 48px; align-items: flex-end;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-balance" role="status" aria-label="Balance 1,240 credits"><img class="gh-balance__coin" src="/_blob/8e48760ccaadc96d48a1d642f25fe65f" alt=""><span class="gh-balance__value">1,240</span></div>
+        <span class="cap">Normal</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div class="gh-balance is-up" role="status" aria-label="Balance 1,260 credits"><img class="gh-balance__coin" src="/_blob/8e48760ccaadc96d48a1d642f25fe65f" alt=""><span class="gh-balance__value">1,260</span></div>
+          <span class="gh-tag gh-tag--torch">+20</span>
+        </div>
+        <span class="cap">Credits returned · flashes gold</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-balance is-zero" role="status" aria-label="Balance 0 credits"><img class="gh-balance__coin" src="/_blob/8e48760ccaadc96d48a1d642f25fe65f" alt=""><span class="gh-balance__value">0</span></div>
+        <span class="cap">Zero balance</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div class="gh-balance" role="status" aria-label="Balance 1,240 credits"><img class="gh-balance__coin" src="/_blob/8e48760ccaadc96d48a1d642f25fe65f" alt=""><span class="gh-balance__value">1,240</span></div>
+          <button class="gh-iconbtn" type="button" aria-label="Open menu"><svg class="gh-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M0 1h12v1h-12zM0 2h12v1h-12zM0 5h12v1h-12zM0 6h12v1h-12zM0 9h12v1h-12zM0 10h12v1h-12z"></path></svg></button>
+        </div>
+        <span class="cap">HUD group · pill + menu, 12 gap</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">BossBar · top centre</h2>
+    <div style="display: flex; gap: 40px;">
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 40px; row-gap: 20px; width: 1100px;">
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div class="gh-boss" role="meter" aria-label="King health" aria-valuemin="0" aria-valuemax="10" aria-valuenow="10" style="padding-top: 40px;">
+            <div class="gh-boss__crown" style="top: 0; width: 48px; height: 48px; border-radius: 50%; background: #1E1B24; box-shadow: 0 0 0 2px #1A1014, 0 0 0 5px #E8B53A, 0 0 0 7px #1A1014; z-index: 2;"><img src="/_blob/fecb9dcb5718d59c3c1e9d7631978611" alt="" class="gh-pixelated" style="width: 40px; height: 40px;"></div>
+            <div class="gh-boss__frame"><div class="gh-boss__track"><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i></div></div>
+            <div class="gh-boss__label"><span>The King</span><span class="gh-num" style="font-size: 10px;">10 / 10</span></div>
+          </div>
+          <span class="cap">Full</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div class="gh-boss" role="meter" aria-label="King health" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6" style="padding-top: 40px;">
+            <div class="gh-boss__crown" style="top: 0; width: 48px; height: 48px; border-radius: 50%; background: #1E1B24; box-shadow: 0 0 0 2px #1A1014, 0 0 0 5px #E8B53A, 0 0 0 7px #1A1014; z-index: 2;"><img src="/_blob/fecb9dcb5718d59c3c1e9d7631978611" alt="" class="gh-pixelated" style="width: 40px; height: 40px;"></div>
+            <div class="gh-boss__frame"><div class="gh-boss__track"><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i></div></div>
+            <div class="gh-boss__label"><span>The King</span><span class="gh-num" style="font-size: 10px;">6 / 10</span></div>
+          </div>
+          <span class="cap">Damaged · a win deals 1, a blackjack 2</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div class="gh-boss is-shake" role="meter" aria-label="King health" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6" style="padding-top: 40px;">
+            <div class="gh-boss__crown" style="top: 0; width: 48px; height: 48px; border-radius: 50%; background: #5C0F18; box-shadow: 0 0 0 2px #1A1014, 0 0 0 5px #FFE08A, 0 0 0 7px #1A1014, 0 0 18px 4px rgba(255, 120, 60, .6); z-index: 2;"><img src="/_blob/fecb9dcb5718d59c3c1e9d7631978611" alt="" class="gh-pixelated" style="width: 40px; height: 40px;"></div>
+            <div class="gh-boss__frame"><div class="gh-boss__track"><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp is-hit"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i></div></div>
+            <div class="gh-boss__label"><span>Hit · −1</span><span class="gh-num" style="font-size: 10px;">6 / 10</span></div>
+          </div>
+          <span class="cap">Hit · flash + shake, king plays grimace</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 6px;">
+          <div class="gh-boss is-defeated" role="meter" aria-label="King health" aria-valuemin="0" aria-valuemax="10" aria-valuenow="0" style="padding-top: 40px;">
+            <div class="gh-boss__crown" style="top: 0; width: 48px; height: 48px; border-radius: 50%; background: #1E1B24; box-shadow: 0 0 0 2px #1A1014, 0 0 0 5px #FFE08A, 0 0 0 7px #1A1014, 0 0 22px 6px rgba(255, 200, 90, .55); z-index: 2;"><img src="/_blob/fecb9dcb5718d59c3c1e9d7631978611" alt="" class="gh-pixelated" style="width: 40px; height: 40px; filter: grayscale(.6);"></div>
+            <div class="gh-boss__frame"><div class="gh-boss__track"><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i></div></div>
+            <div class="gh-boss__label"><span>Defeated</span><span class="gh-tag">+250 each</span></div>
+            <i class="gh-sparkle" style="left: 30%; top: 22px;"></i><i class="gh-sparkle" style="left: 68%; top: 26px; animation-delay: -.4s;"></i>
+          </div>
+          <span class="cap">Defeated · bonus to every player who bet, bar refills</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px; padding-left: 28px; box-shadow: inset 2px 0 0 #38333D;">
+        <span class="cap">Mobile · 300 wide</span>
+        <div class="gh-boss" role="meter" aria-label="King health" aria-valuemin="0" aria-valuemax="10" aria-valuenow="6" style="width: 300px; padding-top: 0; padding-left: 30px; box-sizing: border-box;">
+          <div class="gh-boss__crown" style="left: 0; top: -4px; transform: none; width: 36px; height: 36px; border-radius: 50%; background: #1E1B24; box-shadow: 0 0 0 2px #1A1014, 0 0 0 4px #E8B53A, 0 0 0 6px #1A1014; z-index: 2;"><img src="/_blob/fecb9dcb5718d59c3c1e9d7631978611" alt="" class="gh-pixelated" style="width: 30px; height: 30px;"></div>
+          <div class="gh-boss__frame" style="height: 28px; padding: 6px 8px 6px 14px;"><div class="gh-boss__track" style="gap: 2px; padding: 2px;"><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i><i class="gh-boss__hp is-empty"></i></div></div>
+          <div class="gh-boss__label" style="font-size: 12px; margin-top: 4px;"><span>The King</span><span class="gh-num" style="font-size: 8px;">6 / 10</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">TablePlate · top left</h2>
+    <div style="display: flex; gap: 24px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-frame gh-frame--glass gh-notch" style="display: flex; flex-direction: column; gap: 6px; width: 280px; box-sizing: border-box; padding: 14px 18px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between;"><span class="gh-display" style="font-size: 22px; color: #FFE08A;">Ember Hall</span><span class="gh-num" style="font-size: 8px; color: #B8A88A;">ROUND 12</span></div>
+          <span style="font-size: 13px; color: #D9CBAE;">Min 10 · Max 500 · 3/5 seats</span>
+          <span><span class="gh-tag gh-tag--torch">Betting · 12s</span></span>
+        </div>
+        <span class="cap">Betting</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-frame gh-frame--glass gh-notch" style="display: flex; flex-direction: column; gap: 6px; width: 280px; box-sizing: border-box; padding: 14px 18px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between;"><span class="gh-display" style="font-size: 22px; color: #FFE08A;">Ember Hall</span><span class="gh-num" style="font-size: 8px; color: #B8A88A;">ROUND 12</span></div>
+          <span style="font-size: 13px; color: #D9CBAE;">Min 10 · Max 500 · 3/5 seats</span>
+          <span><span class="gh-tag gh-tag--you">Your turn · 14s</span></span>
+        </div>
+        <span class="cap">Playing · your turn</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-frame gh-frame--glass gh-notch" style="display: flex; flex-direction: column; gap: 6px; width: 280px; box-sizing: border-box; padding: 14px 18px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between;"><span class="gh-display" style="font-size: 22px; color: #FFE08A;">Ember Hall</span><span class="gh-num" style="font-size: 8px; color: #B8A88A;">ROUND 12</span></div>
+          <span style="font-size: 13px; color: #D9CBAE;">Min 10 · Max 500 · 3/5 seats</span>
+          <span><span class="gh-tag gh-tag--stone">Dealer plays</span></span>
+        </div>
+        <span class="cap">Dealer</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-frame gh-frame--glass gh-notch" style="display: flex; flex-direction: column; gap: 6px; width: 280px; box-sizing: border-box; padding: 14px 18px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between;"><span class="gh-display" style="font-size: 22px; color: #FFE08A;">Ember Hall</span><span class="gh-num" style="font-size: 8px; color: #B8A88A;">ROUND 12</span></div>
+          <span style="font-size: 13px; color: #D9CBAE;">Min 10 · Max 500 · 3/5 seats</span>
+          <span><span class="gh-tag gh-tag--silver">Settled</span></span>
+        </div>
+        <span class="cap">Settled</span>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <h2 class="sec">TableFeed, shared countdown and footer</h2>
+    <div style="display: flex; gap: 48px; align-items: flex-start;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div class="gh-frame gh-frame--glass gh-notch gh-feed" role="log" aria-label="Table feed" style="box-sizing: border-box;">
+          <span class="cap" style="color: #E8B53A; margin-bottom: 4px;">Table feed</span>
+          <div class="gh-feed__row"><i class="gh-feed__dot"></i><span><b>Luis</b> joined seat 2</span></div>
+          <div class="gh-feed__row"><i class="gh-feed__dot"></i><span><b>Mariana</b> doubled</span></div>
+          <div class="gh-feed__row"><i class="gh-feed__dot"></i><span><b>Dealer</b> busts</span></div>
+          <div class="gh-feed__row"><i class="gh-feed__dot"></i><span><b>You</b> won +20</span></div>
+          <div class="gh-feed__row"><i class="gh-feed__dot" style="background: #E0566A;"></i><span><b>Boss hit</b> · 6 / 10</span></div>
+        </div>
+        <span class="cap">Newest at the bottom · last 5 events</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+        <div role="timer" aria-label="Bets close in 12 seconds" style="width: 152px; height: 152px; border-radius: 50%; display: grid; place-items: center; background: conic-gradient(#FFAA3B 0 80%, rgba(26, 16, 20, .85) 0); box-shadow: 0 0 0 3px #1A1014, 0 0 0 7px #E8B53A, 0 0 0 9px #1A1014, 0 0 30px 6px rgba(255, 150, 50, .35);">
+          <div style="width: 120px; height: 120px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: radial-gradient(circle at 50% 35%, #38333D, #14121A 75%); box-shadow: 0 0 0 3px #1A1014;">
+            <span class="gh-num gh-shadow-text" style="font-size: 32px; color: #FFE08A;">12</span>
+            <span class="cap" style="font-size: 10px; color: #D9CBAE;">seconds</span>
+          </div>
+        </div>
+        <span class="gh-display gh-shadow-text" style="font-size: 20px; color: #FFE08A;">Bets close in 12</span>
+        <span class="cap">Shared betting countdown · centre of felt</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <p class="gh-footnote" style="margin: 0;">Fictional credits only</p>
+        <span class="cap">Footer line · bottom centre of every view</span>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1160}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

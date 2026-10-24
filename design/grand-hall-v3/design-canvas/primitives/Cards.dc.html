@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Grand Hall · Playing cards</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="/_blob/196dfe1898f557f0ba8ff161e4f6f687">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Pixelify+Sans:wght@400..700&amp;family=Press+Start+2P&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="gh-root" style="width: 1440px; height: 1060px; box-sizing: border-box; padding: 40px 64px 32px; display: flex; flex-direction: column; gap: 20px; background: linear-gradient(180deg, #1E1B24 0%, #14121A 50%, #0E0C12 100%);">
+
+  <header style="display: flex; flex-direction: column; gap: 8px;">
+    <div class="gh-eyebrow">Primitives</div>
+    <h1 class="gh-display gh-shadow-text" style="margin: 0; font-size: 52px; color: #FFE08A;">Playing cards</h1>
+    <p style="margin: 0; font-size: 15px; color: #D9CBAE;">Drawn in CSS with inline pixel SVG pips, so any rank and suit renders without images. Original card art, no court portraits.</p>
+  </header>
+
+  <div style="display: grid; grid-template-columns: 560px minmax(0, 1fr); gap: 24px;">
+    <section class="gh-frame gh-notch" style="display: flex; gap: 28px; align-items: center; padding: 22px 26px;">
+      <div class="gh-cards">
+        <div class="gh-card gh-card--xl">
+          <span class="gh-visually-hidden">King of spades</span>
+          <div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div>
+          <div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div>
+          <div class="gh-card__corner gh-card__corner--br"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <h2 class="gh-panel-title">Anatomy · .gh-card</h2>
+        <div style="display: grid; grid-template-columns: 150px 1fr; gap: 6px 12px; font-size: 13px; color: #D9CBAE;">
+          <span style="font-weight: 600; color: #FBF4E4;">__corner</span><span>Rank in Pixelify 700 at 30% of the card width, 7×7 pip below. Mirrored bottom-right.</span>
+          <span style="font-weight: 600; color: #FBF4E4;">__center</span><span>Big pip for A–10, a 9×9 emblem for J, Q and K.</span>
+          <span style="font-weight: 600; color: #FBF4E4;">Frame</span><span>Ink 2px, cream bevel, cream-to-parchment fill.</span>
+          <span style="font-weight: 600; color: #FBF4E4;">--card-w</span><span>One variable sizes everything. Height is 1.4× width.</span>
+          <span style="font-weight: 600; color: #FBF4E4;">.is-red</span><span>Hearts and diamonds in #B3202E (6:1 on cream).</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="gh-frame gh-notch" style="display: flex; flex-direction: column; gap: 14px; padding: 22px 26px;">
+      <h2 class="gh-panel-title">Sizes</h2>
+      <div style="display: flex; align-items: flex-end; gap: 28px;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <div class="gh-cards"><div class="gh-card gh-card--sm is-red"><span class="gh-visually-hidden">Ace of hearts</span><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div></div>
+          <span class="gh-num" style="font-size: 8px; color: #D9CBAE;">SM 46</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <div class="gh-cards"><div class="gh-card gh-card--md is-red"><span class="gh-visually-hidden">Ace of hearts</span><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div></div>
+          <span class="gh-num" style="font-size: 8px; color: #D9CBAE;">MD 64</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <div class="gh-cards"><div class="gh-card gh-card--lg is-red"><span class="gh-visually-hidden">Ace of hearts</span><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__corner gh-card__corner--br"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div></div>
+          <span class="gh-num" style="font-size: 8px; color: #D9CBAE;">LG 84</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+          <div class="gh-cards"><div class="gh-card gh-card--xl is-red"><span class="gh-visually-hidden">Ace of hearts</span><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__corner gh-card__corner--br"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div></div>
+          <span class="gh-num" style="font-size: 8px; color: #D9CBAE;">XL 108</span>
+        </div>
+        <p style="margin: 0 0 4px; font-size: 13px; color: #D9CBAE; max-width: 200px;">SM for other seats, MD for desktop hands and the dealer, LG for your mobile hand, XL for overlays.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="gh-frame gh-notch" style="display: flex; flex-direction: column; gap: 14px; padding: 22px 26px;">
+    <h2 class="gh-panel-title">Every rank</h2>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span class="gh-label" style="width: 92px; font-size: 13px; color: #D9CBAE;">Spades · SM</span>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">Ace of spades</span><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">2 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">2</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">3 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">3</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">4 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">4</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">5 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">5</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">6 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">6</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">7 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">7</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">8 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">8</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">9 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">9</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">10 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">10</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">Jack of spades</span><div class="gh-card__corner"><span class="gh-card__rank">J</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M6 0h2v1h-2zM5 1h2v1h-2zM4 2h2v1h-2zM2 3h5v1h-5zM1 4h7v1h-7zM0 5h9v1h-9zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">Queen of spades</span><div class="gh-card__corner"><span class="gh-card__rank">Q</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M4 0h1v1h-1zM3 1h3v1h-3zM0 2h1v1h-1zM3 2h3v1h-3zM8 2h1v1h-1zM0 3h2v1h-2zM3 3h3v1h-3zM7 3h2v1h-2zM0 4h9v1h-9zM1 5h7v1h-7zM2 6h5v1h-5zM1 8h7v1h-7z"></path></svg></div></div>
+      <div class="gh-card gh-card--sm"><span class="gh-visually-hidden">King of spades</span><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+    </div>
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span class="gh-label" style="width: 92px; font-size: 13px; color: #D9CBAE;">Mixed · MD</span>
+      <div class="gh-card gh-card--md is-red"><span class="gh-visually-hidden">Ace of diamonds</span><div class="gh-card__corner"><span class="gh-card__rank">A</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+      <div class="gh-card gh-card--md"><span class="gh-visually-hidden">3 of clubs</span><div class="gh-card__corner"><span class="gh-card__rank">3</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--md is-red"><span class="gh-visually-hidden">6 of hearts</span><div class="gh-card__corner"><span class="gh-card__rank">6</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+      <div class="gh-card gh-card--md"><span class="gh-visually-hidden">8 of spades</span><div class="gh-card__corner"><span class="gh-card__rank">8</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+      <div class="gh-card gh-card--md is-red"><span class="gh-visually-hidden">10 of diamonds</span><div class="gh-card__corner"><span class="gh-card__rank">10</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+      <div class="gh-card gh-card--md"><span class="gh-visually-hidden">Jack of clubs</span><div class="gh-card__corner"><span class="gh-card__rank">J</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M6 0h2v1h-2zM5 1h2v1h-2zM4 2h2v1h-2zM2 3h5v1h-5zM1 4h7v1h-7zM0 5h9v1h-9zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+      <div class="gh-card gh-card--md is-red"><span class="gh-visually-hidden">Queen of hearts</span><div class="gh-card__corner"><span class="gh-card__rank">Q</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M4 0h1v1h-1zM3 1h3v1h-3zM0 2h1v1h-1zM3 2h3v1h-3zM8 2h1v1h-1zM0 3h2v1h-2zM3 3h3v1h-3zM7 3h2v1h-2zM0 4h9v1h-9zM1 5h7v1h-7zM2 6h5v1h-5zM1 8h7v1h-7z"></path></svg></div></div>
+      <div class="gh-card gh-card--md"><span class="gh-visually-hidden">King of clubs</span><div class="gh-card__corner"><span class="gh-card__rank">K</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__face" viewBox="0 0 9 9" aria-hidden="true"><path d="M0 1h1v1h-1zM4 1h1v1h-1zM8 1h1v1h-1zM0 2h2v1h-2zM3 2h3v1h-3zM7 2h2v1h-2zM0 3h9v1h-9zM0 4h9v1h-9zM0 5h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM0 6h9v1h-9zM0 8h9v1h-9z"></path></svg></div></div>
+      <p style="margin: 0 0 0 16px; font-size: 13px; color: #D9CBAE; max-width: 300px;">Black: spades and clubs in ink. Red: hearts and diamonds. Suit shapes differ in silhouette, never colour alone.</p>
+    </div>
+  </section>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px;">
+    <section class="gh-frame gh-notch" style="display: flex; flex-direction: column; gap: 14px; padding: 22px 26px;">
+      <h2 class="gh-panel-title">Card back · .gh-card--back</h2>
+      <div style="display: flex; align-items: center; gap: 22px;">
+        <div class="gh-cards"><div class="gh-card gh-card--back gh-card--lg"><span class="gh-visually-hidden">Face-down card</span><img class="gh-card__crest" src="/_blob/dbbab820689b32c06d2e0ae8aeea6fea" alt=""></div></div>
+        <p style="margin: 0; font-size: 13px; color: #D9CBAE;">Crimson with a gold lattice and the crest. Used for the dealer's hole card until the round settles.</p>
+      </div>
+    </section>
+    <section class="gh-frame gh-notch" style="display: flex; flex-direction: column; gap: 14px; padding: 22px 26px;">
+      <h2 class="gh-panel-title">Double · --sideways</h2>
+      <div style="display: flex; align-items: center; gap: 30px;">
+        <div class="gh-cards" style="padding: 0 14px;">
+          <div class="gh-card gh-card--md"><span class="gh-visually-hidden">5 of clubs</span><div class="gh-card__corner"><span class="gh-card__rank">5</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M2 0h3v1h-3zM2 1h3v1h-3zM0 2h2v1h-2zM3 2h1v1h-1zM5 2h2v1h-2zM0 3h7v1h-7zM0 4h2v1h-2zM3 4h1v1h-1zM5 4h2v1h-2zM3 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+          <div class="gh-card gh-card--md is-red"><span class="gh-visually-hidden">6 of hearts</span><div class="gh-card__corner"><span class="gh-card__rank">6</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M1 0h2v1h-2zM4 0h2v1h-2zM0 1h7v1h-7zM0 2h7v1h-7zM0 3h7v1h-7zM1 4h5v1h-5zM2 5h3v1h-3zM3 6h1v1h-1z"></path></svg></div></div>
+          <div class="gh-card gh-card--md gh-card--sideways"><span class="gh-visually-hidden">9 of spades, dealt sideways</span><div class="gh-card__corner"><span class="gh-card__rank">9</span><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div><div class="gh-card__center"><svg class="gh-card__pip" viewBox="0 0 7 7" aria-hidden="true"><path d="M3 0h1v1h-1zM2 1h3v1h-3zM1 2h5v1h-5zM0 3h7v1h-7zM0 4h7v1h-7zM1 5h1v1h-1zM3 5h1v1h-1zM5 5h1v1h-1zM2 6h3v1h-3z"></path></svg></div></div>
+        </div>
+      </div>
+      <p style="margin: 0; font-size: 13px; color: #D9CBAE;">The one card a double receives is dealt sideways, rotated 90°.</p>
+    </section>
+    <section class="gh-frame gh-notch" style="display: flex; flex-direction: column; gap: 10px; padding: 22px 26px;">
+      <h2 class="gh-panel-title">Deal · .is-dealt</h2>
+      <p style="margin: 0; font-size: 13px; color: #D9CBAE;">Cards fly from the shoe with gh-deal (420ms, ease). Set --from-x and --from-y to the shoe's offset from the hand.</p>
+      <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 12px; color: #D9CBAE;">
+        <span style="font-weight: 600; color: #FBF4E4;">Overlap</span><span>-55% of --card-w inside .gh-cards</span>
+        <span style="font-weight: 600; color: #FBF4E4;">Shadow</span><span>drop-shadow on .gh-cards, never per card</span>
+        <span style="font-weight: 600; color: #FBF4E4;">Order</span><span>Dealt left to right; the newest card sits on top</span>
+      </div>
+    </section>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1060}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

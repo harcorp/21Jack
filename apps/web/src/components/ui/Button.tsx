@@ -2,31 +2,28 @@ import Link from "next/link";
 import type { ComponentProps } from "react";
 import { cx } from "./cx";
 
-export type ButtonVariant = "primary" | "wood" | "ghost" | "danger";
+/** primary = gold, wood = treasury brown, ghost = gold outline, danger = crimson; stone/felt are secondary/confirm. */
+export type ButtonVariant = "primary" | "wood" | "ghost" | "danger" | "stone" | "felt";
 export type ButtonSize = "sm" | "md" | "lg";
 
 const variants: Record<ButtonVariant, string> = {
-  primary: "voxel-block bg-gold text-ink hover:bg-gold-light",
-  wood: "voxel-block bg-wood text-gold-light hover:brightness-110",
-  danger: "voxel-block bg-carpet text-parchment hover:brightness-110",
-  ghost: "border-2 border-transparent text-parchment underline-offset-4 hover:underline",
+  primary: "",
+  wood: "gh-btn--wood",
+  ghost: "gh-btn--ghost",
+  danger: "gh-btn--crimson",
+  stone: "gh-btn--stone",
+  felt: "gh-btn--felt",
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "min-h-11 px-3 text-sm",
-  md: "min-h-12 px-4 text-base",
-  lg: "min-h-14 px-6 text-xl",
+  sm: "gh-btn--sm",
+  md: "",
+  lg: "gh-btn--lg",
 };
 
 export function buttonClasses(variant: ButtonVariant = "wood", size: ButtonSize = "md", className?: string) {
-  return cx(
-    "inline-flex items-center justify-center gap-2 font-display font-semibold select-none transition-[filter,transform]",
-    "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-torch",
-    "active:voxel-pressed disabled:cursor-not-allowed disabled:bg-stone disabled:text-parchment/60 disabled:active:transform-none",
-    variants[variant],
-    sizes[size],
-    className,
-  );
+  // Labels may wrap on narrow screens instead of overflowing the viewport.
+  return cx("gh-btn max-w-full text-center whitespace-normal select-none", variants[variant], sizes[size], className);
 }
 
 type ButtonProps = ComponentProps<"button"> & { variant?: ButtonVariant; size?: ButtonSize; busy?: boolean };
@@ -35,11 +32,12 @@ export function Button({ variant, size, busy, className, disabled, type = "butto
   return (
     <button
       type={type}
-      className={buttonClasses(variant, size, className)}
+      className={buttonClasses(variant, size, cx(busy && "is-loading", className))}
       disabled={disabled || busy}
       aria-busy={busy || undefined}
       {...rest}
     >
+      {busy ? <span className="gh-spinner shrink-0" aria-hidden="true" /> : null}
       {children}
     </button>
   );

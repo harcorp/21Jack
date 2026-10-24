@@ -1,0 +1,461 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Main.dc.html": {
+      "h": 1180,
+      "page": "primitives",
+      "title": "Grand Hall · Version 3",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "primitives/Avatars.dc.html": {
+      "h": 900,
+      "page": "primitives",
+      "title": "Avatars",
+      "w": 1440,
+      "x": 0,
+      "y": 2240
+    },
+    "primitives/Cards.dc.html": {
+      "h": 1060,
+      "page": "primitives",
+      "title": "Playing cards",
+      "w": 1440,
+      "x": 3040,
+      "y": 1180
+    },
+    "primitives/Chips.dc.html": {
+      "h": 820,
+      "page": "primitives",
+      "title": "Chips",
+      "w": 1440,
+      "x": 0,
+      "y": 1300
+    },
+    "primitives/Heraldry.dc.html": {
+      "h": 1060,
+      "page": "primitives",
+      "title": "Heraldry & icons",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "primitives/King.dc.html": {
+      "h": 940,
+      "page": "primitives",
+      "title": "King dealer",
+      "w": 1440,
+      "x": 1520,
+      "y": 2320
+    },
+    "primitives/SceneLayers.dc.html": {
+      "h": 1640,
+      "page": "primitives",
+      "title": "Scene layers",
+      "w": 1440,
+      "x": 3040,
+      "y": 2360
+    },
+    "primitives/Tokens.dc.html": {
+      "h": 2200,
+      "page": "primitives",
+      "title": "Tokens",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "ui/Buttons.dc.html": {
+      "h": 1200,
+      "page": "ui",
+      "title": "Buttons & actions",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "ui/ChipSelector.dc.html": {
+      "h": 860,
+      "page": "ui",
+      "title": "Chip selector",
+      "w": 1440,
+      "x": 1520,
+      "y": 1280
+    },
+    "ui/Feedback.dc.html": {
+      "h": 1000,
+      "page": "ui",
+      "title": "Feedback & system states",
+      "w": 1440,
+      "x": 1520,
+      "y": 2260
+    },
+    "ui/Forms.dc.html": {
+      "h": 1140,
+      "page": "ui",
+      "title": "Panels & forms",
+      "w": 1440,
+      "x": 3040,
+      "y": 1120
+    },
+    "ui/HUD.dc.html": {
+      "h": 1160,
+      "page": "ui",
+      "title": "HUD, boss bar, feed",
+      "w": 1440,
+      "x": 1520,
+      "y": 0
+    },
+    "ui/Hands.dc.html": {
+      "h": 1460,
+      "page": "ui",
+      "title": "Hands & results",
+      "w": 1440,
+      "x": 0,
+      "y": 1320
+    },
+    "ui/Seats.dc.html": {
+      "h": 1000,
+      "page": "ui",
+      "title": "Seats",
+      "w": 1440,
+      "x": 3040,
+      "y": 0
+    },
+    "views/desktop/Multi-1-Betting.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Multiplayer · 1 Shared betting",
+      "w": 1440,
+      "x": 0,
+      "y": 3390
+    },
+    "views/desktop/Multi-2-YourTurn.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Multiplayer · 2 Your turn",
+      "w": 1440,
+      "x": 1520,
+      "y": 3390
+    },
+    "views/desktop/Multi-3-OtherTurn.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Multiplayer · 3 Another player's turn",
+      "w": 1440,
+      "x": 3040,
+      "y": 3390
+    },
+    "views/desktop/Multi-4-Dealer.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Multiplayer · 4 Dealer plays",
+      "w": 1440,
+      "x": 0,
+      "y": 4320
+    },
+    "views/desktop/Multi-5-Settled.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Multiplayer · 5 Settled + boss hit",
+      "w": 1440,
+      "x": 1520,
+      "y": 4320
+    },
+    "views/desktop/Multi-6-Watching.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Multiplayer · 6 Spectator",
+      "w": 1440,
+      "x": 3040,
+      "y": 4320
+    },
+    "views/desktop/Solo-1-Betting.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Solo · 1 Betting",
+      "w": 1440,
+      "x": 0,
+      "y": 1230
+    },
+    "views/desktop/Solo-2-Natural.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Solo · 2 Natural at the deal",
+      "w": 1440,
+      "x": 1520,
+      "y": 1230
+    },
+    "views/desktop/Solo-3-Turn.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Solo · 3 Your turn (soft hand)",
+      "w": 1440,
+      "x": 3040,
+      "y": 1230
+    },
+    "views/desktop/Solo-4-Split.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Solo · 4 Split",
+      "w": 1440,
+      "x": 4560,
+      "y": 1230
+    },
+    "views/desktop/Solo-5-Double.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Solo · 5 Double",
+      "w": 1440,
+      "x": 0,
+      "y": 2160
+    },
+    "views/desktop/Solo-6-Results.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Solo · 6 Results",
+      "w": 1440,
+      "x": 1520,
+      "y": 2160
+    },
+    "views/desktop/Solo-7-NoCredits.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Solo · 7 Not enough credits",
+      "w": 1440,
+      "x": 3040,
+      "y": 2160
+    },
+    "views/desktop/Solo-8-Resume.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "Solo · 8 Round in progress",
+      "w": 1440,
+      "x": 4560,
+      "y": 2160
+    },
+    "views/desktop/TableStage.dc.html": {
+      "h": 810,
+      "page": "tables-desktop",
+      "title": "TableStage (component · all states)",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "views/mobile/Mobile-Multi-1-Betting.dc.html": {
+      "h": 844,
+      "page": "tables-mobile",
+      "title": "Multiplayer · Betting",
+      "w": 390,
+      "x": 0,
+      "y": 2528
+    },
+    "views/mobile/Mobile-Multi-2-YourTurn.dc.html": {
+      "h": 844,
+      "page": "tables-mobile",
+      "title": "Multiplayer · Your turn",
+      "w": 390,
+      "x": 470,
+      "y": 2528
+    },
+    "views/mobile/Mobile-Multi-3-OtherTurn.dc.html": {
+      "h": 844,
+      "page": "tables-mobile",
+      "title": "Multiplayer · Another turn",
+      "w": 390,
+      "x": 940,
+      "y": 2528
+    },
+    "views/mobile/Mobile-Multi-4-Settled.dc.html": {
+      "h": 844,
+      "page": "tables-mobile",
+      "title": "Multiplayer · Settled",
+      "w": 390,
+      "x": 1410,
+      "y": 2528
+    },
+    "views/mobile/Mobile-Solo-1-Betting.dc.html": {
+      "h": 844,
+      "page": "tables-mobile",
+      "title": "Solo · Betting",
+      "w": 390,
+      "x": 0,
+      "y": 1264
+    },
+    "views/mobile/Mobile-Solo-2-Turn.dc.html": {
+      "h": 844,
+      "page": "tables-mobile",
+      "title": "Solo · Your turn",
+      "w": 390,
+      "x": 470,
+      "y": 1264
+    },
+    "views/mobile/Mobile-Solo-3-Split.dc.html": {
+      "h": 844,
+      "page": "tables-mobile",
+      "title": "Solo · Split",
+      "w": 390,
+      "x": 940,
+      "y": 1264
+    },
+    "views/mobile/Mobile-Solo-4-Results.dc.html": {
+      "h": 844,
+      "page": "tables-mobile",
+      "title": "Solo · Results",
+      "w": 390,
+      "x": 1410,
+      "y": 1264
+    },
+    "views/mobile/MobileStage.dc.html": {
+      "h": 844,
+      "page": "tables-mobile",
+      "title": "MobileStage (component)",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-24T15:24:27Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "page": "primitives",
+    "view": "canvas"
+  },
+  "notes": {
+    "t-desk": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "tables-desktop",
+      "text": "Table stage component (16:9, 1440 × 810)",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t-mmulti": {
+      "kind": "title1",
+      "maxW": 1800,
+      "page": "tables-mobile",
+      "text": "Mobile · multiplayer",
+      "w": 240,
+      "x": 0,
+      "y": 2228
+    },
+    "t-mob": {
+      "kind": "title1",
+      "maxW": 1800,
+      "page": "tables-mobile",
+      "text": "Mobile stage (390 × 844)",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t-msolo": {
+      "kind": "title1",
+      "maxW": 1800,
+      "page": "tables-mobile",
+      "text": "Mobile · solo",
+      "w": 240,
+      "x": 0,
+      "y": 964
+    },
+    "t-multi": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "tables-desktop",
+      "text": "Multiplayer table · five seats",
+      "w": 240,
+      "x": 0,
+      "y": 3090
+    },
+    "t-prim": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "primitives",
+      "text": "Grand Hall · Primitives",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "t-solo": {
+      "kind": "title1",
+      "maxW": 6000,
+      "page": "tables-desktop",
+      "text": "Solo table · every state",
+      "w": 240,
+      "x": 0,
+      "y": 930
+    },
+    "t-ui": {
+      "kind": "title1",
+      "maxW": 4480,
+      "page": "ui",
+      "text": "Grand Hall · UI components",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "primitives/Tokens.dc.html",
+    "primitives/Heraldry.dc.html",
+    "primitives/Cards.dc.html",
+    "primitives/Chips.dc.html",
+    "primitives/Avatars.dc.html",
+    "primitives/King.dc.html",
+    "primitives/SceneLayers.dc.html",
+    "ui/Buttons.dc.html",
+    "ui/HUD.dc.html",
+    "ui/Seats.dc.html",
+    "ui/Hands.dc.html",
+    "ui/ChipSelector.dc.html",
+    "ui/Forms.dc.html",
+    "ui/Feedback.dc.html",
+    "views/desktop/TableStage.dc.html",
+    "views/desktop/Solo-1-Betting.dc.html",
+    "views/desktop/Solo-2-Natural.dc.html",
+    "views/desktop/Solo-3-Turn.dc.html",
+    "views/desktop/Solo-4-Split.dc.html",
+    "views/desktop/Solo-5-Double.dc.html",
+    "views/desktop/Solo-6-Results.dc.html",
+    "views/desktop/Solo-7-NoCredits.dc.html",
+    "views/desktop/Solo-8-Resume.dc.html",
+    "views/desktop/Multi-1-Betting.dc.html",
+    "views/desktop/Multi-2-YourTurn.dc.html",
+    "views/desktop/Multi-3-OtherTurn.dc.html",
+    "views/desktop/Multi-4-Dealer.dc.html",
+    "views/desktop/Multi-5-Settled.dc.html",
+    "views/desktop/Multi-6-Watching.dc.html",
+    "views/mobile/MobileStage.dc.html",
+    "views/mobile/Mobile-Solo-1-Betting.dc.html",
+    "views/mobile/Mobile-Solo-2-Turn.dc.html",
+    "views/mobile/Mobile-Solo-3-Split.dc.html",
+    "views/mobile/Mobile-Solo-4-Results.dc.html",
+    "views/mobile/Mobile-Multi-1-Betting.dc.html",
+    "views/mobile/Mobile-Multi-2-YourTurn.dc.html",
+    "views/mobile/Mobile-Multi-3-OtherTurn.dc.html",
+    "views/mobile/Mobile-Multi-4-Settled.dc.html"
+  ],
+  "pages": [
+    {
+      "id": "primitives",
+      "name": "Primitives"
+    },
+    {
+      "id": "ui",
+      "name": "UI components"
+    },
+    {
+      "id": "tables-desktop",
+      "name": "Tables · desktop"
+    },
+    {
+      "id": "tables-mobile",
+      "name": "Tables · mobile"
+    }
+  ],
+  "title": "Blackjack, your way — Grand Hall (V3)"
+}

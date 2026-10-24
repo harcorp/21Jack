@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Grand Hall · Tokens</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="../../design-system/grand-hall.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Pixelify+Sans:wght@400..700&amp;family=Press+Start+2P&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div class="gh-root" style="width: 1440px; height: 2200px; box-sizing: border-box; padding: 48px 64px; display: flex; flex-direction: column; gap: 30px; background: linear-gradient(180deg, #1E1B24 0%, #14121A 40%, #0E0C12 100%);">
+
+  <header style="display: flex; justify-content: space-between; align-items: flex-end; gap: 32px;">
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="gh-eyebrow">Primitives</div>
+      <h1 class="gh-display gh-shadow-text" style="margin: 0; font-size: 52px; color: #FFE08A;">Tokens</h1>
+      <p style="margin: 0; font-size: 15px; color: #D9CBAE; max-width: 640px;">Colour, type, space, frames, depth and motion for every Grand Hall screen. Use them as CSS variables: var(--gh-…).</p>
+    </div>
+    <pre class="gh-frame gh-frame--thin gh-notch" style="margin: 0; padding: 14px 18px; width: 470px; box-sizing: border-box; font-family: ui-monospace, Menlo, Consolas, Inter, monospace; font-size: 12px; line-height: 1.6; color: #EFE3C8; white-space: pre;">.seat-plaque {
+  background: var(--gh-stone-900);
+  color: var(--gh-text);
+  font-family: var(--gh-font-num);
+  box-shadow: var(--gh-drop);
+  padding: var(--gh-space-2) var(--gh-space-3);
+}</pre>
+  </header>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <h2 class="gh-panel-title" style="font-size: 24px;">Colour families</h2>
+      <hr class="gh-rule" style="flex: 1;">
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 10px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="gh-label" style="font-size: 14px; color: #FFE08A; height: 24px;">Stone</div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #0E0C12; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-stone-950</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#0E0C12</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #14121A; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-stone-900</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#14121A</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #1E1B24; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-stone-800</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#1E1B24</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #2A2630; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-stone-700</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#2A2630</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #38333D; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-stone-600</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#38333D</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #4A4450; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-stone-500</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#4A4450</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #615A66; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-stone-400</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#615A66</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #7D7682; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-stone-300</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#7D7682</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #A9A1AD; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-stone-200</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#A9A1AD</div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="gh-label" style="font-size: 14px; color: #FFE08A; height: 24px;">Wood</div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #2A160C; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-wood-900</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#2A160C</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #3E2211; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-wood-800</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#3E2211</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #5A3318; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-wood-700</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#5A3318</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #784622; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-wood-600</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#784622</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #96602F; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-wood-500</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#96602F</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #B47C41; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-wood-400</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#B47C41</div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="gh-label" style="font-size: 14px; color: #FFE08A; height: 24px;">Crimson</div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #3A0A10; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-crimson-900</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#3A0A10</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #5C0F18; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-crimson-800</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#5C0F18</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #7E1622; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-crimson-700</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#7E1622</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #A11F2D; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-crimson-600</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#A11F2D</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #C4323F; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-crimson-500</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#C4323F</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #E0566A; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-crimson-400</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#E0566A</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #FF7A88; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-crimson-300</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#FF7A88</div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="gh-label" style="font-size: 14px; color: #FFE08A; height: 24px;">Felt</div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #0B2A1C; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-felt-900</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#0B2A1C</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #0F3A26; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-felt-800</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#0F3A26</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #145032; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-felt-700</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#145032</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #1A6340; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-felt-600</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#1A6340</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #23784F; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-felt-500</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#23784F</div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="gh-label" style="font-size: 14px; color: #FFE08A; height: 24px;">Gold</div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #4A2C0A; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-gold-900</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#4A2C0A</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #8A5A14; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-gold-700</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#8A5A14</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #C8902A; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-gold-500</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#C8902A</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #E8B53A; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-gold-400</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#E8B53A</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #FFE08A; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-gold-200</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#FFE08A</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #FFF1C2; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-gold-100</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#FFF1C2</div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="gh-label" style="font-size: 14px; color: #FFE08A; height: 24px;">Torch</div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #7A2A06; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-torch-800</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#7A2A06</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #C2410C; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-torch-600</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#C2410C</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #F07A1A; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-torch-500</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#F07A1A</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #FFAA3B; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-torch-400</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#FFAA3B</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #FFD27A; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-torch-200</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#FFD27A</div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="gh-label" style="font-size: 14px; color: #FFE08A; height: 24px;">Cream</div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #B8A88A; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-cream-400</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#B8A88A</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #D9CBAE; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-cream-300</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#D9CBAE</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #EFE3C8; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-cream-200</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#EFE3C8</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #FBF4E4; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-cream-100</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#FBF4E4</div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="gh-label" style="font-size: 14px; color: #FFE08A; height: 24px;">Silver · ink</div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #C9CDD6; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-silver-300</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#C9CDD6</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #8A8F99; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-silver-500</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#8A8F99</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #1A1014; color: #FBF4E4; box-shadow: inset 0 0 0 2px #4A4450;"><div style="font-size: 11px; font-weight: 600;">--gh-ink</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#1A1014</div></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 4px;">
+        <div class="gh-label" style="font-size: 14px; color: #FFE08A; height: 24px;">Dusk</div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #1B1638; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-dusk-900</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#1B1638</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #3B2456; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-dusk-700</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#3B2456</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #7A2E5C; color: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-dusk-500</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#7A2E5C</div></div>
+        <div style="height: 48px; padding: 6px 8px; box-sizing: border-box; background: #F08A4B; color: #1A1014; box-shadow: inset 0 0 0 2px #1A1014;"><div style="font-size: 11px; font-weight: 600;">--gh-dusk-300</div><div class="gh-num" style="font-size: 8px; margin-top: 6px;">#F08A4B</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <h2 class="gh-panel-title" style="font-size: 24px;">Semantic tokens</h2>
+      <hr class="gh-rule" style="flex: 1;">
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px 12px;">
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #14121A; box-shadow: inset 0 0 0 2px #615A66;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-bg</div><div style="font-size: 11px; color: #B8A88A;">stone-900</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #1E1B24; box-shadow: inset 0 0 0 2px #615A66;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-surface</div><div style="font-size: 11px; color: #B8A88A;">stone-800</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #2A2630; box-shadow: inset 0 0 0 2px #615A66;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-surface-raised</div><div style="font-size: 11px; color: #B8A88A;">stone-700</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #0E0C12; box-shadow: inset 0 0 0 2px #615A66;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-surface-sunken</div><div style="font-size: 11px; color: #B8A88A;">stone-950</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #3E2211; box-shadow: inset 0 0 0 2px #615A66;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-panel-wood</div><div style="font-size: 11px; color: #B8A88A;">wood-800</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #E8B53A; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-accent</div><div style="font-size: 11px; color: #B8A88A;">gold-400</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #FBF4E4; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-text</div><div style="font-size: 11px; color: #B8A88A;">cream-100 · 15.5:1</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #D9CBAE; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-text-muted</div><div style="font-size: 11px; color: #B8A88A;">cream-300 · 10.6:1</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #B8A88A; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-text-dim</div><div style="font-size: 11px; color: #B8A88A;">cream-400 · 7.3:1</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #2A160C; box-shadow: inset 0 0 0 2px #615A66;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-text-on-gold</div><div style="font-size: 11px; color: #B8A88A;">wood-900 · 9.1:1</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #A9A1AD; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-text-disabled</div><div style="font-size: 11px; color: #B8A88A;">stone-200</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #FFAA3B; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-focus</div><div style="font-size: 11px; color: #B8A88A;">torch-400 · 3px ring</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #FF7A88; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-danger</div><div style="font-size: 11px; color: #B8A88A;">crimson-300 · text</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #7E1622; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-danger-fill</div><div style="font-size: 11px; color: #B8A88A;">crimson-700</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #B3202E; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-card-red</div><div style="font-size: 11px; color: #B8A88A;">#B3202E on cream</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #E8B53A; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-victory</div><div style="font-size: 11px; color: #B8A88A;">gold-400</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #C9CDD6; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-push</div><div style="font-size: 11px; color: #B8A88A;">silver-300</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #E0566A; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-defeat</div><div style="font-size: 11px; color: #B8A88A;">crimson-400</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #FFE08A; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-blackjack</div><div style="font-size: 11px; color: #B8A88A;">gold-200</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #EFE3C8; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-chip-5</div><div style="font-size: 11px; color: #B8A88A;">cream-200</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #A11F2D; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-chip-10</div><div style="font-size: 11px; color: #B8A88A;">crimson-600</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #1A6340; box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-chip-25</div><div style="font-size: 11px; color: #B8A88A;">felt-600</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: #38333D; box-shadow: inset 0 0 0 2px #615A66;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-chip-100</div><div style="font-size: 11px; color: #B8A88A;">stone-600</div></div></div>
+      <div style="display: flex; align-items: center; gap: 10px; height: 44px;"><div style="width: 32px; height: 32px; flex: none; background: linear-gradient(90deg, #E8B53A 50%, #3B2456 50%); box-shadow: inset 0 0 0 2px #1A1014;"></div><div><div style="font-size: 12px; font-weight: 600; color: #FBF4E4;">--gh-chip-500 · 1k</div><div style="font-size: 11px; color: #B8A88A;">gold-400 · dusk-700</div></div></div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <h2 class="gh-panel-title" style="font-size: 24px;">Type</h2>
+      <hr class="gh-rule" style="flex: 1;">
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;">
+      <div class="gh-frame gh-notch" style="display: flex; flex-direction: column; gap: 10px; padding: 20px 22px;">
+        <div class="gh-eyebrow" style="font-size: 12px;">Display · Pixelify Sans 700</div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;"><span class="gh-display gh-shadow-text" style="font-size: 56px; color: #FFE08A;">Grand Hall</span><span class="gh-num" style="font-size: 8px; color: #B8A88A;">56</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;"><span class="gh-display gh-shadow-text" style="font-size: 40px; color: #FBF4E4;">Join a table</span><span class="gh-num" style="font-size: 8px; color: #B8A88A;">40</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;"><span class="gh-display" style="font-size: 28px; color: #FBF4E4;">Round results</span><span class="gh-num" style="font-size: 8px; color: #B8A88A;">28</span></div>
+        <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;"><span class="gh-display" style="font-size: 20px; color: #FBF4E4;">Treasury</span><span class="gh-num" style="font-size: 8px; color: #B8A88A;">20</span></div>
+        <hr class="gh-rule" style="margin-top: 4px;">
+        <div class="gh-eyebrow" style="font-size: 12px;">Label · 16 caps, 0.08em</div>
+        <div class="gh-label" style="color: #FBF4E4;">Hit · Stand · Double · Split</div>
+      </div>
+      <div class="gh-frame gh-notch" style="display: flex; flex-direction: column; gap: 12px; padding: 20px 22px;">
+        <div class="gh-eyebrow" style="font-size: 12px;">Numbers · Press Start 2P</div>
+        <div style="display: flex; gap: 24px; align-items: flex-end;">
+          <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 12px; padding: 12px 14px; background: #0E0C12; box-shadow: inset 0 0 0 2px #38333D;">
+            <span class="gh-num" style="font-size: 24px; color: #FFE08A;">1,240</span>
+            <span class="gh-num" style="font-size: 24px; color: #FBF4E4;">20</span>
+            <span class="gh-num" style="font-size: 24px; color: #FBF4E4;">0</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: baseline; gap: 10px;"><span class="gh-num" style="font-size: 16px;">3,890</span><span style="font-size: 12px; color: #B8A88A;">16 · balances</span></div>
+            <div style="display: flex; align-items: baseline; gap: 10px;"><span class="gh-num" style="font-size: 12px;">+20</span><span style="font-size: 12px; color: #B8A88A;">12 · totals, payouts</span></div>
+            <div style="display: flex; align-items: baseline; gap: 10px;"><span class="gh-num" style="font-size: 8px;">3/5</span><span style="font-size: 12px; color: #B8A88A;">8 · chip values, keys</span></div>
+          </div>
+        </div>
+        <p style="margin: 0; font-size: 13px; color: #D9CBAE;">Monospaced, so digits always line up. Keep sizes on multiples of 4 so the 8 px grid stays crisp.</p>
+      </div>
+      <div class="gh-frame gh-notch" style="display: flex; flex-direction: column; gap: 10px; padding: 20px 22px;">
+        <div class="gh-eyebrow" style="font-size: 12px;">Body · Inter</div>
+        <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #FBF4E4;">Body 15/1.45 · Deposits are whole numbers from 1 to 1,000,000. New accounts start at 0 credits.</p>
+        <p style="margin: 0; font-size: 13px; line-height: 1.45; color: #D9CBAE;">Small 13 · Used for hints, the table feed and transaction details.</p>
+        <hr class="gh-rule" style="margin-top: 4px;">
+        <div style="display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 12px; color: #D9CBAE;">
+          <span style="font-weight: 600; color: #FBF4E4;">--gh-font-display</span><span>Pixelify Sans, Courier New</span>
+          <span style="font-weight: 600; color: #FBF4E4;">--gh-font-num</span><span>Press Start 2P, Courier New</span>
+          <span style="font-weight: 600; color: #FBF4E4;">--gh-font-body</span><span>Inter, system-ui</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <h2 class="gh-panel-title" style="font-size: 24px;">Space &amp; frames</h2>
+      <hr class="gh-rule" style="flex: 1;">
+    </div>
+    <div style="display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 28px;">
+      <div style="display: flex; flex-direction: column; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 112px; font-size: 12px; font-weight: 600;">--gh-space-1</span><div style="width: 4px; height: 14px; background: #E8B53A;"></div><span class="gh-num" style="font-size: 8px; color: #B8A88A;">4</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 112px; font-size: 12px; font-weight: 600;">--gh-space-2</span><div style="width: 8px; height: 14px; background: #E8B53A;"></div><span class="gh-num" style="font-size: 8px; color: #B8A88A;">8</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 112px; font-size: 12px; font-weight: 600;">--gh-space-3</span><div style="width: 12px; height: 14px; background: #E8B53A;"></div><span class="gh-num" style="font-size: 8px; color: #B8A88A;">12</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 112px; font-size: 12px; font-weight: 600;">--gh-space-4</span><div style="width: 16px; height: 14px; background: #E8B53A;"></div><span class="gh-num" style="font-size: 8px; color: #B8A88A;">16</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 112px; font-size: 12px; font-weight: 600;">--gh-space-5</span><div style="width: 24px; height: 14px; background: #E8B53A;"></div><span class="gh-num" style="font-size: 8px; color: #B8A88A;">24</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 112px; font-size: 12px; font-weight: 600;">--gh-space-6</span><div style="width: 32px; height: 14px; background: #E8B53A;"></div><span class="gh-num" style="font-size: 8px; color: #B8A88A;">32</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 112px; font-size: 12px; font-weight: 600;">--gh-space-7</span><div style="width: 48px; height: 14px; background: #E8B53A;"></div><span class="gh-num" style="font-size: 8px; color: #B8A88A;">48</span></div>
+        <div style="display: flex; align-items: center; gap: 12px;"><span style="width: 112px; font-size: 12px; font-weight: 600;">--gh-space-8</span><div style="width: 64px; height: 14px; background: #E8B53A;"></div><span class="gh-num" style="font-size: 8px; color: #B8A88A;">64</span></div>
+        <p style="margin: 6px 0 0; font-size: 12px; color: #B8A88A;">--gh-px 2px (one art pixel) · --gh-notch 4px stepped corner · --gh-target 44px minimum hit area.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px;">
+        <div class="gh-frame gh-notch" style="height: 96px; display: flex; align-items: flex-end;"><span class="gh-label" style="font-size: 13px;">.gh-frame</span></div>
+        <div class="gh-frame gh-frame--wood gh-notch" style="height: 96px; display: flex; align-items: flex-end;"><span class="gh-label" style="font-size: 13px;">--wood</span></div>
+        <div class="gh-frame gh-frame--stone gh-notch" style="height: 96px; display: flex; align-items: flex-end;"><span class="gh-label" style="font-size: 13px;">--stone</span></div>
+        <div class="gh-frame gh-frame--crimson gh-notch" style="height: 96px; display: flex; align-items: flex-end;"><span class="gh-label" style="font-size: 13px;">--crimson</span></div>
+        <div class="gh-frame gh-frame--felt gh-notch" style="height: 96px; display: flex; align-items: flex-end;"><span class="gh-label" style="font-size: 13px;">--felt</span></div>
+        <div class="gh-frame gh-frame--glass gh-notch" style="height: 96px; display: flex; align-items: flex-end; background-image: none;"><span class="gh-label" style="font-size: 13px;">--glass</span></div>
+        <div class="gh-frame gh-frame--thin gh-notch" style="height: 96px; display: flex; align-items: flex-end;"><span class="gh-label" style="font-size: 13px;">--thin</span></div>
+        <div style="height: 96px; display: flex; flex-direction: column; justify-content: center; gap: 6px; font-size: 12px; color: #D9CBAE;">
+          <span>Gold frame = ink 2px, gold-400 2px, gold-700 2px, inner shade.</span>
+          <span>Add .gh-notch for the pixel corner.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px;">
+    <div style="display: flex; align-items: center; gap: 16px;">
+      <h2 class="gh-panel-title" style="font-size: 24px;">Depth &amp; motion</h2>
+      <hr class="gh-rule" style="flex: 1;">
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px;">
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; padding: 16px 8px 0;">
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;"><div style="width: 96px; height: 72px; background: #38333D; box-shadow: inset 0 0 0 2px #1A1014, 0 4px 0 rgba(10, 8, 12, .55);"></div><span style="font-size: 12px; font-weight: 600;">--gh-drop</span></div>
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;"><div style="width: 96px; height: 72px; background: #38333D; box-shadow: inset 0 0 0 2px #1A1014, 0 8px 0 rgba(10, 8, 12, .5), 0 18px 40px rgba(0, 0, 0, .45);"></div><span style="font-size: 12px; font-weight: 600;">--gh-drop-lg</span></div>
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;"><div style="width: 96px; height: 72px; background: #38333D; box-shadow: 0 0 0 2px #FFE08A, 0 0 22px 6px rgba(255, 200, 90, .55);"></div><span style="font-size: 12px; font-weight: 600;">--gh-glow-gold</span></div>
+        <div style="display: flex; flex-direction: column; gap: 14px; align-items: center;"><div style="width: 96px; height: 72px; background: #38333D; box-shadow: inset 0 0 0 2px #1A1014, 0 0 26px 8px rgba(255, 150, 50, .45);"></div><span style="font-size: 12px; font-weight: 600;">--gh-glow-torch</span></div>
+      </div>
+      <div class="gh-frame gh-notch" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px 24px; padding: 18px 22px; font-size: 13px; color: #D9CBAE;">
+        <span><b style="color: #FBF4E4;">--gh-dur-fast</b> 120ms · press, hover</span>
+        <span><b style="color: #FFE08A;">Torch flicker</b> · gh-flicker, steps(6)</span>
+        <span><b style="color: #FBF4E4;">--gh-dur</b> 220ms · panels, toasts</span>
+        <span><b style="color: #FFE08A;">Embers</b> · gh-ember, 9–12s linear</span>
+        <span><b style="color: #FBF4E4;">--gh-dur-slow</b> 420ms · card deal</span>
+        <span><b style="color: #FFE08A;">Card deal</b> · gh-deal from the shoe</span>
+        <span><b style="color: #FBF4E4;">--gh-ease</b> cubic-bezier(.2,.8,.2,1)</span>
+        <span><b style="color: #FFE08A;">Chip slide</b> · gh-chip-slide</span>
+        <span><b style="color: #FBF4E4;">--gh-ease-pixel</b> steps(4, end)</span>
+        <span><b style="color: #FFE08A;">King reactions</b> · gh-king-idle sprite</span>
+        <span style="color: #B8A88A;">Nothing else animates. Reduced motion stops all loops.</span>
+        <span><b style="color: #FFE08A;">Boss hit</b> · gh-boss-hit + gh-shake</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":2200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>
