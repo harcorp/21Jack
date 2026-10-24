@@ -71,6 +71,9 @@ export default async function LobbyPage() {
                   <PixelIcon name="swords" size={24} />
                   Enter the hall
                 </ButtonLink>
+                <ButtonLink href="/multi" variant="wood" size="lg">
+                  Multi (WIP)
+                </ButtonLink>
               </div>
             </div>
             <div className="hidden shrink-0 md:block">

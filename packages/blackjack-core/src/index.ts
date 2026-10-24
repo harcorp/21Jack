@@ -5,3 +5,4 @@ export * from "./round";
 export * from "./strategy";
 export * from "./boss";
 export * from "./coach";
+export * from "./table";

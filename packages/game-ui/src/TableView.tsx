@@ -5,14 +5,16 @@ import { useEffect, useRef, useState } from "react";
 import { coachLines } from "./lib/coach";
 import { celebrate, celebrateKingslayer } from "./lib/confetti";
 import { roundResult } from "./lib/format";
+import { useDealerReveal } from "./lib/useDealerReveal";
 import {
   ActionButton,
   ActionIcon,
   BalancePill,
-  BetCircle,
+  BankrollStacks,
   BossBar,
   ChipButton,
   ChipStack,
+  chipsFor,
   CoachPanel,
   CoachSummon,
   CoachToggle,
@@ -23,7 +25,7 @@ import {
   type ChipValue,
 } from "./primitives";
 import { DealerArea, DealerThrone } from "./table/DealerArea";
-import { HandSeat } from "./table/HandSeat";
+import { BettingSeat, HandSeat } from "./table/HandSeat";
 import { Shoe, ShoeContext } from "./table/Shoe";
 
 export interface TableViewProps {
@@ -39,6 +41,10 @@ export interface TableViewProps {
   /** Coach Mode on/off. Uncontrolled (local state) when omitted, defaulting to whether the round has coach data. */
   coach?: boolean;
   onCoachChange?(on: boolean): void;
+  /** Id of a round this client just started: if it arrives already settled (naturals), the dealer reveal is staged. */
+  freshRoundId?: string | null;
+  /** Called once per settled round when the dealer reveal has finished and the outcome is on screen. */
+  onRevealDone?(roundId: string): void;
 }
 
 const BET_CHIPS: ChipValue[] = [5, 10, 25, 100];
@@ -51,9 +57,28 @@ const ACTIONS: { action: Action; label: string; key: string; variant: "felt" | "
   { action: "split", label: "Split", key: "P", variant: "wood" },
 ];
 
-export function TableView({ round, balance, busy, error, onBet, onAction, onNewRound, boss = null, coach, onCoachChange }: TableViewProps) {
+/** The king as he stood before this round settled, shown until the reveal ends. */
+function bossBeforeRound(b: BossView): BossView {
+  return { ...b, hp: Math.max(0, Math.min(b.maxHp, b.hp - b.delta)), delta: 0, defeated: false };
+}
+
+export function TableView({
+  round,
+  balance,
+  busy,
+  error,
+  onBet,
+  onAction,
+  onNewRound,
+  boss = null,
+  coach,
+  onCoachChange,
+  freshRoundId = null,
+  onRevealDone,
+}: TableViewProps) {
   const shoeRef = useRef<HTMLDivElement>(null);
-  const [pendingBet, setPendingBet] = useState(0);
+  const [pendingChips, setPendingChips] = useState<ChipValue[]>([]);
+  const pendingBet = pendingChips.reduce((sum, v) => sum + v, 0);
   const lastBet = useRef(0);
   const [localCoach, setLocalCoach] = useState<boolean | null>(null);
   const coachOn = coach ?? localCoach ?? !!round?.coach;
@@ -64,21 +89,26 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
 
   const playing = round?.status === "player_turn";
   const settled = round?.status === "settled";
+  const reveal = useDealerReveal(round, freshRoundId);
+  const revealing = settled && !reveal.done;
+  const outcomeShown = settled && reveal.done;
   const activeIndex = round?.activeHandIndex ?? null;
   const activeHand = playing && activeIndex !== null ? round.hands[activeIndex] : undefined;
   const allowed = new Set(activeHand?.allowedActions ?? []);
-  const result = round ? roundResult(round) : null;
+  const result = round && outcomeShown ? roundResult(round) : null;
   const split = (round?.hands.length ?? 0) > 1;
-  const bossView = round?.boss ?? boss;
-  const bossEvent = settled && round.boss && round.boss.delta !== 0 ? round.roundId : null;
-  const kingslain = settled && round.boss?.defeated === true;
+  const bossView = revealing && round.boss ? bossBeforeRound(round.boss) : (round?.boss ?? boss);
+  const bossEvent = outcomeShown && round.boss && round.boss.delta !== 0 ? round.roundId : null;
+  const kingslain = outcomeShown && round.boss?.defeated === true;
+  // Payouts are already in the balance; hold them back until the outcome is revealed.
+  const shownBalance = revealing ? balance - round.hands.reduce((sum, h) => sum + (h.payout ?? 0), 0) : balance;
   const onTable = round ? round.hands.reduce((sum, h) => sum + h.stake, 0) : pendingBet;
   const recommended = coachOn && playing ? (round.coach?.recommended ?? null) : null;
 
   // Restore the previous bet when returning to the betting state, capped by the balance.
   const betting = round === null;
   useEffect(() => {
-    if (betting) setPendingBet(lastBet.current <= balance ? lastBet.current : 0);
+    if (betting) setPendingChips(lastBet.current <= balance ? chipsFor(lastBet.current) : []);
     // Only when entering the betting state; balance changes must not wipe the chips being placed.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [betting]);
@@ -90,6 +120,13 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
     if (result.net > 0) void celebrate(result.tone === "blackjack");
     if (round.boss?.defeated) void celebrateKingslayer();
   }, [round, result]);
+
+  const revealNotified = useRef<string | null>(null);
+  useEffect(() => {
+    if (!round || !outcomeShown || revealNotified.current === round.roundId) return;
+    revealNotified.current = round.roundId;
+    onRevealDone?.(round.roundId);
+  }, [round, outcomeShown, onRevealDone]);
 
   const act = (action: Action) => {
     if (busy || !activeHand || activeIndex === null || !allowed.has(action)) return;
@@ -109,7 +146,7 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
       const match = ACTIONS.find((a) => a.key === key);
       if (match) act(match.action);
     } else if (settled && key === "N") {
-      if (!busy) onNewRound();
+      if (!busy && !revealing) onNewRound();
     }
   };
   useEffect(() => {
@@ -130,7 +167,7 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
             <span className="border-2 border-ink bg-ink/70 px-2 py-1 font-pixel text-xs text-gold-light sm:text-sm">
               Bet {onTable}
             </span>
-            <BalancePill balance={balance} />
+            <BalancePill balance={shownBalance} />
           </div>
         </header>
 
@@ -148,8 +185,8 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
           <div className="flex min-w-0 flex-1 flex-col">
             <DealerThrone eventKey={bossEvent} delta={bossEvent ? (round?.boss?.delta ?? 0) : 0} />
 
-            <div className="voxel-block bg-wood p-2 sm:p-3">
-              <div className="relative flex min-h-[26rem] flex-col items-center justify-between gap-3 overflow-hidden border-4 border-wood-dark bg-felt bg-[radial-gradient(ellipse_at_50%_35%,var(--color-felt)_0%,var(--color-felt-dark)_100%)] px-2 py-4 sm:min-h-[32rem] sm:px-6">
+            <div className="voxel-block bg-wood p-1.5 sm:p-2.5">
+              <div className="relative flex min-h-[22rem] flex-col items-center justify-between gap-2 overflow-hidden border-4 border-wood-dark bg-felt bg-[radial-gradient(ellipse_at_50%_35%,var(--color-felt)_0%,var(--color-felt-dark)_100%)] px-2 py-3 sm:min-h-[27rem] sm:gap-3 sm:px-6">
                 <Shoe shoeRef={shoeRef} />
 
                 {kingslain && round.boss && (
@@ -158,41 +195,53 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
                   </div>
                 )}
 
-                <DealerArea round={round} />
+                <DealerArea round={round} reveal={reveal} />
 
-                <div className="flex min-h-20 items-center justify-center" aria-live="polite">
+                {/* Fixed-height slot: the result banner overflows it (centred) instead of pushing the hands down. */}
+                <div className="relative flex h-16 w-full items-center justify-center sm:h-24" aria-live="polite">
                   {result ? (
-                    <ResultBanner key={round?.roundId} tone={result.tone} title={result.title} detail={result.detail} />
-                  ) : (
-                    <p className="select-none text-center font-pixel text-[10px] uppercase tracking-[0.2em] text-gold/70 sm:text-xs">
-                      Dealer stands on all 17s
-                      <br />
-                      Wins and blackjack pay even money
+                    <div className="absolute inset-x-0 top-1/2 z-10 flex -translate-y-1/2 justify-center">
+                      <ResultBanner key={round?.roundId} tone={result.tone} title={result.title} detail={result.detail} />
+                    </div>
+                  ) : revealing ? null : (
+                    <p className="select-none text-center font-pixel text-[10px] uppercase tracking-[0.15em] text-gold/70">
+                      Dealer stands on 17 · Wins pay 1:1
                     </p>
                   )}
                 </div>
 
-                {round ? (
-                  <div className={`flex w-full items-start justify-center ${split ? "gap-3 sm:gap-10" : ""}`}>
-                    {round.hands.map((hand, i) => (
-                      <HandSeat
-                        key={hand.handId}
-                        hand={hand}
-                        index={i}
-                        split={split}
-                        settled={!!settled}
-                        active={!!playing && activeIndex === i}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center gap-2">
-                    <div className="min-h-20 sm:min-h-28" />
-                    <BetCircle active={pendingBet > 0} label={pendingBet > 0 ? `Bet ${pendingBet}` : "Place your bet"}>
-                      <ChipStack amount={pendingBet} />
-                    </BetCircle>
-                  </div>
-                )}
+                {/* Hands row: padded so it never runs under the bankroll (symmetric on sm+ to keep the circle centred). */}
+                <div className="flex w-full items-start justify-center pr-24 sm:px-28">
+                  {round ? (
+                    <div className="flex min-w-0 flex-1 items-start justify-center">
+                      {round.hands.map((hand, i) => (
+                        // Split hands get equal fixed columns so a hand growing a card never moves its neighbour's circle.
+                        <div key={hand.handId} className={split ? "flex min-w-0 flex-1 basis-0 justify-center" : "contents"}>
+                          <HandSeat
+                            hand={outcomeShown ? hand : { ...hand, outcome: undefined, payout: undefined }}
+                            index={i}
+                            split={split}
+                            settled={!!outcomeShown}
+                            active={!!playing && activeIndex === i}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="flex min-w-0 flex-1 items-start justify-center">
+                      <BettingSeat active={pendingBet > 0} label={pendingBet > 0 ? `Bet ${pendingBet}` : "Place your bet"}>
+                        <ChipStack amount={pendingBet} chips={pendingChips} />
+                      </BettingSeat>
+                    </div>
+                  )}
+                </div>
+
+                {/* Anchored to the felt corner, outside the hands flow: stack changes never move anything. */}
+                <BankrollStacks
+                  balance={round ? shownBalance : Math.max(0, shownBalance - pendingBet)}
+                  holdGains={!!outcomeShown}
+                  className="absolute bottom-3 right-2 sm:right-3"
+                />
               </div>
             </div>
           </div>
@@ -219,12 +268,12 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
                     key={v}
                     value={v}
                     disabled={busy || pendingBet + v > balance}
-                    onClick={() => setPendingBet((b) => b + v)}
+                    onClick={() => setPendingChips((c) => [...c, v])}
                   />
                 ))}
               </div>
               <div className="flex flex-wrap justify-center gap-2">
-                <ActionButton variant="ghost" disabled={busy || pendingBet === 0} onClick={() => setPendingBet(0)}>
+                <ActionButton variant="ghost" disabled={busy || pendingBet === 0} onClick={() => setPendingChips([])}>
                   Clear
                 </ActionButton>
                 <ActionButton
@@ -264,7 +313,7 @@ export function TableView({ round, balance, busy, error, onBet, onAction, onNewR
 
           {settled && (
             <div className="flex justify-center">
-              <ActionButton variant="gold" className="min-w-40" disabled={busy} onClick={onNewRound} hotkey="N">
+              <ActionButton variant="gold" className="min-w-40" disabled={busy || revealing} onClick={onNewRound} hotkey="N">
                 New round
               </ActionButton>
             </div>

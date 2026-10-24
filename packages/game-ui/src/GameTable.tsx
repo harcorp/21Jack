@@ -23,14 +23,23 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
   const [error, setError] = useState<string | null>(null);
   const [boss, setBoss] = useState<BossView | null>(null);
   const [coach, setCoach] = useCoachPreference();
+  const [freshRoundId, setFreshRoundId] = useState<string | null>(null);
   const pending = useRef(false);
+  // A settled round's balance reaches the page header only after the dealer reveal ends.
+  const heldBalance = useRef<{ roundId: string; balance: number } | null>(null);
+  const revealedRound = useRef<string | null>(null);
   const onBalanceRef = useRef(onBalanceChange);
   onBalanceRef.current = onBalanceChange;
 
   const apply = useCallback((next: RoundView) => {
     setRound(next);
     setBalance(next.balance);
-    onBalanceRef.current?.(next.balance);
+    if (next.status === "settled" && revealedRound.current !== next.roundId) {
+      heldBalance.current = { roundId: next.roundId, balance: next.balance };
+    } else {
+      heldBalance.current = null;
+      onBalanceRef.current?.(next.balance);
+    }
     if (next.boss) {
       // State carried into the next betting screen: a slain king comes back at full health.
       const b = next.boss;
@@ -99,6 +108,7 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
   const onBet = (amount: number) => {
     if (!Number.isInteger(amount) || amount <= 0 || amount > balance) return;
     const body: WebStartRoundRequest = { bet: amount, requestId: newId(), ...(coach ? { coach: true } : {}) };
+    setFreshRoundId(body.requestId);
     void run(
       () => requestRound(`${apiBase}/rounds`, { method: "POST", body: JSON.stringify(body) }),
       async (err) => {
@@ -118,8 +128,25 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
     void run(() => requestRound(`${apiBase}/rounds/${id}/actions`, { method: "POST", body: JSON.stringify(body) }));
   };
 
+  const releaseBalance = useCallback(() => {
+    const held = heldBalance.current;
+    heldBalance.current = null;
+    if (held) onBalanceRef.current?.(held.balance);
+  }, []);
+
+  const onRevealDone = useCallback(
+    (roundId: string) => {
+      revealedRound.current = roundId;
+      if (heldBalance.current?.roundId === roundId) releaseBalance();
+    },
+    [releaseBalance],
+  );
+
+  useEffect(() => releaseBalance, [releaseBalance]);
+
   const onNewRound = () => {
     if (pending.current) return;
+    releaseBalance();
     setError(null);
     setRound(null);
   };
@@ -136,6 +163,8 @@ export function GameTable({ initialBalance, onBalanceChange, apiBase = "/api/gam
       onBet={onBet}
       onAction={onAction}
       onNewRound={onNewRound}
+      freshRoundId={freshRoundId}
+      onRevealDone={onRevealDone}
     />
   );
 }
